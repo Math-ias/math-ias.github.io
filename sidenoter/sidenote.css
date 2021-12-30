@@ -1,0 +1,43 @@
+.content {
+    box-sizing: border-box;
+    max-width: 61rem;
+    padding-right: 21rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.withsmall {
+    box-sizing: border-box;
+    max-width: 61rem;
+    margin-right: -21rem;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.withsmall > :not(small) {
+    box-sizing: border-box;
+    width: 40rem;
+    margin-top: 0;
+}
+.withsmall > small {
+    width: 21rem;
+    padding-left: 1rem;
+}
+
+@media(max-width: 61.5rem) {
+    .content {
+        max-width: 40rem;
+        padding-right: unset;
+    }
+    .withsmall {
+        max-width: unset;
+        display: unset;
+    }
+    .withsmall > :not(small) {
+        width: unset;
+        margin-top: unset;
+    }
+    .withsmall > small {
+        width: unset;
+        padding-left: unset;
+    }
+}

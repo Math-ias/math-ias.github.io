@@ -1,0 +1,1782 @@
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Clickr
+  </title>
+  <style id="sidenoted">
+   .content {
+    box-sizing: border-box;
+    max-width: 61rem;
+    padding-right: 21rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.withsmall {
+    box-sizing: border-box;
+    max-width: 61rem;
+    margin-right: -21rem;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.withsmall > :not(small) {
+    box-sizing: border-box;
+    width: 40rem;
+    margin-top: 0;
+}
+.withsmall > small {
+    width: 21rem;
+    padding-left: 1rem;
+}
+
+@media(max-width: 61.5rem) {
+    .content {
+        max-width: 40rem;
+        padding-right: unset;
+    }
+    .withsmall {
+        max-width: unset;
+        display: unset;
+    }
+    .withsmall > :not(small) {
+        width: unset;
+        margin-top: unset;
+    }
+    .withsmall > small {
+        width: unset;
+        padding-left: unset;
+    }
+}
+  </style>
+ </head>
+ <body>
+  <div class="content">
+   <h1 id="clickr">
+    Clickr
+   </h1>
+   <p>
+    <strong>
+     Clickr
+    </strong>
+    is a minigame redstone contraption.
+A lectern faces the player showing a written book with nearly 100 pages.
+The player’s objective is to flip through that book as fast as possible.
+After reaching the last page the player’s score is readable from the number of items in the hopper.
+   </p>
+   <nav id="TableOfContents">
+    <ul>
+     <li>
+      <a href="#formulating-the-game">
+       Formulating the Game
+      </a>
+      <ul>
+       <li>
+        <a href="#finding-an-item">
+         Finding an Item
+        </a>
+       </li>
+       <li>
+        <a href="#lecterns-emit-redstone">
+         Lecterns Emit Redstone
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li>
+      <a href="#how-it-works">
+       How It Works
+      </a>
+      <ul>
+       <li>
+        <a href="#hoppers">
+         Hoppers
+        </a>
+       </li>
+       <li>
+        <a href="#states">
+         States
+        </a>
+       </li>
+       <li>
+        <a href="#state-observations">
+         State Observations
+        </a>
+       </li>
+       <li>
+        <a href="#transitions">
+         Transitions
+        </a>
+       </li>
+       <li>
+        <a href="#the-book-itself">
+         The Book Itself
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li>
+      <a href="#bugs">
+       Bugs
+      </a>
+     </li>
+     <li>
+      <a href="#extra-modifications-and-extensions">
+       Extra Modifications and Extensions
+      </a>
+      <ul>
+       <li>
+        <a href="#competition">
+         Competition
+        </a>
+       </li>
+       <li>
+        <a href="#simplification">
+         Simplification
+        </a>
+       </li>
+       <li>
+        <a href="#book-art">
+         Book Art
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li>
+      <a href="#gameplay">
+       Gameplay
+      </a>
+      <ul>
+       <li>
+        <a href="#reception">
+         Reception
+        </a>
+       </li>
+       <li>
+        <a href="#tips-and-tricks">
+         Tips and Tricks
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </nav>
+   <h2 id="formulating-the-game">
+    Formulating the Game
+   </h2>
+   <h3 id="finding-an-item">
+    Finding an Item
+   </h3>
+   <div class="withsmall">
+    <p style="margin-top: 0;">
+     The original objective was to create a game about clicking as fast as possible.†
+    </p>
+    <small>
+     Specifically, the original objective was to pay homage to
+     <a href="https://animalcrossing.fandom.com/wiki/Gracie%27s_car">
+      the car washing minigame
+     </a>
+     from Animal Crossing.
+    </small>
+   </div>
+   <p>
+    Objects like …
+   </p>
+   <ul>
+    <li>
+     noteblocks
+    </li>
+    <li>
+     levers
+    </li>
+    <li>
+     trapdoors
+    </li>
+   </ul>
+   <div class="withsmall">
+    <p style="margin-top: 0;">
+     Were evaluated for allowing quick, readable inputs (by redstone signal or observer).
+One in-the-way mechanic was that the game repeated interactions 5 times per second† if the player held the mouse button down.
+    </p>
+    <small>
+     Testing it out in creative, in 60 seconds a trapdoor can be flipped 302 times by holding the mouse down.
+That makes an approximate rate of 5 clicks per second.
+    </small>
+   </div>
+   <div class="withsmall">
+    <p style="margin-top: 0;">
+     It’s of course possible to click faster than this, on a macbook trackpad I can click 7 times per second†.
+Ultimately, this floor performance was too high for the gameplay to feel rewarding.
+    </p>
+    <small>
+     Trackpad performance measured using an online click speed test. The measurement period was considerably shorter than one minute.
+    </small>
+   </div>
+   <div class="withsmall">
+    <p style="margin-top: 0;">
+     It was discovered that
+     <strong>
+      the buttons to change the current page in written books do not repeat
+     </strong>
+     .
+Prototyping redstone† was rigged to read each discrete page turn with an observer.
+    </p>
+    <small>
+     “Prototyping redstone” is underselling the amount of commitment given to this observer idea. I thought I had finished the game at this point, and had wired all sorts of fun interactivity with this concept. I used a redstone clock to give the player a certain amount of time, and put only a limited number of items in the dropper for the player to empty out.
+    </small>
+   </div>
+   <p>
+    That observer powered a dropper, the output of which represented the number of clicks the player had committed.
+Playtesting this uncovered a new issue, however,
+    <strong>
+     the observers could only make so many page-turn observations per second
+    </strong>
+    .
+   </p>
+   <div class="withsmall">
+    <table style="margin-top: 0;">
+     <thead>
+      <tr>
+       <th>
+        Clicks Per Second
+       </th>
+       <th>
+        Clicks Observed†
+       </th>
+       <th>
+        Trial 2
+       </th>
+       <th>
+        Trial 3
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        5.00
+       </td>
+       <td>
+        64
+       </td>
+       <td>
+        64
+       </td>
+       <td>
+        64
+       </td>
+      </tr>
+      <tr>
+       <td>
+        6.00
+       </td>
+       <td>
+        64
+       </td>
+       <td>
+        64
+       </td>
+       <td>
+        64
+       </td>
+      </tr>
+      <tr>
+       <td>
+        6.0625
+       </td>
+       <td>
+        63
+       </td>
+       <td>
+        63
+       </td>
+       <td>
+        63
+       </td>
+      </tr>
+      <tr>
+       <td>
+        6.125
+       </td>
+       <td>
+        62
+       </td>
+       <td>
+        62
+       </td>
+       <td>
+        62
+       </td>
+      </tr>
+      <tr>
+       <td>
+        6.25
+       </td>
+       <td>
+        60
+       </td>
+       <td>
+        60
+       </td>
+       <td>
+        60
+       </td>
+      </tr>
+      <tr>
+       <td>
+        6.50
+       </td>
+       <td>
+        55
+       </td>
+       <td>
+        58
+       </td>
+       <td>
+        55
+       </td>
+      </tr>
+      <tr>
+       <td>
+        7.00
+       </td>
+       <td>
+        49
+       </td>
+       <td>
+        48
+       </td>
+       <td>
+        49
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <small>
+     Tested with a setup of an observer facing a lectern with a written book. The observer pulsed into a dropper which dropped items into a barrel. To click a reliable number of times a second, I wrote
+     <a href="clickr/Clickr.java">
+      this java code
+     </a>
+     to utilize the
+     <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/Robot.html">
+      java.awt.Robot
+     </a>
+     class.
+    </small>
+   </div>
+   <h3 id="lecterns-emit-redstone">
+    Lecterns Emit Redstone
+   </h3>
+   <p>
+    One solution to this observation problem was not observing at all.
+Instead the aggregate number of clicks could be tracked using
+    <a href="https://minecraft.fandom.com/wiki/Lectern#Redstone_signal">
+     the signal strength of the lectern
+    </a>
+    .
+In this build, this signal strength is read using a comparator.
+One surprising property of lecterns is that
+    <strong>
+     they emit a redstone signal themselves
+    </strong>
+    .
+This pulse lasts just one game-tick and is hard to otherwise notice while playing with the book.
+This unexpected property proved to be the last hiccup in completing the build.
+   </p>
+   <h2 id="how-it-works">
+    How It Works
+   </h2>
+   <h3 id="hoppers">
+    Hoppers
+   </h3>
+   <p>
+    All of the redstone is dedicated to controlling two hoppers.
+   </p>
+   <ul>
+    <li>
+     One of the hoppers is called
+     <strong>
+      the display
+     </strong>
+     , this is the one visible to the player.
+    </li>
+    <li>
+     The other hopper is called
+     <strong>
+      the feed
+     </strong>
+     , this feeds items into the display hopper.
+    </li>
+   </ul>
+   <div class="withsmall">
+    <pre style="margin-top: 0;" tabindex="0"><code>|---------------|----------|
+|               | †        |
+|               |          |
+|               |          |
+|               |          |
+|               |          |
+|               |          |
+|     |⇓|       | v feed   |
+|     |⇑|       | ^ display|
+|               |          |
+|               |          |
+|               |          |
+|               |          |
+|               |          |
+|               |          |
+|---------------|----------|
+</code></pre>
+    <small>
+     Redstone is represented in tables to cut down on external resources loaded, like images.
+I searched the unicode table for all the things I needed to represent.
+Post-processing should convert this table into something more readable with maybe svg symbols.
+    </small>
+   </div>
+   <h3 id="states">
+    States
+   </h3>
+   <p>
+    There are four states desired in the game.
+   </p>
+   <div class="withsmall">
+    <ul style="margin-top: 0;">
+     <li>
+      The
+      <strong>
+       playing
+      </strong>
+      state.
+      <ul>
+       <li>
+        The
+        <strong>
+         display
+        </strong>
+        hopper is
+        <em>
+         disabled
+        </em>
+        (to prevent items from flowing backwards).
+       </li>
+       <li>
+        The
+        <strong>
+         feed
+        </strong>
+        hopper is
+        <em>
+         enabled
+        </em>
+        (to keep track of the time).
+       </li>
+      </ul>
+     </li>
+     <li>
+      The
+      <strong>
+       finished
+      </strong>
+      state. This is when player’s can do victory laps and look at their time.
+      <ul>
+       <li>
+        The display hopper is
+        <em>
+         disabled
+        </em>
+        (clean-up isn’t wanted before the player has a chance to see their score).
+       </li>
+       <li>
+        The feed hopper is
+        <em>
+         disabled
+        </em>
+        (continued counting isn’t wanted when the game is over).
+       </li>
+      </ul>
+     </li>
+     <li>
+      The
+      <strong>
+       clean-up
+      </strong>
+      state. This is when the machine resets itself.
+      <ul>
+       <li>
+        The display hopper is
+        <em>
+         enabled
+        </em>
+        (all of the items need to get out to start the next game at 0).
+       </li>
+       <li>
+        The feed hopper is
+        <em>
+         disabled
+        </em>
+        (would fight against clean-up).
+       </li>
+      </ul>
+     </li>
+     <li>
+      The
+      <strong>
+       init
+      </strong>
+      state†. This is when the machine accepts input to go into the playing state.
+      <ul>
+       <li>
+        It doesn’t matter what the display hopper is (all the items have been emptied out).
+       </li>
+       <li>
+        The feed hopper is
+        <em>
+         disabled
+        </em>
+        (not playing yet so not counting).
+       </li>
+      </ul>
+     </li>
+    </ul>
+    <small>
+     <p>
+      The init state isn’t strictly necessary but was included largely for bad input protection.
+It was desired to …
+     </p>
+     <ul>
+      <li>
+       stop the player from starting a new game if clean-up wasn’t done (their score would be artificially high).
+      </li>
+      <li>
+       stop the player from starting a new game in the middle of the book (their score would be artifically low).
+Checking both of these in the transition from a clean-up state to a ready state would require complicated redstone (in particular at least an AND gate).
+      </li>
+     </ul>
+    </small>
+   </div>
+   <p>
+    To track these four different states, two bits of memory are needed.
+There are a variety of
+    <a href="https://minecraft.fandom.com/wiki/Redstone_circuits/Memory#RS_latches">
+     RS latches
+    </a>
+    figured out on the minecraft wiki.
+One latch will be called the
+    <strong>
+     freeze
+    </strong>
+    bit, and the other latch will be called the
+    <strong>
+     ready
+    </strong>
+    bit.
+   </p>
+   <pre tabindex="0"><code>|---------------|----------|
+|               |          |
+|               |          |
+|  ┋-o ┋        | ready SR |
+|  ┋ o-┋        |          |
+|               |          |
+|               |          |
+|     |⇓|       |          |
+|     |⇑|       |          |
+|               |          |
+|  ┋-o ┋        | freeze SR|
+|  ┋ o-┋        |          |
+|               |          |
+|               |          |
+|               |          |
+|---------------|----------|
+</code></pre>
+   <p>
+    One mapping between freeze and ready bit combinations looks like this.
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+      </th>
+      <th>
+       READY TRUE
+      </th>
+      <th>
+       READY FALSE
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       FREEZE FALSE
+      </td>
+      <td>
+       <strong>
+        INIT
+       </strong>
+      </td>
+      <td>
+       <strong>
+        CLEAN-UP
+       </strong>
+      </td>
+     </tr>
+     <tr>
+      <td>
+      </td>
+      <td>
+       FEED OFF
+      </td>
+      <td>
+       FEED OFF
+      </td>
+     </tr>
+     <tr>
+      <td>
+      </td>
+      <td>
+       DISPLAY N.A
+      </td>
+      <td>
+       DISPLAY ON
+      </td>
+     </tr>
+     <tr>
+      <td>
+       FREEZE TRUE
+      </td>
+      <td>
+       <strong>
+        PLAYING
+       </strong>
+      </td>
+      <td>
+       <strong>
+        FINISHED
+       </strong>
+      </td>
+     </tr>
+     <tr>
+      <td>
+      </td>
+      <td>
+       FEED ON
+      </td>
+      <td>
+       FEED OFF
+      </td>
+     </tr>
+     <tr>
+      <td>
+      </td>
+      <td>
+       DISPLAY OFF
+      </td>
+      <td>
+       DISPLAY OFF
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h3 id="state-observations">
+    State Observations
+   </h3>
+   <p>
+    With this particular choice of bits to state mapping …
+   </p>
+   <ul>
+    <li>
+     the display hopper enabled-ness depends only on the freeze bit.
+    </li>
+    <li>
+     the feed hopper is only enabled when both the freeze and ready bit read true.
+    </li>
+   </ul>
+   <p>
+    This can be accomplished in redstone by …
+   </p>
+   <ul>
+    <li>
+     feeding the positive signal of the freeze SR latch into the display hopper
+    </li>
+    <li>
+     feeding both the negative signals of the freeze and ready SR latches into the feed hopper.
+    </li>
+   </ul>
+   <pre tabindex="0"><code>|---------------|----------|
+|               |          |
+|               |          |
+|  ┋-o ┋        | ready SR |
+|  ┋ o-┋        |          |
+|      ┋        |          |
+|      ┋        |          |
+|  ┏ ┅|⇓|       |          |
+|  ┋  |⇑|       |          |
+|  ┋   ┋        |          |
+|  ┋-o ┋        | freeze SR|
+|  ┋ o-┋        |          |
+|               |          |
+|               |          |
+|               |          |
+|---------------|----------|
+</code></pre>
+   <h3 id="transitions">
+    Transitions
+   </h3>
+   <div class="withsmall">
+    <div>
+     <p style="margin-top: 0;">
+      With the four desired states, there are four desired transitions†.
+     </p>
+     <ol>
+      <li>
+       From
+       <strong>
+        init
+       </strong>
+       to
+       <strong>
+        playing
+       </strong>
+       .
+       <ul>
+        <li>
+         After the player flips past the starting-line page.
+        </li>
+       </ul>
+      </li>
+      <li>
+       From
+       <strong>
+        playing
+       </strong>
+       to
+       <strong>
+        finished
+       </strong>
+       .
+       <ul>
+        <li>
+         After the player reaches the end of the book.
+        </li>
+       </ul>
+      </li>
+      <li>
+       From
+       <strong>
+        finished
+       </strong>
+       to
+       <strong>
+        clean-up
+       </strong>
+       .
+       <ul>
+        <li>
+         After the player leaves the last page.
+        </li>
+       </ul>
+      </li>
+      <li>
+       From
+       <strong>
+        clean-up
+       </strong>
+       to
+       <strong>
+        init
+       </strong>
+       .
+       <ul>
+        <li>
+         After the display hopper is emptied out.
+        </li>
+       </ul>
+      </li>
+     </ol>
+    </div>
+    <small>
+     It is these transitions that decided how the bits were mapped to states (ensuring there was only ever change in one bit at a time).
+    </small>
+   </div>
+   <p>
+    In redstone these transitions can be accomplished by …
+   </p>
+   <ol>
+    <li>
+     A
+     <a href="https://minecraft.fandom.com/wiki/Redstone_circuits/Pulse#Edge_detector">
+      rising-edge detector
+     </a>
+     on lectern power increasing past power 2 setting the freeze SR latch to true.
+    </li>
+    <li>
+     A direct line from lectern power resetting the ready SR latch to false (at power 15).
+    </li>
+    <li>
+     A
+     <a href="https://minecraft.fandom.com/wiki/Redstone_circuits/Pulse#Edge_detector">
+      falling-edge detector
+     </a>
+     on lectern power descreasing from power 15 resetting the freeze SR latch to false.
+    </li>
+    <li>
+     A direct line from a comparator on the display hopper setting the ready SR latch to true (when off).
+    </li>
+   </ol>
+   <div class="withsmall">
+    <p style="margin-top: 0;">
+     NOTE that while these accomplish desired state transitions, they also implement transitions on the other side of the table.
+In each case the effect is rare if not impossible to trigger†.
+    </p>
+    <small>
+     The transitions themselves were chosen precisely because they were safely duplicable to the other side of the state table.
+This provided the huge advantage of redstone simplicity, no logic gates were required.
+    </small>
+   </div>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       state
+      </th>
+      <th>
+       transition
+      </th>
+      <th>
+       state
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <strong>
+        INIT
+       </strong>
+      </td>
+      <td>
+       → book power is 15 →
+      </td>
+      <td>
+       <strong>
+        CLEAN-UP
+       </strong>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <strong>
+        INIT
+       </strong>
+      </td>
+      <td>
+       ← display hopper mt ←
+      </td>
+      <td>
+       <strong>
+        CLEAN-UP
+       </strong>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       ↓ book power past 2
+      </td>
+      <td>
+      </td>
+      <td>
+       ↓ book power past 2
+      </td>
+     </tr>
+     <tr>
+      <td>
+       book power off 15 ↑
+      </td>
+      <td>
+      </td>
+      <td>
+       book power off 15 ↑
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <strong>
+        PLAYING
+       </strong>
+      </td>
+      <td>
+       → book power is 15 →
+      </td>
+      <td>
+       <strong>
+        FINISHED
+       </strong>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <strong>
+        PLAYING
+       </strong>
+      </td>
+      <td>
+       ← display hopper mt ←
+      </td>
+      <td>
+       <strong>
+        FINISHED
+       </strong>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div class="withsmall">
+    <pre style="margin-top: 0;" tabindex="0"><code>|---------------|----------|
+|      ┏┅┅┅┅┅┅┅┓| †        |
+|      ┋       ┋|          |
+|  ┋-o ┋       ┋|          |
+|  ┋ o-┋       ┋|          |
+|  ┋   ┋       ┋|          |
+|  ┋   ┋       ┋|          |
+|  ¡  |⇓|  x┅┅┅┫| note new |
+|  █┅&lt;|⇑|  ┋   ┋| redstone |
+| old  ┋  |↓|  ┋| ontop in |
+|  ┋-o ┋  |⇑|  ┋| this pic |
+|  ┋ o-┋   ∇   ┋|overwrites|
+|┏┅┛   ┗┅┅┅█   ┋| old      |
+|∆             ┋|          |
+|⇒⇐┅┅┅┅┅┅┅┅┅┅┅┅┛|          |
+|---------------|----------|
+</code></pre>
+    <small>
+     It’s possible to save one redstone tick by stretching out input to power 15 instead of using a comparator in subtract mode.
+A lot of the edge detectors compatible with this choice (i.e not piston driven) use the movement of an item in a hopper/dropper combination or dropper dropper combination.
+To give a little more wiggle room with placement of the edge detector, it’s suggested to use a sword as the item.
+With a sword, the output strength of the edge detector will be at least power 3.
+    </small>
+   </div>
+   <h3 id="the-book-itself">
+    The Book Itself
+   </h3>
+   <p>
+    The redstone power of a book in a lectern is determined by the current page and the total number of pages.
+   </p>
+   <ul>
+    <li>
+     <a href="https://minecraft.fandom.com/wiki/Lectern#Redstone_signal">
+      It’s roughly proportionate to, but not equal to exactly, the percentage progress through the book
+     </a>
+     .
+     <ul>
+      <li>
+       In Java Edition, the formula is
+       <code>
+        FLOOR(1 + 14 (P - 1) / (M - 1) )
+       </code>
+       . Where
+       <code>
+        P
+       </code>
+       is the current page number and
+       <code>
+        M
+       </code>
+       is the total number of pages.
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="https://minecraft.fandom.com/wiki/Book_and_Quill#Writing">
+      Written books have a limit of 100 pages
+     </a>
+     .
+    </li>
+   </ul>
+   <p>
+    This formula has some nice and some not nice properties …
+   </p>
+   <ul>
+    <li>
+     NOT NICE: With a large
+     <code>
+      M
+     </code>
+     , the threshold between lectern power 1 and 2 (starting the game) is not at page 1, but further into the book e.g page 7 or 8.
+    </li>
+    <li>
+     NICE: Signal power is 15 only on the last page.
+     <code>
+      FLOOR(1 + 14 (M - 1) / (M - 1)) = FLOOR(1 + 14) = 15
+     </code>
+    </li>
+   </ul>
+   <p>
+    It is desired to find a total number of pages that results in a
+    <em>
+     round
+    </em>
+    number of clicks required to transition from the threshold of book power 2 to the end.
+100 clicks is not possible after all there can only be 100 pages in a book.
+Then it is worth finding a book that takes
+    <em>
+     90
+    </em>
+    clicks start (the threshold between power 1 and 2) to finish.
+   </p>
+   <p>
+    The different possibilites can be evaluated in a spreadsheet.
+   </p>
+   <div class="withsmall">
+    <table style="margin-top: 0;">
+     <thead>
+      <tr>
+       <th>
+        TOTAL PAGES
+       </th>
+       <th>
+        THRESHOLD
+       </th>
+       <th>
+        TOTAL CLICKS
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        M
+       </td>
+       <td>
+        T = CEIL((M - 1) / 14) + 1  †
+       </td>
+       <td>
+        M - T + 1
+       </td>
+      </tr>
+      <tr>
+       <td>
+        90
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        83
+       </td>
+      </tr>
+      <tr>
+       <td>
+        91
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        84
+       </td>
+      </tr>
+      <tr>
+       <td>
+        92
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        85
+       </td>
+      </tr>
+      <tr>
+       <td>
+        93
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        86
+       </td>
+      </tr>
+      <tr>
+       <td>
+        94
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        87
+       </td>
+      </tr>
+      <tr>
+       <td>
+        95
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        88
+       </td>
+      </tr>
+      <tr>
+       <td>
+        96
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        89
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <strong>
+         97
+        </strong>
+       </td>
+       <td>
+        <strong>
+         8
+        </strong>
+       </td>
+       <td>
+        <strong>
+         90
+        </strong>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        98
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        91
+       </td>
+      </tr>
+      <tr>
+       <td>
+        90
+       </td>
+       <td>
+        8
+       </td>
+       <td>
+        92
+       </td>
+      </tr>
+      <tr>
+       <td>
+        100
+       </td>
+       <td>
+        9
+       </td>
+       <td>
+        92
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <small>
+     <p>
+      The following is a way to derive the start threshold from the total number of pages.
+     </p>
+     <ul>
+      <li>
+       It is desired to find which
+       <code>
+        P
+       </code>
+       is the first to make
+       <code>
+        FLOOR(1 + 14 (P - 1) / (M - 1) )
+       </code>
+       evaluate to 2.
+      </li>
+      <li>
+       In other words, the first
+       <code>
+        P
+       </code>
+       to evaluate
+       <code>
+        FLOOR(14 (P - 1) / (M - 1))
+       </code>
+       to 1.
+      </li>
+      <li>
+       The first to evaluate
+       <code>
+        (P - 1) / (M - 1)
+       </code>
+       to a value greater than or equal to
+       <code>
+        1/14
+       </code>
+       .
+      </li>
+      <li>
+       <code>
+        (P - 1) = CEILING((M - 1) / 14)
+       </code>
+      </li>
+      <li>
+       <code>
+        P = CEILING((M - 1) / 14) + 1
+       </code>
+      </li>
+     </ul>
+    </small>
+   </div>
+   <p>
+    The total number of clicks comes from how it will take the user 1 click (hence the
+    <code>
+     + 1
+    </code>
+    ) to start the game.
+Then
+    <code>
+     threshold - final page number
+    </code>
+    of clicks are required to reach the final page.
+   </p>
+   <p>
+    When creating the written book, it’s recommended to create 97 pages.
+The last page before the game starts will be page 7 and so 90 clicks will finish the game.
+   </p>
+   <h2 id="bugs">
+    Bugs
+   </h2>
+   <p>
+    Zooming in on the state transition diagram again, it’s possible for users trigger an unwanted transition from
+    <strong>
+     clean-up
+    </strong>
+    back to
+    <strong>
+     finished
+    </strong>
+    .
+   </p>
+   <p>
+    |
+    <strong>
+     CLEAN-UP
+    </strong>
+    |
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       ↓ book power past 2
+      </td>
+     </tr>
+     <tr>
+      <td>
+       book power off 15 ↑
+      </td>
+     </tr>
+     <tr>
+      <td>
+       ———————–
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <strong>
+        FINISHED
+       </strong>
+      </td>
+     </tr>
+     <tr>
+      <td>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <p>
+    If during
+    <strong>
+     clean-up
+    </strong>
+    users flip the book page to the start, and then flip forward as if they are starting a new game …
+   </p>
+   <ul>
+    <li>
+     They will enter the
+     <strong>
+      finished
+     </strong>
+     state halting clean-up.
+    </li>
+    <li>
+     Clean-up can ONLY resume by flipping forward to the end of the book, and then at least once backwards to enable the falling edge circuit.
+    </li>
+   </ul>
+   <p>
+    In order to trigger this behavior, the player will need to be quicker resetting the book than they were in the previous recorded attempt.
+   </p>
+   <h2 id="extra-modifications-and-extensions">
+    Extra Modifications and Extensions
+   </h2>
+   <p>
+    The concept of measuring the time it takes players to reach the end of a book isn’t limited to stopwatch functionality, only imagination.
+   </p>
+   <h3 id="competition">
+    Competition
+   </h3>
+   <p>
+    For example, a leaderboard of scores could be accomplished by feeding items into a chest minecart, instead of a display hopper.
+It would be a great accomplishment to then sort these chest minecarts into a vertical stack.
+   </p>
+   <h3 id="simplification">
+    Simplification
+   </h3>
+   <p>
+    This machine could simplified by removing the clean-up stage and asking players to move items from the display back into the feed manually.
+   </p>
+   <ul>
+    <li>
+     The display could become a chest or a barrel.
+    </li>
+    <li>
+     And there would be only a need for two states, playing and finished.
+     <ul>
+      <li>
+       The transition from playing to finished could be kept.
+      </li>
+      <li>
+       The transition from finished to playing could be the rising edge detector from power 1 to power 2.
+       <ul>
+        <li>
+         This simplification comes with the trust that the player has emptied the display.
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+   </ul>
+   <h3 id="book-art">
+    Book Art
+   </h3>
+   <div class="withsmall">
+    <p style="margin-top: 0;">
+     One way to add feedback to the written book in the design is to use macros to repeatedly make book art like progress bars.
+I used the
+     <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/Robot.html">
+      java.awt.Robot
+     </a>
+     class in a Java program to write a grid of medium shade and full block unicode characters†.
+    </p>
+    <small>
+     I used the medium shade and full
+     <a href="https://en.wikipedia.org/wiki/Block_Elements">
+      block elements
+     </a>
+     because I noticed in the Minecraft font that they rendered with the same width.
+    </small>
+   </div>
+   <p>
+    <a href="clickr/ClickrBookWriter.java">
+     The attached program
+    </a>
+    also comes with something to generate random art on the first page using
+    <a href="https://minecraft.fandom.com/wiki/Formatting_codes">
+     formatting codes
+    </a>
+    to change the color of text.
+   </p>
+   <p>
+    The art on the first page this creates looks like.
+   </p>
+   <div class="withsmall">
+    <div>
+     <div style="margin-top: 0;">
+      <span style="color: #0000AA">
+       ▗
+      </span>
+      <span style="color: #5555FF">
+       ▝
+      </span>
+      <span style="color: #FFFF55">
+       ▙
+      </span>
+      <span style="color: #000000">
+       ▙
+      </span>
+      <span style="color: #55FFFF">
+       ▗
+      </span>
+      <span style="color: #0000AA">
+       ▛
+      </span>
+      <span style="color: #0000AA">
+       ▚
+      </span>
+      <span style="color: #AAAAAA">
+       ▜
+      </span>
+      <span style="color: #FFFF55">
+       ▘
+      </span>
+      <span style="color: #FF55FF">
+       ▞
+      </span>
+      <span style="color: #5555FF">
+       ▛
+      </span>
+      <span style="color: #FF5555">
+       ▜
+      </span>
+      <br/>
+      <span style="color: #00AA00">
+       ▖
+      </span>
+      <span style="color: #0000AA">
+       ▗
+      </span>
+      <span style="color: #FFFF55">
+       ▞
+      </span>
+      <span style="color: #AA0000">
+       ▖
+      </span>
+      <span style="color: #555555">
+       ▝
+      </span>
+      <span style="color: #000000">
+       ▜
+      </span>
+      <span style="color: #555555">
+       ▞
+      </span>
+      <span style="color: #000000">
+       ▟
+      </span>
+      <span style="color: #FF5555">
+       ▞
+      </span>
+      <span style="color: #00AA00">
+       ▞
+      </span>
+      <span style="color: #AA0000">
+       ▝
+      </span>
+      <span style="color: #AA0000">
+       ▙
+      </span>
+      <br/>
+      <span style="color: #AA0000">
+       ▝
+      </span>
+      <span style="color: #AA00AA">
+       ▟
+      </span>
+      <span style="color: #FF5555">
+       ▜
+      </span>
+      <span style="color: #AA00AA">
+       ▗
+      </span>
+      <span style="color: #00AA00">
+       ▙
+      </span>
+      <span style="color: #0000AA">
+       ▚
+      </span>
+      <span style="color: #AA00AA">
+       ▟
+      </span>
+      <span style="color: #00AAAA">
+       ▙
+      </span>
+      <span style="color: #000000">
+       ▝
+      </span>
+      <span style="color: #FF55FF">
+       ▖
+      </span>
+      <span style="color: #0000AA">
+       ▝
+      </span>
+      <span style="color: #555555">
+       ▝
+      </span>
+      <br/>
+      <span style="color: #55FF55">
+       ▝
+      </span>
+      <span style="color: #FFAA00">
+       ▙
+      </span>
+      <span style="color: #5555FF">
+       ▞
+      </span>
+      <span style="color: #00AA00">
+       ▟
+      </span>
+      <span style="color: #AA00AA">
+       ▖
+      </span>
+      <span style="color: #55FFFF">
+       ▖
+      </span>
+      <span style="color: #FF55FF">
+       ▙
+      </span>
+      <span style="color: #FF55FF">
+       ▘
+      </span>
+      <span style="color: #0000AA">
+       ▛
+      </span>
+      <span style="color: #555555">
+       ▖
+      </span>
+      <span style="color: #55FF55">
+       ▘
+      </span>
+      <span style="color: #FF5555">
+       ▟
+      </span>
+      <br/>
+      <span style="color: #00AA00">
+       ▟
+      </span>
+      <span style="color: #55FF55">
+       ▜
+      </span>
+      <span style="color: #AA0000">
+       ▞
+      </span>
+      <span style="color: #FF5555">
+       ▛
+      </span>
+      <span style="color: #555555">
+       ▛
+      </span>
+      <span style="color: #FF5555">
+       ▛
+      </span>
+      <span style="color: #AA0000">
+       ▟
+      </span>
+      <span style="color: #FFFF55">
+       ▝
+      </span>
+      <span style="color: #AAAAAA">
+       ▝
+      </span>
+      <span style="color: #0000AA">
+       ▝
+      </span>
+      <span style="color: #55FF55">
+       ▞
+      </span>
+      <span style="color: #AA00AA">
+       ▞
+      </span>
+      <br/>
+      <span style="color: #00AA00">
+       ▘
+      </span>
+      <span style="color: #555555">
+       ▜
+      </span>
+      <span style="color: #55FFFF">
+       ▙
+      </span>
+      <span style="color: #AA0000">
+       ▛
+      </span>
+      <span style="color: #55FFFF">
+       ▞
+      </span>
+      <span style="color: #0000AA">
+       ▝
+      </span>
+      <span style="color: #55FFFF">
+       ▖
+      </span>
+      <span style="color: #FF55FF">
+       ▛
+      </span>
+      <span style="color: #FFFF55">
+       ▗
+      </span>
+      <span style="color: #AA00AA">
+       ▞
+      </span>
+      <span style="color: #00AA00">
+       ▙
+      </span>
+      <span style="color: #AA0000">
+       ▜
+      </span>
+      <br/>
+      <span style="color: #5555FF">
+       ▞
+      </span>
+      <span style="color: #00AAAA">
+       ▟
+      </span>
+      <span style="color: #000000">
+       ▚
+      </span>
+      <span style="color: #00AA00">
+       ▜
+      </span>
+      <span style="color: #555555">
+       ▝
+      </span>
+      <span style="color: #FF5555">
+       ▗
+      </span>
+      <span style="color: #0000AA">
+       ▖
+      </span>
+      <span style="color: #FF5555">
+       ▜
+      </span>
+      <span style="color: #000000">
+       ▞
+      </span>
+      <span style="color: #555555">
+       ▛
+      </span>
+      <span style="color: #555555">
+       ▙
+      </span>
+      <span style="color: #5555FF">
+       ▚
+      </span>
+      <br/>
+      <span style="color: #FFAA00">
+       ▞
+      </span>
+      <span style="color: #AAAAAA">
+       ▗
+      </span>
+      <span style="color: #00AAAA">
+       ▖
+      </span>
+      <span style="color: #AA0000">
+       ▛
+      </span>
+      <span style="color: #5555FF">
+       ▙
+      </span>
+      <span style="color: #FFFF55">
+       ▟
+      </span>
+      †
+     </div>
+     <br/>
+    </div>
+    <small>
+     This example was created by [a small script]({{resource_link “minecraft_color_code_converter.py”}}) to convert the Minecraft text (with formatting codes) to HTML.
+On a Mac, it is possible to pipe the output right into the clipboard with
+     <code>
+      pbcopy
+     </code>
+     .
+    </small>
+   </div>
+   <div class="withsmall">
+    <div>
+     <p style="margin-top: 0;">
+      With progress pages looking like this.†
+     </p>
+     <div>
+      ████████████
+      <br/>
+      ████████████
+      <br/>
+      ████████████
+      <br/>
+      ██████▒▒▒▒▒▒
+      <br/>
+      ▒▒▒▒▒▒▒▒▒▒▒▒
+      <br/>
+      ▒▒▒▒▒▒▒▒▒▒▒▒
+      <br/>
+      ▒▒▒▒▒▒▒▒▒▒▒▒
+      <br/>
+      ▒▒▒▒▒▒
+     </div>
+    </div>
+    <small>
+     Created in python with this snippet instead of copy-pasting it.
+     <code>
+      "█" * (42) + "▒" * (90 - 42)
+     </code>
+    </small>
+   </div>
+   <p>
+    One huge speed up to writing progress bars was not writing the unicode characters individually with copy and paste but instead doing the entire bar as a string.
+NOTE this won’t work with formatting codes, Minecraft seems to require those pasted in individually, followed by a formatting code key press.
+   </p>
+   <h2 id="gameplay">
+    Gameplay
+   </h2>
+   <p>
+    A few notes on Clickr gameplay itself.
+   </p>
+   <h3 id="reception">
+    Reception
+   </h3>
+   <p>
+    I deployed this game on my homeserver of
+    <a href="https://www.reddit.com/r/mcservers/comments/robm4a/thugcraft_semivanillasmp/?utm_source=share&amp;utm_medium=web2x&amp;context=3">
+     Thugcraft
+    </a>
+    .
+   </p>
+   <p>
+    I noticed that players were …
+   </p>
+   <ul>
+    <li>
+     willing to, unprompted, attempt to improve their score after their first run.
+    </li>
+    <li>
+     appreciative of the experience, enough to leave tips in the tip jar on-top the machine.
+    </li>
+   </ul>
+   <p>
+    Typical scores ranged between 22 and 46 items in the display hopper.
+On some first attempts players went as high as two stacks of items, it is suggested to keep that many items in the feed hopper.
+   </p>
+   <h3 id="tips-and-tricks">
+    Tips and Tricks
+   </h3>
+   <p>
+    To play the game effectively …
+   </p>
+   <ul>
+    <li>
+     Players should use more than one finger to click. I alternate clicks from my left and right pointer fingers on a physical mouse.
+    </li>
+    <li>
+     When resetting the game, players can take the book out and put it back in to immediately jump to the beginning.
+     <ul>
+      <li>
+       This saves stamina instead of losing it from flipping the book all the way back.
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </div>
+ </body>
+</html>
