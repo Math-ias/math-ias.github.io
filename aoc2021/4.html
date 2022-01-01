@@ -1,0 +1,244 @@
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AOC Day 4 2021</title>
+        
+        <style type="text/css">
+            body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* General style. */
+.content {
+    box-sizing: border-box;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+}
+
+td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+}
+        </style>
+        
+        
+    <style type="text/css">
+        /* Sidenote layout. */
+
+@media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
+    
+    .content > :not(small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+    </style>
+    <style type="text/css">
+        .b {
+    background-color: #000;
+    color: #fff;
+}
+
+.g0 {
+    background-color: #222;
+    color: #fff;
+}
+
+.g1 {
+    background-color: #444;
+    color: #fff;
+}
+
+.g2 {
+    background-color: #666;
+    color: #fff;
+}
+
+.g3 {
+    background-color: #888;
+    color: #fff;
+}
+
+.g4 {
+    background-color: #AAA;
+}
+
+.g5 {
+    background-color: #CCC;
+}
+    </style>
+
+    
+    </head>
+    <body>
+    <div class="content">
+        
+    <h1 id="aoc-day-4httpsadventofcodecom2021day4-2021"><a href="https://adventofcode.com/2021/day/4">AOC Day 4</a> 2021</h1>
+<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-one-and-part-two">Part One AND Part Two</a>
+      <ul>
+        <li><a href="#solving-part-one-and-part-two">Solving Part One and Part Two</a></li>
+        <li><a href="#how-part-one-and-part-two-work">How Part One and Part Two Work</a>
+          <ul>
+            <li><a href="#the-woes-of-cross-referencing-lists">The Woes of Cross Referencing Lists</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="part-one-and-part-two">Part One AND Part Two</h2>
+<p>As always, read the problem text first.
+This one is pretty funny.
+The author has managed to shoe-horn bingo into an important task.</p>
+<p>The input is both a list of number call-outs, and bingo boards.
+The objective is figure out at which number call-out a board bingoes.
+And then to pick the board with the least number of call-outs necessary (the winning board).</p>
+<p>Some notes &hellip;</p>
+<ul>
+<li>In this version of bingo you can only win along rows and along columns.</li>
+<li>The center square isn&rsquo;t free.</li>
+<li>The final output is of course a little bit of arithmetic.
+It is equal to the sum of all the uncalled numbers on the winning board TIMES the last number called out to win.</li>
+</ul>
+<p>Part two is picking the board with the greatest number of call-outs necessary (the losing board).</p>
+<h3 id="solving-part-one-and-part-two">Solving Part One and Part Two</h3>
+<p>This solution only goes halfway to &ldquo;automating&rdquo; the entire challenge<sup>0</sup>.
+It&rsquo;s a build-out of a &ldquo;bingo calculator&rdquo;.
+This takes the list of number callouts and a <em>single</em> board and returns the winning move number and score.</p>
+<small>(0) This begs the question: did I <em>actually</em> solve the challenge with spreadsheets?</small>
+<p>Copy-paste each board into the calculator and jot the result down elsewhere<sup>1</sup>.
+From this BOTH the quickest and slowest board to win can be found.</p>
+<small><p>(1) Very quickly how I automated that &hellip;</p>
+<ul>
+<li>The input was not &ldquo;copied in&rdquo;. It used a dynamic lookup.</li>
+<li>A series of cells all were set to equal to the calculator result cells.
+To &ldquo;freeze&rdquo; one of these results, I copied and then pasted values only.</li>
+</ul>
+</small>
+<p>The bingo board is represented as the following.
+There will be many absolute references ($) to these cells.</p>
+<table><tbody>
+<tr><td>               </td><td class="b">ROW 1</td><td class="b">2</td><td class="b">3</td><td class="b">4</td><td class="b">5</td></tr>
+<tr><td class="b">COL 1</td><td>             K2</td><td>         K3</td><td>         K4</td><td>         K5</td><td>         K6</td></tr>
+<tr><td class="b">2    </td><td>             L2</td><td>         L3</td><td>         L4</td><td>         L5</td><td>         L6</td></tr>
+<tr><td class="b">3    </td><td>             M2</td><td>         M3</td><td>         M4</td><td>         M5</td><td>         M6</td></tr>
+<tr><td class="b">4    </td><td>             N2</td><td>         N3</td><td>         N4</td><td>         N5</td><td>         N6</td></tr>
+<tr><td class="b">5    </td><td>             O2</td><td>         O3</td><td>         O4</td><td>         O5</td><td>         O6</td></tr>
+</tbody></table>
+<p>Each row starts with a number call-out.
+This is followed by if a specific coordinate on the bingo board is or ever was called out<sup>2</sup>.
+From these booleans if the win question and score is calculated.</p>
+<small>(2) This requires 25 columns to do.
+Quickly the sheet is out of single letters for columns.
+After column Z the next one is AA then AB.</small>
+<table><tbody>
+<tr><td class="b">CALLOUT </td><td>J8           </td><td>J9                   </td><td>...</td></tr>
+<tr><td class="g0">DOT 1,1</td><td>K8 = K$2=$J8 </td><td>K9 = OR(K8,K$2=$J9)  </td><td>repeat →</td></tr>
+<tr><td class="g0">2,1    </td><td>L8 = L$2=$J8 </td><td>L9 = OR(L8,L$2=$J9)  </td><td>repeat →</td></tr>
+<tr><td class="g0">3,1    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
+<tr><td class="g0">4,1    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
+<tr><td class="g0">5,1    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
+<tr><td class="g1">1,2    </td><td>P8 = K$3=$J8 </td><td>P9 = OR(P8,K$3=$J9)  </td><td>repeat →</td></tr>
+<tr><td class="g1">2,2    </td><td>Q8 = L$3=$J8 </td><td>Q9 = OR(Q8,L$3=$J9)  </td><td>repeat →</td></tr>
+<tr><td class="g1">3,2    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
+<tr><td class="g1">4,2    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
+<tr><td class="g1">5,2    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
+<tr><td class="g1">etc    </td><td>etc          </td><td>etc                  </td><td>repeat →</td></tr>
+<tr><td class="g2">5,5    </td><td>AI8 = O$6=$J8</td><td>AI9 = OR(AI8,O$6=$J9)</td><td>repeat →</td></tr>
+</tbody></table>
+<p>Win conditions are calculated with long chains of ORs and ANDs.</p>
+<table><tbody>
+<tr><td class="g3">SCORE</td>
+  <td>
+    AJ8 = J8 * (<br>
+    SUMIF(K8:O8, "=FALSE",K$2:O$2) +<br>
+    SUMIF(P8:T8, "=FALSE",K$3:O$3) +<br>
+    SUMIF(U8:Y8, "=FALSE",K$4:O$4) +<br>
+    SUMIF(Z8:AD8,"=FALSE",K$5:O$5) +<br>
+    SUMIF(AE8:AI8,"=FALSE",K$6:O$6))
+  </td>
+  <td>repeat →</td></tr>
+<tr><td class="g3">ROW WIN</td>
+  <td>
+    AK8 = OR(<br>
+    AND(K8:O8),<br>
+    AND(P8:T8),<br>
+    AND(U8:Y8),<br>
+    AND(Z8:AD8),<br>
+    AND(AE8:AI8))
+  </td>
+  <td>repeat →</td></tr>
+<tr><td class="g3">COL WIN</td>
+  <td>
+    AL8 = OR(<br>
+    AND(K8,P8,U8,Z8,AE8),<br>
+    AND(L8,Q8,V8,AA8,AF8),<br>
+    AND(M8,R8,W8,AB8,AG8),<br>
+    AND(N8,S8,X8,AC8,AH8),<br>
+    AND(O8,T8,Y8,AD8,AI8))
+  </td>
+  <td>repeat →</td></tr>
+<tr><td class="g4">WIN</td><td>AM8 = OR(AK8, AL8)</td><td>repeat →</td></tr>
+</tbody></table>
+<p>The exact row where the board starts to be winning is calculated.
+The score on that row is fetched.</p>
+<table><tbody>
+<tr><td class="g5">WINNING ROW #</td><td>D2 = MATCH(TRUE, AM8:AM, 0)</td></tr>
+<tr><td class="g5">WINNING SCORE</td><td>E2 = INDEX(AJ8:AJ, D2, 0)  </td></tr>
+</tbody></table>
+<h3 id="how-part-one-and-part-two-work">How Part One and Part Two Work</h3>
+<h4 id="the-woes-of-cross-referencing-lists">The Woes of Cross Referencing Lists</h4>
+<p>This challenge really pushed the spreadsheet envelope.
+It captures one limitation of how I know to combine functions.
+Cross referencing lists is hard<sup>3</sup>.
+To do something interesting on the product of two lists,
+one list must be spread out over rows,
+and the other must be spread out over columns.
+And spreading out over columns is hard!<sup>4</sup></p>
+<small><p>(3) With the exception of what can be squeezed in a string criteria in a <code>SUMIF</code> or <code>COUNTIF</code> call.</p>
+<p>(4) It is hard to <a href="https://webapps.stackexchange.com/a/109811">add a specific number of columns to the sheet</a>.</p>
+</small>
+
+
+    </div>
+    
+    </body>
+</html>

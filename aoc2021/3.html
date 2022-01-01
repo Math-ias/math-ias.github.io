@@ -288,7 +288,7 @@ Figuring out where to switch signs and values is &ldquo;an exercise for the read
 </tbody></table>
 <p>Finally, finding the line with the most &ldquo;passes&rdquo;.</p>
 <table><tbody>
-<tr><td class="g3">PASSES</td><td>L4 = COUNTIF(G4:I4, "=TRUE")</td></tr>
+<tr><td class="g3">PASSES</td><td>L4 = COUNTIF(G4:I4,"=TRUE")</td></tr>
 <tr><td>       OXYGEN STR</td><td>M4 = <br>INDEX(A4:A, <br>MATCH(MAX(L4:L), L4:L, 0))</td></tr>
 </tbody></table>
 <p>Converting that oxygen bitstring to decimal is left out.</p>
