@@ -1,0 +1,210 @@
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AOC Day 2 2021</title>
+        
+        <style type="text/css">
+            body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* General style. */
+.content {
+    box-sizing: border-box;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+}
+
+td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+}
+        </style>
+        
+        
+    <style type="text/css">
+        /* Sidenote layout. */
+
+@media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
+    
+    .content > :not(small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+    </style>
+    <style type="text/css">
+        .b {
+    background-color: #000;
+    color: #fff;
+}
+
+.g0 {
+    background-color: #222;
+    color: #fff;
+}
+
+.g1 {
+    background-color: #444;
+    color: #fff;
+}
+
+.g2 {
+    background-color: #666;
+    color: #fff;
+}
+
+.g3 {
+    background-color: #888;
+    color: #fff;
+}
+
+.g4 {
+    background-color: #AAA;
+}
+
+.g5 {
+    background-color: #CCC;
+}
+    </style>
+
+    
+    </head>
+    <body>
+    <div class="content">
+        
+    <h1 id="aoc-day-2httpsadventofcodecom2021day2-2021"><a href="https://adventofcode.com/2021/day/2">AOC Day 2</a> 2021</h1>
+<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-one">Part One</a>
+      <ul>
+        <li><a href="#solving-part-one">Solving Part One</a></li>
+        <li><a href="#how-part-one-works">How Part One Works</a>
+          <ul>
+            <li><a href="#split">SPLIT</a></li>
+            <li><a href="#if-statements">IF Statements</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#part-two">Part Two</a>
+      <ul>
+        <li><a href="#solving-part-two">Solving Part Two</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="part-one">Part One</h2>
+<p>As always, read the problem text first.
+In summary, the input is a list of movement commands.
+The format of the data is <code>&lt;direction&gt; &lt;amount&gt;</code> where direction can be <code>forward</code>, <code>down</code>, and <code>up</code><sup>0</sup>.</p>
+<small>(0) NOTE there is no backwards.
+There are sometimes hidden data invariants.
+<code>&lt;amount&gt;</code> is always a positive integer in my challenge input.</small>
+<p>Starting at (0,0) the objective is to figure out the final position.</p>
+<ul>
+<li><code>forward</code> increases x.</li>
+<li><code>down</code> <em>increases</em> y.</li>
+<li><code>up</code> <em>decreases</em> y.</li>
+</ul>
+<p>Finally multiply x by y<sup>1</sup>.</p>
+<small>(1) The advent of code challenges will often ask for a single number instead of two.</small>
+<h3 id="solving-part-one">Solving Part One</h3>
+<p>To fit the table on this site, rows and columns are transposed.
+Now data runs from the left to the right.
+Each &ldquo;stage&rdquo; of the spreadsheet will now run top to bottom.</p>
+<table><tbody>
+<tr><td> </td><td>1                    </td><td> 2 </td><td>3                                                       </td><td>4       </td></tr>
+<tr><td>A</td><td class="b">DATA       </td><td> - </td><td> A3                                                     </td><td>...     </td></tr>
+<tr><td>B</td><td class="g1">MOVE      </td><td> - </td><td>B3,C3 = SPLIT(A3, " ")                                  </td><td>repeat →</td></tr>
+<tr><td>C</td><td class="g1">AMOUNT<sup>2</sup></td><td> - </td><td>↑ SPILLOVER ↑                                           </td><td>repeat →</td></tr>
+<tr><td>D</td><td class="g3">X         </td><td> 0 </td><td>D3 = D2 + <br>IF(B3="forward",C3,0)                     </td><td>repeat →</td></tr>
+<tr><td>E</td><td class="g3">Y         </td><td> 0 </td><td>E3 = E2 + <br>IF(B3="up",-C3,0) + <br>IF(B3="down",C3,0)</td><td>repeat →</td></tr>
+<tr><td>F</td><td>OUTPUT               </td><td> 0 </td><td>F3 = D3 * E2                                            </td><td>repeat →</td></tr>
+</tbody></table>
+<small>(2) <code>AMOUNT</code> must be &ldquo;formatted&rdquo; as a number column in Google Sheets.
+Otherwise, the cells are assumed to be strings.</small>
+<h3 id="how-part-one-works">How Part One Works</h3>
+<h4 id="split">SPLIT</h4>
+<p>According to the rules getting the data into spreadsheets isn&rsquo;t interesting,
+and therefore isn&rsquo;t necessary to do with only spreadsheet formulas.
+Input parsing was done anyway using the <code>SPLIT</code> formula.
+This function splits a string into <strong>multiple values</strong> based on a separator.
+When a function returns multiple values it &ldquo;spills over&rdquo;<sup>3</sup> in neighboring cells.</p>
+<small>(3) Spilling is my own terminology.
+I don&rsquo;t know the official word for it.</small>
+<table><tbody>
+<tr><td>A1 = hi,my             </td><td>A2 = name,is,slim slim shady</td></tr>
+<tr><td>B1 = SPLIT(A1,",") = hi</td><td>B2 = SPLIT(A2,",") = name   </td></tr>
+<tr><td>my                     </td><td>is                          </td></tr>
+<tr><td>                       </td><td>slim slim shady             </td></tr>
+</tbody></table>
+<h4 id="if-statements">IF Statements</h4>
+<p>IF is a function returning the first value if the boolean is TRUE,
+and the second if it is FALSE.</p>
+<p>There is a function emulating <code>if</code> / <code>elseif</code> control statements called <code>IFS</code>.
+It was clearer to use two <code>IF</code>s in this particular formula.</p>
+<h2 id="part-two">Part Two</h2>
+<p>Part two asks to re-interpret the moves <code>up</code> and <code>down</code>.
+No longer do they change the <code>y</code> coordinate,
+instead they change the <code>aim</code>.</p>
+<ul>
+<li><code>down</code> <em>increases</em> aim.</li>
+<li><code>up</code> <em>decreases</em> aim.</li>
+<li><code>forward</code> BOTH <em>increases</em> x by the amount BUT ALSO <em>increases</em> y by <code>aim * amount</code>.<sup>4</sup></li>
+</ul>
+<small>(4) Intuitively I want to increase x by <code>cos(aim) * amount</code> and y by <code>sin(aim) * amount</code>.
+This introduces floating point math (unless you inject <code>π</code> and fractions into the input).
+I think these complications are why the author didn&rsquo;t use these formulas.</small>
+<h3 id="solving-part-two">Solving Part Two</h3>
+<table><tbody>
+<tr><td class="b">DATA  </td><td> - </td><td>A3                                                              </td><td> ... </td></tr>
+<tr><td class="g1">MOVE </td><td> - </td><td>B3 = SPLIT(A3, " ")                                             </td><td>repeat →</td></tr>
+<tr><td class="g1">UNITS</td><td> - </td><td>↑ SPILLOVER ↑                                                   </td><td>repeat →</td></tr>
+<tr><td class="g3">AIM  </td><td> 0 </td><td>D3 = D2 + <br>IF(B3 = "down", C3, 0) + <br>IF(B3 = "up", -C3, 0)</td><td>repeat →</td></tr>
+<tr><td class="g3">POSX </td><td> 0 </td><td>E3 = E2 + <br>IF(B3 = "forward", C3, 0)                         </td><td>repeat →</td></tr>
+<tr><td class="g5">DEPTH</td><td> 0 </td><td>F3 = F2 + <br>IF(B3 = "forward", C3 * D3, 0)                    </td><td>repeat →</td></tr>
+<tr><td>OUTPUT          </td><td> 0 </td><td>G3 = E3 * F3                                                    </td><td>repeat →</td></tr>
+</tbody></table>
+
+
+    </div>
+    
+    </body>
+</html>

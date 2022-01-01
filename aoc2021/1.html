@@ -1,0 +1,312 @@
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AOC Day 1 2021</title>
+        
+        <style type="text/css">
+            body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* General style. */
+.content {
+    box-sizing: border-box;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+}
+
+td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+}
+        </style>
+        
+        
+    <style type="text/css">
+        /* Sidenote layout. */
+
+@media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
+    
+    .content > :not(small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+    </style>
+    <style type="text/css">
+        .b {
+    background-color: #000;
+    color: #fff;
+}
+
+.g0 {
+    background-color: #222;
+    color: #fff;
+}
+
+.g1 {
+    background-color: #444;
+    color: #fff;
+}
+
+.g2 {
+    background-color: #666;
+    color: #fff;
+}
+
+.g3 {
+    background-color: #888;
+    color: #fff;
+}
+
+.g4 {
+    background-color: #AAA;
+}
+
+.g5 {
+    background-color: #CCC;
+}
+    </style>
+
+    
+    </head>
+    <body>
+    <div class="content">
+        
+    <h1 id="aoc-day-1httpsadventofcodecom2021day1-2021"><a href="https://adventofcode.com/2021/day/1">AOC Day 1</a> 2021</h1>
+<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-one">Part One</a>
+      <ul>
+        <li><a href="#solving-part-one">Solving Part One</a></li>
+        <li><a href="#how-part-one-works">How Part One Works</a>
+          <ul>
+            <li><a href="#about-the-colors">About the Colors</a></li>
+            <li><a href="#about-the-formulas">About the Formulas</a>
+              <ul>
+                <li><a href="#repeat">Repeat</a></li>
+                <li><a href="#boolean-values">Boolean Values</a></li>
+                <li><a href="#formulas-on-ranges">Formulas on Ranges</a></li>
+              </ul>
+            </li>
+            <li><a href="#putting-it-all-together">Putting It All Together</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#part-two">Part Two</a>
+      <ul>
+        <li><a href="#solving-part-two">Solving Part Two</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="part-one">Part One</h2>
+<p>I suggest you read part one from the advent of code website.<sup>0</sup>
+To summarize the objective is to count the number of lines greater than the previous line (they&rsquo;re numbers).</p>
+<small>This will be a pattern with these posts.
+The advent of code problems are intellectual properties.</small>
+<h3 id="solving-part-one">Solving Part One</h3>
+<p>To solve these challenges I create two sheets.
+One for the example as a proof of concept.
+Then I clone that sheet and copy-paste in my provided challenge input.</p>
+<p>Solving this challenge is easy with spreadsheets.
+The rest of the calendar quickly shattered this confidence.</p>
+<table>
+<thead>
+<tr>
+<th>DATA</th>
+<th>INCREASE</th>
+<th>OUTPUT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A2</td>
+<td>-</td>
+<td>= COUNTIF(B3:B, &ldquo;=TRUE&rdquo;)</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>B3 = A3 &gt; A2</td>
+<td></td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>↓ repeat ↓</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>I&rsquo;ve omitted row numbers and columns and just done them inline.
+I think this format is more readable.</p>
+<p>This solution scaled well to the challenge input of <strong>2000 lines</strong>.</p>
+<h3 id="how-part-one-works">How Part One Works</h3>
+<p>Being the first spreadsheet of this series it&rsquo;s worth explaining in detail.</p>
+<h4 id="about-the-colors">About the Colors</h4>
+<p>I think spreadsheets are most powerful when each row or column maps to a &ldquo;stage&rdquo; of the program.
+A lighter color signifies that stage depends on darker colored stages.</p>
+<h4 id="about-the-formulas">About the Formulas</h4>
+<p>This also includes content about how to use spreadsheets.</p>
+<h5 id="repeat">Repeat</h5>
+<p>In spreadsheet formulas cells are referenced by column (named with a letter A-Z), and then by row (a number 1-2000).
+The power of spreadsheets comes from selecting a cell and &ldquo;dragging it&rdquo; over many rows or columns to repeat that formula.<sup>1</sup>
+Except! The cell formula updates itself to be the same &ldquo;relatively&rdquo;.</p>
+<small>(1) Power users know to double click the cell instead of drag.
+This repeats the formula to the end of the column to the left (e.g to the end of data).
+I didn&rsquo;t know this until this series.</small>
+<p>For example &hellip;</p>
+<ul>
+<li>If a formula uses the cell to its left <code>= A2 + 1</code></li>
+<li>The formula &ldquo;dragged&rdquo; to the next row will also use the cell to the left <code>= A3 + 1</code></li>
+<li>The formula &ldquo;dragged&rdquo; to the next column still uses the cell to the left <code>= B3 + 1</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>HEADER</td>
+<td>HEADER</td>
+<td>HEADER</td>
+</tr>
+<tr>
+<td>2</td>
+<td>199</td>
+<td>= A2+1 = 200+1 =&gt; 201</td>
+<td>= B2+1 =&gt; 202</td>
+</tr>
+<tr>
+<td>3</td>
+<td>399</td>
+<td>= A3+1 =&gt; 400</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>There is a way to instruct Google Sheets to NOT update the reference ($).
+This isn&rsquo;t used in this example.</p>
+<h5 id="boolean-values">Boolean Values</h5>
+<p>Cells can have non-numeric data types<sup>2</sup>.
+My advent of code solutions rely mostly on numbers and booleans.</p>
+<small>(2) Types are finnicky and <a href="https://www.theverge.com/2020/8/6/21355674/human-genes-rename-microsoft-excel-misreading-dates">can cause unexpected behavior</a>.</small>
+<p>Operators like <code>&gt;</code>, <code>&lt;</code>, and <code>=</code> (translating to <code>==</code> for programming folk) produce booleans.
+In the <code>INCREASE</code> column of my solution I use <code>&gt;</code> to compare the data cell to the left to the data cell above it.</p>
+<h5 id="formulas-on-ranges">Formulas on Ranges</h5>
+<p>Cell ranges are continous blocks of cells.
+They can be defined discretely.
+For example, here is the first four cells of the <code>DATA</code> column <code>A1:A4</code>.
+They can also be defined as going to the end of that row or column.
+For example, here is ALL the cells of the <code>INCREASE</code> column starting at cell <code>B3</code> (that&rsquo;s a range excluding <code>B1</code>, <code>B2</code>) <code>B3:B</code>.</p>
+<p>Some functions take these ranges to do interesting things.
+<code>COUNTIF</code> counts the number of items in a range matching the &ldquo;criterion&rdquo;.
+The &ldquo;criterion&rdquo; is a string describing a wanted pattern or test.
+For example, &ldquo;=TRUE&rdquo; is the string criterion for checking if a cell&rsquo;s value equals the boolean TRUE.</p>
+<h4 id="putting-it-all-together">Putting It All Together</h4>
+<ul>
+<li>The line of numbers are pasted into the first column (<code>DATA</code>).</li>
+<li>The second column computes if in that row the line is greater than the previous entry (<code>A3 &gt; A2</code>).</li>
+<li>The third column has just a single cell with counting TRUEs in the <code>INCREASE</code> column.</li>
+</ul>
+<h2 id="part-two">Part Two</h2>
+<p>Part two asks<sup>3</sup> to count the number of three line sliding windows with sums greater than the previous three line sliding window (overlapping windows).</p>
+<small>(3) Part two isn&rsquo;t readable directly from the website.
+As far as I know you have to participate in challenges to get the full text.</small>
+<ul>
+<li>Think Ruby Enumerable&rsquo;s <a href="https://ruby-doc.org/core-2.5.1/Enumerable.html#method-i-each_cons">each_cons(3)</a>.</li>
+<li>Think Python itertool&rsquo;s <a href="https://docs.python.org/3/library/itertools.html#itertools.pairwise">pairwise</a> except for triples. Implemented as <a href="https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.triplewise">triplewise(iterable) in more_itertools</a>.</li>
+</ul>
+<h3 id="solving-part-two">Solving Part Two</h3>
+<p>Spreadsheets are still strong here.</p>
+<table>
+<thead>
+<tr>
+<th>DATA</th>
+<th>3SUM</th>
+<th>INCREASE</th>
+<th>OUTPUT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A2</td>
+<td>-</td>
+<td>-</td>
+<td>= COUNTIF(C5:C, &ldquo;=TRUE&rdquo;)</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>-</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>A4</td>
+<td>B4 = A2 + A3 + A4</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>A5</td>
+<td>B5 = A3 + A4 + A5</td>
+<td>C5 = B5 &gt; B4</td>
+<td></td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>↓ repeat ↓</td>
+<td>↓ repeat ↓</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>NOTE One simplification is using only the <code>INCREASE</code> column and doing the sum inline <code>A3 + A4 + A5 &gt; A2 + A3 + A4</code>.</p>
+
+
+    </div>
+    
+    </body>
+</html>

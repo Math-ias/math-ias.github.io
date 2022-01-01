@@ -8,13 +8,12 @@
         <style type="text/css">
             body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
 }
 
 /* General style. */
 .content {
     box-sizing: border-box;
-    max-width: 600px;
+    width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -23,18 +22,29 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+}
+
+td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+}
         </style>
         
         
     <style type="text/css">
         /* Sidenote layout. */
 
-@media (min-width: 1021px) {
+@media (min-width: 921px) {
     .content {
         box-sizing: border-box;
-        max-width: 1020px;
+        width: 920px;
         display: grid;
-        grid-template-columns: 600px 400px;
+        grid-template-columns: 600px 300px;
         column-gap: 20px;
         row-gap: 20px;
         justify-items: stretch;
@@ -51,7 +61,7 @@
     
     .content > small {
         box-sizing: border-box;
-        width: 400px;
+        width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
