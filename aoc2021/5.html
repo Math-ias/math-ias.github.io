@@ -1,0 +1,340 @@
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AOC Day 5 2021</title>
+        
+        <style type="text/css">
+            body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* General style. */
+.content {
+    box-sizing: border-box;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+}
+
+th {
+    font-weight: 600;
+}
+
+td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+}
+        </style>
+        
+        
+    <style type="text/css">
+        /* Sidenote layout. */
+
+@media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
+    
+    .content > :not(small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+    </style>
+    <style type="text/css">
+        tr span.blk,
+tr span.red,
+tr span.org,
+tr span.ylw,
+tr span.grn,
+tr span.cyn,
+tr span.blu,
+tr span.prp,
+tr span.mag {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+}
+
+tr.blk th {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+tr span.blk {
+    text-decoration-color: rgb(0, 0, 0);
+}
+
+tr.blk td {
+    background-color: rgb(241, 241, 241);
+}
+
+tr.red th {
+    background-color: rgb(210, 7, 24);
+    color: white;
+}
+
+tr span.red {
+    text-decoration-color: rgb(210, 7, 24);
+}
+
+tr.red td {
+    background-color: rgb(248, 197, 198);
+}
+
+tr.org th {
+    background-color: rgb(238, 132, 63);
+}
+
+tr span.org {
+    text-decoration-color: rgb(238, 132, 63);
+}
+
+tr.org td {
+    background-color: rgb(255, 224, 200);
+}
+
+tr.ylw th {
+    background-color: rgb(249, 183, 66);
+}
+
+tr span.ylw {
+    text-decoration-color: rgb(249, 183, 66);
+}
+
+tr.ylw td {
+    background-color: rgb(255, 239, 200);
+}
+
+tr.grn th {
+    background-color: rgb(90, 155, 76);
+}
+
+tr span.grn {
+    text-decoration-color: rgb(90, 155, 76);
+}
+
+tr.grn td {
+    background-color: rgb(210, 230, 206);
+}
+
+tr.cyn th {
+    background-color: rgb(46, 118, 129);
+    color: white;
+}
+
+tr span.cyn {
+    text-decoration-color: rgb(46, 118, 129);
+}
+
+tr.cyn td {
+    background-color: rgb(199, 220, 222);
+}
+
+tr.blu th {
+    background-color: rgb(0, 114, 205);
+    color: white;
+}
+
+tr span.blu {
+    text-decoration-color: rgb(0, 114, 205);
+}
+
+tr.blu td {
+    background-color: rgb(189, 214, 245);
+}
+
+tr.prp th {
+    background-color: rgb(88, 74, 153);
+    color: white;
+}
+
+tr span.prp {
+    text-decoration-color: rgb(88, 74, 152);
+}
+
+tr.prp td {
+    background-color: rgb(211, 205, 228);
+}
+
+tr.mag th {
+    background-color: rgb(163, 70, 109);
+    color: white;
+}
+
+tr span.mag {
+    text-decoration-color: rgb(163, 70, 109);
+}
+
+tr.mag td {
+    background-color: rgb(234, 203, 215);
+}
+    </style>
+
+    
+    </head>
+    <body>
+    <div class="content">
+        
+    <h1 id="aoc-day-5httpsadventofcodecom2021day5-2021"><a href="https://adventofcode.com/2021/day/5">AOC Day 5</a> 2021</h1>
+<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-one-and-two">Part One and Two</a>
+      <ul>
+        <li><a href="#solving-part-one-and-part-two">Solving Part One and Part Two</a></li>
+        <li><a href="#how-part-one-and-part-two-works">How Part One and Part Two Works</a>
+          <ul>
+            <li><a href="#iferror">IFERROR</a></li>
+            <li><a href="#solving">Solving</a></li>
+            <li><a href="#slices">Slices</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="part-one-and-two">Part One and Two</h2>
+<p>As always, read the problem text first.
+In summary, the input is a list of line segments made by two points.
+The objective is the count the number of points where at least two lines overlap.</p>
+<p>The data uses some invariants simplifying the problem.</p>
+<ul>
+<li>Each line is horizontal, vertical, or diagonal (slope of 1 or -1).<sup>0</sup></li>
+<li>Everything happens on integer coordinates.</li>
+<li>Every line fits within a known square box.
+<ul>
+<li>The example has line segments between <code>(0,0)</code> and <code>(10,10)</code>.</li>
+<li>The challenge is out most between <code>(0,0)</code> and <code>(100, 100)</code><sup>1</sup>.</li>
+</ul>
+</li>
+</ul>
+<small><p>(0) My co-worker helped me identify this when I was overthinking part one.
+<a href="https://alienryderflex.com/intersect/">Arbitrary line segment intersection</a> is harder than it seems.</p>
+<p>(1) My example challenge input is contained to <code>(10, 10)</code> and <code>(989, 989)</code>.</p>
+</small>
+<p>Part one is counting intersections between only horizontal and vertical lines.
+Part two lifts that restriction.</p>
+<h3 id="solving-part-one-and-part-two">Solving Part One and Part Two</h3>
+<p>To solve part one, I&rsquo;ll be recreating the view the author created for their example<sup>2</sup> (look for it in the problem text).
+Each character represents a single point of integer coordinates.
+Lines of 1&rsquo;s represent a single line segment.
+2 or more&rsquo;s represent intersections.</p>
+<small>(2) This view made the author&rsquo;s goal very clear.
+Technically there are infinite many intersections of <em>collinear</em> lines.
+There are finite integer coordinate intersections.</small>
+<pre tabindex="0"><code>.......1..
+..1....1..
+..1....1..
+.......1..
+.112111211
+..........
+..........
+..........
+..........
+222111....
+</code></pre><p>The line segments are parsed into the following columns.</p>
+<table><tbody>
+<tr><td class="b">X1</td><td>D2</td><td>...</td></tr>
+<tr><td class="b">Y1</td><td>E2</td><td>...</td></tr>
+<tr><td class="b">X2</td><td>F2</td><td>...</td></tr>
+<tr><td class="b">Y2</td><td>G2</td><td>...</td></tr>
+</tbody></table>
+<p>These get parsed into the following 4 columns classifying what type of line it is (with one helper).</p>
+<table><tbody>
+<tr><td class="g1">HORIZONTAL</td><td>H2 = E2=G2               </td><td>repeat →</td></tr>
+<tr><td class="g1">VERTICAL  </td><td>I2 = D2=F2               </td><td>repeat →</td></tr>
+<tr><td class="g1">SLOPE     </td><td>J2 = (G2 - E2)/(F2 - D2) </td><td>repeat →</td></tr>
+<tr><td class="g3">BL TR DIAG</td><td>K2 = IFERROR(J2=1,FALSE) </td><td>repeat →</td></tr>
+<tr><td class="g3">BL TR DIAG</td><td>L2 = IFERROR(J2=-1,FALSE)</td><td>repeat →</td></tr>
+</tbody></table>
+<p>5 more properties are calculated for each line segment.
+These will be used in the next &ldquo;map&rdquo; table.</p>
+<table><tbody>
+<tr><td class="g3">MIN X      </td><td>M2 = MIN(D2,F2)                               </td><td>repeat →</td></tr>
+<tr><td class="g3">MAX X      </td><td>N2 = MAX(D2,F2)                               </td><td>repeat →</td></tr>
+<tr><td class="g3">BL TR DIAG </td><td>O2 = MIN(E2,G2)                               </td><td>repeat →</td></tr>
+<tr><td class="g3">TL BR DIAG </td><td>P2 = MIN(E2,G2)                               </td><td>repeat →</td></tr>
+<tr><td class="g3">Y INTERCEPT</td><td>Q2 = IFERROR(<br>E2 - D2 * J2,<br> "vertical")</td><td>repeat →</td></tr>
+</tbody></table>
+<p>Finally the &ldquo;map&rdquo; itself.
+This includes processing of diagonal lines.
+To exclude diagonals remove the last two COUNTIFS expressions in the sum.</p>
+<table><tbody>
+<tr><td>AA1            </td><td class="g5">AA2 = AA1</td><td class="g5">AA3 = AA2 + 1</td></tr>
+<tr><td class="g5">0   </td>
+<td>B2 = <br>
+COUNTIFS($H$2:$H,"=TRUE",<br>
+$M$2:$M,CONCAT("<=",AB$1),<br>
+$N$2:$N,CONCAT(">=",AB$1),<br>
+$O$2:$O,CONCAT("=",$AA2)) + <br><br>
+COUNTIFS($I$2:$I,"=TRUE",<br>
+$M$2:$M,CONCAT("=",AB$1),<br>
+$O$2:$O,CONCAT("<=",$AA2),<br>
+$P$2:$P,CONCAT(">=",$AA2)) + <br><br>
+COUNTIFS($K$2:$K,"=TRUE",<br>
+$M$2:$M,CONCAT("<=",AB$1),<br>
+$N$2:$N,CONCAT(">=",AB$1),<br>
+$Q$2:$Q,CONCAT("=",$AA2-AB$1)) + <br><br>
+COUNTIFS($L$2:$L,"=TRUE",<br>
+$M$2:$M,CONCAT("<=",AB$1),<br>
+$N$2:$N,CONCAT(">=",AB$1),<br>
+$Q$2:$Q,CONCAT("=",$AA2+AB$1))
+</td><td>repeat →</td></tr>
+<tr><td class="g5">1   </td><td>O2 = MIN(E2,G2)                               </td><td>repeat →</td></tr>
+<tr><td class="g5">etc </td><td>etc</td><td>etc</td></tr>
+<tr><td class="g5">1000</td><td>etc</td><td>etc</td></tr>
+</tbody></table>
+<p>To then count the number of points where at least two line segments intersect,
+elsewhere on the sheet is this cell.</p>
+<table><tbody>
+<td>>=2 INTERSECTIONS</td><td>R2 = COUNTIF(AB2:AL, ">=2")</td>
+<tbody></table>
+<h3 id="how-part-one-and-part-two-works">How Part One and Part Two Works</h3>
+<p>Lots of new and interesting things for this problem.</p>
+<h4 id="iferror">IFERROR</h4>
+<h4 id="solving">Solving</h4>
+<h4 id="slices">Slices</h4>
+<p>Default number of columns is 26.
+I selected 25 of them and inserted that many to the right for 51 columns total.</p>
+<p>Takes about 30 seconds still. So I went down to 50 columns. 20 rounds isn&rsquo;t so bad.</p>
+<p>Spent a long time debugging my result.
+Made a python program to figure the result out.
+Turns out I copied one of the slice results wrong is all. FRICK!</p>
+<p>This takes about 20 seconds each slice for part two. Definitely slower.</p>
+
+
+    </div>
+    
+    </body>
+</html>

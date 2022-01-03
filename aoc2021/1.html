@@ -28,6 +28,10 @@ table {
     font-family: monospace, monospace;
 }
 
+th {
+    font-weight: 600;
+}
+
 td, th {
     text-align: left;
     padding: 10px;
@@ -69,37 +73,131 @@ td, th {
 }
     </style>
     <style type="text/css">
-        .b {
-    background-color: #000;
-    color: #fff;
+        tr span.blk,
+tr span.red,
+tr span.org,
+tr span.ylw,
+tr span.grn,
+tr span.cyn,
+tr span.blu,
+tr span.prp,
+tr span.mag {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
 }
 
-.g0 {
-    background-color: #222;
-    color: #fff;
+tr.blk th {
+    background-color: rgb(0, 0, 0);
+    color: white;
 }
 
-.g1 {
-    background-color: #444;
-    color: #fff;
+tr span.blk {
+    text-decoration-color: rgb(0, 0, 0);
 }
 
-.g2 {
-    background-color: #666;
-    color: #fff;
+tr.blk td {
+    background-color: rgb(241, 241, 241);
 }
 
-.g3 {
-    background-color: #888;
-    color: #fff;
+tr.red th {
+    background-color: rgb(210, 7, 24);
+    color: white;
 }
 
-.g4 {
-    background-color: #AAA;
+tr span.red {
+    text-decoration-color: rgb(210, 7, 24);
 }
 
-.g5 {
-    background-color: #CCC;
+tr.red td {
+    background-color: rgb(248, 197, 198);
+}
+
+tr.org th {
+    background-color: rgb(238, 132, 63);
+}
+
+tr span.org {
+    text-decoration-color: rgb(238, 132, 63);
+}
+
+tr.org td {
+    background-color: rgb(255, 224, 200);
+}
+
+tr.ylw th {
+    background-color: rgb(249, 183, 66);
+}
+
+tr span.ylw {
+    text-decoration-color: rgb(249, 183, 66);
+}
+
+tr.ylw td {
+    background-color: rgb(255, 239, 200);
+}
+
+tr.grn th {
+    background-color: rgb(90, 155, 76);
+}
+
+tr span.grn {
+    text-decoration-color: rgb(90, 155, 76);
+}
+
+tr.grn td {
+    background-color: rgb(210, 230, 206);
+}
+
+tr.cyn th {
+    background-color: rgb(46, 118, 129);
+    color: white;
+}
+
+tr span.cyn {
+    text-decoration-color: rgb(46, 118, 129);
+}
+
+tr.cyn td {
+    background-color: rgb(199, 220, 222);
+}
+
+tr.blu th {
+    background-color: rgb(0, 114, 205);
+    color: white;
+}
+
+tr span.blu {
+    text-decoration-color: rgb(0, 114, 205);
+}
+
+tr.blu td {
+    background-color: rgb(189, 214, 245);
+}
+
+tr.prp th {
+    background-color: rgb(88, 74, 153);
+    color: white;
+}
+
+tr span.prp {
+    text-decoration-color: rgb(88, 74, 152);
+}
+
+tr.prp td {
+    background-color: rgb(211, 205, 228);
+}
+
+tr.mag th {
+    background-color: rgb(163, 70, 109);
+    color: white;
+}
+
+tr span.mag {
+    text-decoration-color: rgb(163, 70, 109);
+}
+
+tr.mag td {
+    background-color: rgb(234, 203, 215);
 }
     </style>
 
@@ -118,9 +216,9 @@ td, th {
         <li><a href="#how-part-one-works">How Part One Works</a>
           <ul>
             <li><a href="#about-the-colors">About the Colors</a></li>
-            <li><a href="#about-the-formulas">About the Formulas</a>
+            <li><a href="#repeat">Repeat</a></li>
+            <li><a href="#transposing-rows-and-columns">Transposing Rows and Columns</a>
               <ul>
-                <li><a href="#repeat">Repeat</a></li>
                 <li><a href="#boolean-values">Boolean Values</a></li>
                 <li><a href="#formulas-on-ranges">Formulas on Ranges</a></li>
               </ul>
@@ -138,172 +236,117 @@ td, th {
   </ul>
 </nav>
 <h2 id="part-one">Part One</h2>
-<p>I suggest you read part one from the advent of code website.<sup>0</sup>
-To summarize the objective is to count the number of lines greater than the previous line (they&rsquo;re numbers).</p>
-<small>This will be a pattern with these posts.
-The advent of code problems are intellectual properties.</small>
+<p>Read part one from the advent of code website.<sup>0</sup>
+The input is a line-separated list of numbers.
+The goal is to count how many numbers are greater than the previous one.</p>
+<small>(0) This is the easiest way for me to navigate <a href="https://www.reddit.com/r/adventofcode/comments/e4mkjq/comment/f9dy1e7/?utm_source=share&amp;utm_medium=web2x&amp;context=3">Advent of Code copyright</a>.</small>
 <h3 id="solving-part-one">Solving Part One</h3>
-<p>To solve these challenges I create two sheets.
-One for the example as a proof of concept.
-Then I clone that sheet and copy-paste in my provided challenge input.</p>
-<p>Solving this challenge is easy with spreadsheets.
-The rest of the calendar quickly shattered this confidence.</p>
-<table>
-<thead>
-<tr>
-<th>DATA</th>
-<th>INCREASE</th>
-<th>OUTPUT</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A2</td>
-<td>-</td>
-<td>= COUNTIF(B3:B, &ldquo;=TRUE&rdquo;)</td>
-</tr>
-<tr>
-<td>A3</td>
-<td>B3 = A3 &gt; A2</td>
-<td></td>
-</tr>
-<tr>
-<td>&hellip;</td>
-<td>↓ repeat ↓</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>This challenge was easy with spreadsheets.<sup>1</sup></p>
+<small>(1) This was a confidence I came to regret.</small>
+<table><tbody>
+<tr class="blk A"><th>DATA    </th><td>A2                                        </td><td>A3               </td><td>...     </td></tr>
+<tr class="org B"><th>INCREASE</th><td>-                                         </td><td>B3 = <span class="blk">A3 > A2</span></td><td>repeat →</td></tr>
+<tr class="C">    <th>OUTPUT  </th><td>C3 = <br>COUNTIF(<span class="org">B3:B</span></span>,"=TRUE")</td><td>                 </td><td>        </td></tr>
+</tbody></table>
 <p>I&rsquo;ve omitted row numbers and columns and just done them inline.
 I think this format is more readable.</p>
 <p>This solution scaled well to the challenge input of <strong>2000 lines</strong>.</p>
 <h3 id="how-part-one-works">How Part One Works</h3>
-<p>Being the first spreadsheet of this series it&rsquo;s worth explaining in detail.</p>
+<p>The first spreadsheet of this series is worth explaining in full detail.</p>
 <h4 id="about-the-colors">About the Colors</h4>
-<p>I think spreadsheets are most powerful when each row or column maps to a &ldquo;stage&rdquo; of the program.
-A lighter color signifies that stage depends on darker colored stages.</p>
-<h4 id="about-the-formulas">About the Formulas</h4>
-<p>This also includes content about how to use spreadsheets.</p>
-<h5 id="repeat">Repeat</h5>
-<p>In spreadsheet formulas cells are referenced by column (named with a letter A-Z), and then by row (a number 1-2000).
-The power of spreadsheets comes from selecting a cell and &ldquo;dragging it&rdquo; over many rows or columns to repeat that formula.<sup>1</sup>
-Except! The cell formula updates itself to be the same &ldquo;relatively&rdquo;.</p>
-<small>(1) Power users know to double click the cell instead of drag.
-This repeats the formula to the end of the column to the left (e.g to the end of data).
-I didn&rsquo;t know this until this series.</small>
+<p>Generally, each column is like a &ldquo;stage&rdquo; of the program.
+Some stages rely on previous ones.
+To make these connections clear columns and their formula references are colored<sup>2</sup>.</p>
+<small>(2) The colors themselves come from Google Sheets.
+I ripped them using <a href="https://superuser.com/a/372919">OSX&rsquo;s Digital Color Meter</a>.</small>
+<h4 id="repeat">Repeat</h4>
+<p>Formulas reference other cells by column (named with a letter A-Z), and by row (a number 1-2000).
+To copy formulas to other cells the user &ldquo;drags&rdquo;<sup>3</sup> that cell over the row or column.
+When copied like this the cell formula updates to keep the same &ldquo;relative&rdquo; references.</p>
+<small>(3) Power users know to double click instead of drag.
+This will copy the formula to the entire column as long as there&rsquo;s data to the left.
+This series forced me to learn.</small>
 <p>For example &hellip;</p>
 <ul>
 <li>If a formula uses the cell to its left <code>= A2 + 1</code></li>
 <li>The formula &ldquo;dragged&rdquo; to the next row will also use the cell to the left <code>= A3 + 1</code></li>
 <li>The formula &ldquo;dragged&rdquo; to the next column still uses the cell to the left <code>= B3 + 1</code></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>A</th>
-<th>B</th>
-<th>C</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>HEADER</td>
-<td>HEADER</td>
-<td>HEADER</td>
-</tr>
-<tr>
-<td>2</td>
-<td>199</td>
-<td>= A2+1 = 200+1 =&gt; 201</td>
-<td>= B2+1 =&gt; 202</td>
-</tr>
-<tr>
-<td>3</td>
-<td>399</td>
-<td>= A3+1 =&gt; 400</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>There is a way to instruct Google Sheets to NOT update the reference ($).
+<table><tbody>
+<tr>              <td> </td><td>1     </td><td>2                                     </td><td>3                                     </td></tr>
+<tr class="blk A"><td>A</td><th>DATA  </th><td>199                                   </td><td>399                                   </td></tr>
+<tr class="org B"><td>B</td><th>HEADER</th><td>B2 = <span class="blk">A2</span>+1 =><br> 200+1 =><br> 201</td><td>B3 = <span class="blk">A3</span>+1 =><br> 399+1 =><br> 400</td></tr>
+<tr class="ylw C"><td>C</td><th>HEADER</th><td>C2 = <span class="org">B2</span>+1 =><br> 201+1 =><br> 202</td><td>                                      </td></tr>
+</tbody></table>
+<p>There is a way to instruct Google Sheets to keep a part of the cell reference absolute <code>$</code>.
 This isn&rsquo;t used in this example.</p>
+<h4 id="transposing-rows-and-columns">Transposing Rows and Columns</h4>
+<p>Data is often pasted into thousands of rows.
+This isn&rsquo;t as interesting as the formulas unique to each column.
+Additionally, with many columns the table can get quite wide.
+For these reasons I format tables with columns running along the top to bottom axis. Rows run from the left to right.</p>
+<p>For example, a table looking like this in Google Sheets &hellip;</p>
+<table><tbody>
+<tr><td></td> <td>A        </td><td>B      </td><td>C      </td><td>...</td></tr>
+<tr><td>1  </td><th>HEADER1</th><th>HEADER2</th><th>HEADER3</th><td>...</td></tr>
+<tr><td>2  </td><td>A2     </td><td>B2     </td><td>C2     </td><td>...</td></tr>
+<tr><td>3  </td><td>A3     </td><td>B3     </td><td>C3     </td><td>...</td></tr>
+<tr><td>...</td><td>...    </td><td>...    </td><td>...    </td><td>...</td></tr>
+</tbody></table>
+<p>Will look like this in this series &hellip;</p>
+<table><tbody>
+<tr><td>   </td><td>1      </td><td>2  </td><td>3  </td><td>...</td></tr>
+<tr><td>A  </td><th>HEADER1</th><td>A2 </td><td>A3 </td><td>...</td></tr>
+<tr><td>B  </td><th>HEADER2</th><td>B2 </td><td>B3 </td><td>...</td></tr>
+<tr><td>C  </td><th>HEADER3</th><td>C2 </td><td>C3 </td><td>...</td></tr>
+<tr><td>...</td><td>...    </td><td>...</td><td>...</td><td>...</td></tr>
+</tbody></table>
 <h5 id="boolean-values">Boolean Values</h5>
-<p>Cells can have non-numeric data types<sup>2</sup>.
+<p>Cells can have non-numeric data types<sup>4</sup>.
 My advent of code solutions rely mostly on numbers and booleans.</p>
-<small>(2) Types are finnicky and <a href="https://www.theverge.com/2020/8/6/21355674/human-genes-rename-microsoft-excel-misreading-dates">can cause unexpected behavior</a>.</small>
-<p>Operators like <code>&gt;</code>, <code>&lt;</code>, and <code>=</code> (translating to <code>==</code> for programming folk) produce booleans.
-In the <code>INCREASE</code> column of my solution I use <code>&gt;</code> to compare the data cell to the left to the data cell above it.</p>
+<small>(4) <a href="https://www.theverge.com/2020/8/6/21355674/human-genes-rename-microsoft-excel-misreading-dates">Types are finnicky</a>.</small>
+<p>Operators like <code>&gt;</code>, <code>&lt;</code>, and <code>=</code><sup>5</sup> produce booleans.
+In the <code>INCREASE</code> column I use <code>&gt;</code> to compare the current number to the previous number.</p>
+<small>(5) Only one equal sign! It is not <code>==</code> like in a lot of programming languages.</small>
 <h5 id="formulas-on-ranges">Formulas on Ranges</h5>
-<p>Cell ranges are continous blocks of cells.
-They can be defined discretely.
-For example, here is the first four cells of the <code>DATA</code> column <code>A1:A4</code>.
-They can also be defined as going to the end of that row or column.
-For example, here is ALL the cells of the <code>INCREASE</code> column starting at cell <code>B3</code> (that&rsquo;s a range excluding <code>B1</code>, <code>B2</code>) <code>B3:B</code>.</p>
-<p>Some functions take these ranges to do interesting things.
-<code>COUNTIF</code> counts the number of items in a range matching the &ldquo;criterion&rdquo;.
-The &ldquo;criterion&rdquo; is a string describing a wanted pattern or test.
-For example, &ldquo;=TRUE&rdquo; is the string criterion for checking if a cell&rsquo;s value equals the boolean TRUE.</p>
+<p>Cell ranges are continous blocks of cells. To reference &hellip;</p>
+<ul>
+<li>The first four cells of the column <code>A</code> use <code>A1:A4</code><sup>6</sup>.</li>
+<li>The range starting at cell <code>A4</code> and going until the end of the column use <code>A4:A</code>.</li>
+</ul>
+<small>(6) Cell ranges are <em>inclusive</em>.</small>
+<p>Some spreadsheet functions can act on cell ranges.
+<code>COUNTIF</code> counts the number of items in a range matching a &ldquo;criterion&rdquo;.
+Some example string criteria are &hellip;</p>
+<ul>
+<li>&ldquo;=TRUE&rdquo; for checking if a cell equals TRUE.</li>
+<li>&ldquo;&gt;=4&rdquo; for checking if a cell is greater than or equal to 4.</li>
+</ul>
 <h4 id="putting-it-all-together">Putting It All Together</h4>
 <ul>
-<li>The line of numbers are pasted into the first column (<code>DATA</code>).</li>
-<li>The second column computes if in that row the line is greater than the previous entry (<code>A3 &gt; A2</code>).</li>
-<li>The third column has just a single cell with counting TRUEs in the <code>INCREASE</code> column.</li>
+<li>Paste the input into the first column (<code>DATA</code>).</li>
+<li>The second column computes if the current number is greater than the previous one <code>A3 &gt; A2</code>.</li>
+<li>The third column uses a single cell counting the matches in the second column.</li>
 </ul>
 <h2 id="part-two">Part Two</h2>
-<p>Part two asks<sup>3</sup> to count the number of three line sliding windows with sums greater than the previous three line sliding window (overlapping windows).</p>
-<small>(3) Part two isn&rsquo;t readable directly from the website.
-As far as I know you have to participate in challenges to get the full text.</small>
+<p>Part two asks<sup>7</sup> to count the number of 3-wide sliding windows with a sum greater than the previous one.</p>
+<small>(7) Part two isn&rsquo;t readable from the website until you do part one.</small>
+<p>To understand 3-wide sliding window think &hellip;</p>
 <ul>
-<li>Think Ruby Enumerable&rsquo;s <a href="https://ruby-doc.org/core-2.5.1/Enumerable.html#method-i-each_cons">each_cons(3)</a>.</li>
-<li>Think Python itertool&rsquo;s <a href="https://docs.python.org/3/library/itertools.html#itertools.pairwise">pairwise</a> except for triples. Implemented as <a href="https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.triplewise">triplewise(iterable) in more_itertools</a>.</li>
+<li>Ruby Enumerable&rsquo;s <a href="https://ruby-doc.org/core-2.5.1/Enumerable.html#method-i-each_cons">each_cons(3)</a>.</li>
+<li>Python itertool&rsquo;s <a href="https://docs.python.org/3/library/itertools.html#itertools.pairwise">pairwise</a> except for triples.</li>
+<li>Implemented as <a href="https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.triplewise">triplewise in more_itertools</a>.</li>
 </ul>
 <h3 id="solving-part-two">Solving Part Two</h3>
-<p>Spreadsheets are still strong here.</p>
-<table>
-<thead>
-<tr>
-<th>DATA</th>
-<th>3SUM</th>
-<th>INCREASE</th>
-<th>OUTPUT</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A2</td>
-<td>-</td>
-<td>-</td>
-<td>= COUNTIF(C5:C, &ldquo;=TRUE&rdquo;)</td>
-</tr>
-<tr>
-<td>A3</td>
-<td>-</td>
-<td>-</td>
-<td></td>
-</tr>
-<tr>
-<td>A4</td>
-<td>B4 = A2 + A3 + A4</td>
-<td>-</td>
-<td></td>
-</tr>
-<tr>
-<td>A5</td>
-<td>B5 = A3 + A4 + A5</td>
-<td>C5 = B5 &gt; B4</td>
-<td></td>
-</tr>
-<tr>
-<td>&hellip;</td>
-<td>↓ repeat ↓</td>
-<td>↓ repeat ↓</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>NOTE One simplification is using only the <code>INCREASE</code> column and doing the sum inline <code>A3 + A4 + A5 &gt; A2 + A3 + A4</code>.</p>
+<p>This is simpler in a spreadsheet than in a computer program.</p>
+<table><tbody>
+<tr class="blk A"><th>DATA    </th><td>A2                         </td><td>A3</td><td>A4                    </td><td>A5                    </td><td>...     </td></tr>
+<tr class="org B"><th>3SUM<sup>8</sup></th><td>-                          </td><td>- </td><td>B4 = <br><span class="blk">A2+A3+A4</span></td><td>B5 = <br><span class="blk">A3+A4+A5</span></td><td>repeat →</td></tr>
+<tr class="ylw C"><th>INCREASE</th><td>-                          </td><td>- </td><td>-                     </td><td>C5 = <br><span class="org">B5 > B4</span>     </td><td>repeat →</td></tr>
+<tr>              <th>OUTPUT  </th><td>D2 = <br>COUNTIF(<span class="ylw">C5:C</span>)</td><td>  </td><td>                      </td><td>                      </td><td>        </td></tr>
+</tbody></table>
+<small>(8) You can simplify away the <code>3SUM</code> column.
+Do the sum inline in the <code>INCREASE</code> column <code>A3 + A4 + A5 &gt; A2 + A3 + A4</code>.</small>
 
 
     </div>

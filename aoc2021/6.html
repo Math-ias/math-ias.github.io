@@ -28,6 +28,10 @@ table {
     font-family: monospace, monospace;
 }
 
+th {
+    font-weight: 600;
+}
+
 td, th {
     text-align: left;
     padding: 10px;
@@ -69,37 +73,131 @@ td, th {
 }
     </style>
     <style type="text/css">
-        .b {
-    background-color: #000;
-    color: #fff;
+        tr span.blk,
+tr span.red,
+tr span.org,
+tr span.ylw,
+tr span.grn,
+tr span.cyn,
+tr span.blu,
+tr span.prp,
+tr span.mag {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
 }
 
-.g0 {
-    background-color: #222;
-    color: #fff;
+tr.blk th {
+    background-color: rgb(0, 0, 0);
+    color: white;
 }
 
-.g1 {
-    background-color: #444;
-    color: #fff;
+tr span.blk {
+    text-decoration-color: rgb(0, 0, 0);
 }
 
-.g2 {
-    background-color: #666;
-    color: #fff;
+tr.blk td {
+    background-color: rgb(241, 241, 241);
 }
 
-.g3 {
-    background-color: #888;
-    color: #fff;
+tr.red th {
+    background-color: rgb(210, 7, 24);
+    color: white;
 }
 
-.g4 {
-    background-color: #AAA;
+tr span.red {
+    text-decoration-color: rgb(210, 7, 24);
 }
 
-.g5 {
-    background-color: #CCC;
+tr.red td {
+    background-color: rgb(248, 197, 198);
+}
+
+tr.org th {
+    background-color: rgb(238, 132, 63);
+}
+
+tr span.org {
+    text-decoration-color: rgb(238, 132, 63);
+}
+
+tr.org td {
+    background-color: rgb(255, 224, 200);
+}
+
+tr.ylw th {
+    background-color: rgb(249, 183, 66);
+}
+
+tr span.ylw {
+    text-decoration-color: rgb(249, 183, 66);
+}
+
+tr.ylw td {
+    background-color: rgb(255, 239, 200);
+}
+
+tr.grn th {
+    background-color: rgb(90, 155, 76);
+}
+
+tr span.grn {
+    text-decoration-color: rgb(90, 155, 76);
+}
+
+tr.grn td {
+    background-color: rgb(210, 230, 206);
+}
+
+tr.cyn th {
+    background-color: rgb(46, 118, 129);
+    color: white;
+}
+
+tr span.cyn {
+    text-decoration-color: rgb(46, 118, 129);
+}
+
+tr.cyn td {
+    background-color: rgb(199, 220, 222);
+}
+
+tr.blu th {
+    background-color: rgb(0, 114, 205);
+    color: white;
+}
+
+tr span.blu {
+    text-decoration-color: rgb(0, 114, 205);
+}
+
+tr.blu td {
+    background-color: rgb(189, 214, 245);
+}
+
+tr.prp th {
+    background-color: rgb(88, 74, 153);
+    color: white;
+}
+
+tr span.prp {
+    text-decoration-color: rgb(88, 74, 152);
+}
+
+tr.prp td {
+    background-color: rgb(211, 205, 228);
+}
+
+tr.mag th {
+    background-color: rgb(163, 70, 109);
+    color: white;
+}
+
+tr span.mag {
+    text-decoration-color: rgb(163, 70, 109);
+}
+
+tr.mag td {
+    background-color: rgb(234, 203, 215);
 }
     </style>
 
@@ -157,7 +255,7 @@ This makes for a small spreadsheet.</p>
 <p>The only clever formula in this is actually from reading input and converting it into counts.
 <code>COUNTIF</code> works on a range.
 That range doesn&rsquo;t have to be in the spreadsheet.
-It can be the output of another function like <code>SPILL</code>.</p>
+It can be the output of another function like <code>SPLIT</code>.</p>
 
 
     </div>
