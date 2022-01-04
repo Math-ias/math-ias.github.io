@@ -28,6 +28,10 @@ table {
     font-family: monospace, monospace;
 }
 
+code {
+    font-family: monospace, monospace;
+}
+
 th {
     font-weight: 600;
 }
@@ -83,7 +87,7 @@ tr span.blu,
 tr span.prp,
 tr span.mag {
     text-decoration: underline;
-    text-decoration-thickness: 0.12em;
+    text-decoration-thickness: 0.15em;
 }
 
 tr.blk th {
@@ -95,10 +99,6 @@ tr span.blk {
     text-decoration-color: rgb(0, 0, 0);
 }
 
-tr.blk td {
-    background-color: rgb(241, 241, 241);
-}
-
 tr.red th {
     background-color: rgb(210, 7, 24);
     color: white;
@@ -106,10 +106,6 @@ tr.red th {
 
 tr span.red {
     text-decoration-color: rgb(210, 7, 24);
-}
-
-tr.red td {
-    background-color: rgb(248, 197, 198);
 }
 
 tr.org th {
@@ -120,10 +116,6 @@ tr span.org {
     text-decoration-color: rgb(238, 132, 63);
 }
 
-tr.org td {
-    background-color: rgb(255, 224, 200);
-}
-
 tr.ylw th {
     background-color: rgb(249, 183, 66);
 }
@@ -132,20 +124,12 @@ tr span.ylw {
     text-decoration-color: rgb(249, 183, 66);
 }
 
-tr.ylw td {
-    background-color: rgb(255, 239, 200);
-}
-
 tr.grn th {
     background-color: rgb(90, 155, 76);
 }
 
 tr span.grn {
     text-decoration-color: rgb(90, 155, 76);
-}
-
-tr.grn td {
-    background-color: rgb(210, 230, 206);
 }
 
 tr.cyn th {
@@ -157,10 +141,6 @@ tr span.cyn {
     text-decoration-color: rgb(46, 118, 129);
 }
 
-tr.cyn td {
-    background-color: rgb(199, 220, 222);
-}
-
 tr.blu th {
     background-color: rgb(0, 114, 205);
     color: white;
@@ -168,10 +148,6 @@ tr.blu th {
 
 tr span.blu {
     text-decoration-color: rgb(0, 114, 205);
-}
-
-tr.blu td {
-    background-color: rgb(189, 214, 245);
 }
 
 tr.prp th {
@@ -183,10 +159,6 @@ tr span.prp {
     text-decoration-color: rgb(88, 74, 152);
 }
 
-tr.prp td {
-    background-color: rgb(211, 205, 228);
-}
-
 tr.mag th {
     background-color: rgb(163, 70, 109);
     color: white;
@@ -196,9 +168,6 @@ tr span.mag {
     text-decoration-color: rgb(163, 70, 109);
 }
 
-tr.mag td {
-    background-color: rgb(234, 203, 215);
-}
     </style>
 
     
@@ -239,209 +208,200 @@ tr.mag td {
 </nav>
 <h2 id="foreword">Foreword</h2>
 <p>There was a lot of repetitive work in this challenge.
-This is easy in spreadsheets.
-Instead of &ldquo;dragging&rdquo; formulas it&rsquo;s also possible to copy and paste sections of cells.
-The copy-pasted cells will have new formulas with the same &ldquo;relative&rdquo; cell references.</p>
-<p>This is not so friendly to readers.
-In the author&rsquo;s examples 5 bits are used.
-In my challenge input 12 bits.
-I&rsquo;ll demonstrate my solution in 3.</p>
+Easy enough in sheets but not easy on readers.
+Particularly on the number of bits &hellip;</p>
+<ul>
+<li>The author&rsquo;s examples use 5.</li>
+<li>The challenge input used 12.</li>
+<li>The written solution will demo 3.</li>
+</ul>
 <h2 id="part-one">Part One</h2>
 <p>As always, read the problem text first.
 In summary, the input is a list of binary numbers (of the same length).
-For each bit position (or digit) the objective is find the <strong>most and least common value</strong>.</p>
-<p>The number <code>gamma</code> is created by using the common bits.
-The number <code>epsilon</code> is created by using the least common bits.</p>
+The goal is to find, for each binary place, the <strong>most and least common values</strong>.</p>
+<p>The number <code>gamma</code> uses the common bits.
+The number <code>epsilon</code> uses the least common bits.</p>
 <p>Finally multiply <code>gamma</code> by <code>epsilon</code>.</p>
 <h3 id="solving-part-one">Solving Part One</h3>
-<p>I&rsquo;ve omitted input parsing.
-Instead of <a href="../aoc2021/2.html#split">SPLIT like in day 2</a>,
-I had to use <a href="https://support.google.com/docs/answer/3094129?hl=en">MID</a> to get single characters out.</p>
-<p>I accomplished this with multiple spreadsheet &ldquo;areas&rdquo;.
-I&rsquo;ve kept them separate to prevent excessive smushing.</p>
-<p>Here is how I kept my data. With each row being a single line, each digit in it&rsquo;s own cell.</p>
+<p>Input parsing is boring and repetitive. Skip!<sup>0</sup></p>
+<small>(0) For the curious. SPLIT uses <strong>non-empty</strong> separators.
+Instead use <a href="https://support.google.com/docs/answer/3094129?hl=en"><code>MID</code></a>.</small>
+<p>Data is ready as the following columns.</p>
 <table><tbody>
-<tr><td class="b">DATA BIT 0</td><td>B2 (e.g 1)</td><td>...</td></tr>
-<tr><td class="b">DATA BIT 1</td><td>C2 (e.g 0)</td><td>...</td></tr>
-<tr><td class="b">DATA BIT 2</td><td>D2 (e.g 1)</td><td>...</td></tr>
+<tr class="red B"><th>DATA BIT 0</th><td>B2 (e.g 1)</td><td>...</td></tr>
+<tr class="org C"><th>BIT 1     </th><td>C2 (e.g 0)</td><td>...</td></tr>
+<tr class="ylw D"><th>2         </th><td>D2 (e.g 1)</td><td>...</td></tr>
 </tbody></table>
-<p>Here is where I did calculations with that data.</p>
+<p>Each individual <code>gamma</code> bit is calculated like the following.</p>
 <table><tbody>
-<tr><td class="g1">GAMMA BIT 0</td><td>H2 = ROUND(AVERAGE(B2:B))</td></tr>
-<tr><td class="g1">GAMMA BIT 1</td><td>I2 = ROUND(AVERAGE(C2:C))</td></tr>
-<tr><td class="g1">GAMMA BIT 2</td><td>J2 = repeat ↓            </td></tr>
+<tr class="grn H"><th>GAMMA BIT 0</td><td>H2 = ROUND(AVERAGE(<span class="red">B2:B</span>))</td></tr>
+<tr class="cyn I"><th>BIT 1      </td><td>I2 = ROUND(AVERAGE(<span class="org">C2:C</span>))</td></tr>
+<tr class="blu J"><th>2          </td><td>J2 = repeat ↓            </td></tr>
 </tbody></table>
-<p>Finally, I got those individual bits into single bit strings like this.</p>
+<p>All those bits become a number like this.</p>
 <table><tbody>
-<tr><td class="g4">GAMMA  </td><td>H4 = BIN2DEC(CONCATENATE(H2:J2))</td></tr>
-<tr><td class="g5">EPSILON</td><td>I4 = (2^4 - 1) - H4             </td></tr>
-<tr><td>           OUTPUT </td><td>J4 = H4 * I4                    </td></tr>
+<tr class="prp H"><th>GAMMA  </th><td>H4 = BIN2DEC(CONCATENATE(<span class="grn">H2</span>:<span class="blu">J2</span>))</td></tr>
+<tr class="mag I"><th>EPSILON</th><td>I4 = (2^4 - 1) - <span class="prp">H4</span>                  </td></tr>
+<tr>              <td>OUTPUT </td><td>J4 = <span class="prp">H4</span> * <span class="mag">I4</span>                    </td></tr>
 </tbody></table>
 <h3 id="how-part-one-works">How Part One Works</h3>
-<p>The big trick here had nothing to do with spreadsheets.
-Most of the cleverness here comes from the binary format.</p>
+<p>Most of the cleverness is with binary.</p>
 <h4 id="average">AVERAGE</h4>
-<p>Let <code>A</code> be the number of 1s in a bit position.
-And <code>Z</code> be the number of 0s.</p>
-<p>Then we can derive the average to equal &hellip;</p>
+<p>First, why is the <code>AVERAGE</code> rounded the most common value?</p>
+<p><code>A</code> is the count of 1s.
+<code>Z</code> is the count of 0s.</p>
+<p>The average equals &hellip;</p>
 <ul>
-<li><code> = (1A + 0Z) / (A + Z)</code> <sup>0</sup></li>
+<li><code> = (1A + 0Z) / (A + Z)</code></li>
 <li><code> = A / (A + Z)</code></li>
+</ul>
+<p>Case by case analysis shows &hellip;<sup>1</sup></p>
+<ul>
 <li>If <code>A &gt; Z</code> then &hellip;
 <ul>
 <li><code>A + Z &lt; A + A = 2A</code></li>
-<li>In other words <code>A / (A + Z) &gt; A / (A + A) = 1/2</code>.</li>
-<li>Rounding the fraction will round up to 1.</li>
+<li>With the average gives <code>A / (A + Z) &gt; A / (A + A) = 1/2</code>.</li>
+<li>The average is greater than <code>1/2</code> and will round to 1.</li>
 </ul>
 </li>
-<li>If <code>A &lt; Z</code> then it follows that rounding the fraction will round to 0.</li>
+<li>If <code>A &lt; Z</code> then &hellip;
+<ul>
+<li>Flipping inequality signs gives <code>A / (A + Z) &lt; A / (A + A) = 1/2</code></li>
+<li>The average is less than <code>1/2</code> and will round to 0.</li>
 </ul>
-<small>(0) Sometimes it&rsquo;s worth proving a program with mathy rigor.
-Sometimes I&rsquo;ll use a faulty assumption and it will work out anyway!</small>
-<p>The average of a binary number will be the most common value.</p>
-<p>NOTE the scenario of <code>A = Z</code> is not considered.
-No guidance is provided for tie-breaking in the problem text,
-so it&rsquo;s assumed no bit will ever be equally as present.</p>
+</li>
+</ul>
+<small>(1) Sometimes it&rsquo;s worth proving a program.
+Sometimes I roll with faulty assumptions and it works out.</small>
+<p>We ignore the particular case that <code>A = Z</code>.
+The author didn&rsquo;t provide guidance on ties.
+And in fact no inputs need tie-breaking.</p>
 <h4 id="bin2dec-limitations">BIN2DEC Limitations</h4>
-<p>The function <code>BIN2DEC</code> will convert a <em>signed</em><sup>1</sup> binary string into a decimal number.
-The binary string has a limit of 10 digits.
-This is a problem.
-Though I&rsquo;ve simplified this article to dealing in 3 bits, the challenge input took 12.</p>
-<small>(1) You might be surprised that it expects signed binary numbers. I am too!
-In my challenge input the first 3 gamma bits happened to be 0.</small>
-<p>To get around this &hellip;</p>
+<p>The function <code>BIN2DEC</code> converts binary to decimal.
+It is particular about input &hellip;</p>
 <ul>
-<li>If the gamma bitstring begins with multiple 0s &hellip;
-<ul>
-<li>Truncation is possible by converting the string to a decimal and then converting.
-That looks like <code>BIN2DEC(VALUE(CONCATENATE(range)))</code>.
-See the sidenote about signed binary numbers, some adjustment may be necessary.</li>
+<li>It expects a <em>signed</em><sup>2</sup> binary string.</li>
+<li>The string can contain at most 10 digits.</li>
 </ul>
-</li>
-<li>If the gamma bitstring is greater than <code>010000000000</code> &hellip;
+<small>(2) The fact that it&rsquo;s a signed number might surprise you.
+It surprised me!
+I had no idea until I wrote this article.</small>
+<p>The second condition is a problem.
+The demo uses 3 bits, but the challenge input uses 12.</p>
+<p>The solution is to convert to decimal in pieces.</p>
 <ul>
-<li>Convert to decimal manually.
-<code>2^0 * H2 + 2^1 * I2 + 2^2 + J2 + ...</code></li>
-<li>Convert to decimal in pieces.
+<li>Get the first 6 bits with <a href="https://support.google.com/docs/answer/3094079?hl=en"><code>LEFT</code></a>.</li>
+<li>Get the second 6 bits with <a href="https://support.google.com/docs/answer/3094087?hl=en"><code>RIGHT</code></a>.</li>
+<li>Convert the halves and combine the results.
 <ul>
-<li><code>2^6 * BIN2DEC(LEFT(range, 6)) + BIN2DEC(RIGHT(range, 6))</code>
-<code>LEFT</code> and <code>RIGHT</code> substring a certain number of characters from the left and right side respectively.
-This doesn&rsquo;t have sign bit issues.</li>
-</ul>
-</li>
+<li><code>2^6 * BIN2DEC(LEFT(range, 6)) + </code><br>
+<code>BIN2DEC(RIGHT(range, 6))</code></li>
 </ul>
 </li>
 </ul>
 <h4 id="epsilon-from-gamma">Epsilon From Gamma</h4>
-<p>To get a string of the least common bits each 0 and 1 bit can be flipped (the only other option).
-That is equivalent to this subtraction in binary and then in decimal &hellip;</p>
-<pre tabindex="0"><code>  11111  →   (2^5 - 1)
+<p>This solution uses trickery to calculate <code>epsilon</code>.
+A single cell flips the bits of <code>gamma</code>.
+When 0 and 1 are the only options this works to get the less common value.</p>
+<p>To flip bits in binary use subtraction.
+This subtraction is converted into decimal.</p>
+<pre tabindex="0"><code>  11111  →   (2^6 - 1)
 - gamma     -    gamma
 -------     ----------
-</code></pre><p>This is a little trick to avoid extra work.</p>
-<h2 id="part-two">Part Two</h2>
+</code></pre><h2 id="part-two">Part Two</h2>
 <p>Part two requires much more effort.</p>
 <p>In summary the objective is still to get two bitstrings</p>
 <ul>
 <li>One of them is called <code>oxygen</code>.</li>
-<li>The second is called <code>carbon</code>.
-Instead of <em>building</em> these however, the twist is that they&rsquo;re already in the input.</li>
+<li>The second is called <code>carbon</code>.</li>
 </ul>
-<p>Each desired bitstring requires multiple passes and filters on the input.</p>
+<p>Instead of <em>building</em> these however, the twist is that they&rsquo;re already in the input.</p>
+<p>Each desired number requires multiple passes and filters on the input.</p>
 <ul>
 <li>These passes happen at each bit position.</li>
-<li>These passes keep occuring until only one line of input remains (not necessarily at the final bit position).</li>
+<li>These passes keep occurring until only one line of input remains (not necessarily at the final position).</li>
 </ul>
+<p>In an extreme attempt to be concise, only the solution for <code>oxygen</code> will be shown.
+The solution for <code>carbon</code> requires only sign switches and replacing some 1s with 0s.</p>
+<small>(3) Has there ever been a more frustrating expression?</small>
 <p>For <code>oxygen</code> &hellip;</p>
 <ul>
-<li>Each pass selects for lines of input using the most common value in that bit position.</li>
-<li>If there are tie breaks, the most common value will be written as 1.</li>
-</ul>
-<p>For <code>carbon</code> &hellip;</p>
-<ul>
-<li>Each pass selects for lines using the least common value in that position.</li>
-<li>Tie breaks go to 0.</li>
+<li>Each pass selects lines of input using the most common value in that bit position.</li>
+<li>If there are tie breaks, the &ldquo;most common value&rdquo; is 1.</li>
 </ul>
 <p>The final output is the multiplication of <code>oxygen</code> and <code>carbon</code> of course.</p>
-<p>In an extreme attempt to be concise, only the solution for <code>oxygen</code> will be shown.
-Figuring out where to switch signs and values is &ldquo;an exercise for the reader&rdquo;<sup>2</sup>.</p>
-<small>(2) Has there ever been a more frustrating expression?</small>
 <h3 id="solving-part-two">Solving Part Two</h3>
-<p>We start with the same data table (with slightly different cell numbers, an extra row ontop is necessary) &hellip;</p>
+<p>The same data table is used with slightly different coordinates.
+This change is necessary for a new row later.
+Additionally, the column the bits come from is included.</p>
 <table><tbody>
-<tr><td class="b">DATA BIT 0</td><td>B4 (e.g 1)</td><td>...</td></tr>
-<tr><td class="b">DATA BIT 1</td><td>C4 (e.g 0)</td><td>...</td></tr>
-<tr><td class="b">DATA BIT 2</td><td>D4 (e.g 1)</td><td>...</td></tr>
+<tr class="blk A"><th>DATA      </th><td>A1        </td><td>...</td></tr>
+<tr class="red B"><th>DATA BIT 0</th><td>B4 (e.g 1)</td><td>...</td></tr>
+<tr class="org C"><th>BIT 1     </th><td>C4 (e.g 0)</td><td>...</td></tr>
+<tr class="ylw D"><th>2         </th><td>D4 (e.g 1)</td><td>...</td></tr>
 </tbody></table>
-<p>For each bit there is a row (really column, but I&rsquo;ve transposed for readability) &hellip;</p>
+<p>For each bit there is a column &hellip;</p>
 <ul>
-<li>Calculating the most common bit of all the elements left.</li>
-<li>Figuring out if the particular input line is still in the filter or not.</li>
+<li>Calculating the most common bit of all lines left.</li>
+<li>With repeating formulas checking if the input has that most common bit.</li>
 </ul>
 <table><tbody>
-<tr><td class="g0">1 MORE COMMON                                        </td><td class="g1">GC BIT</td><td class="g2">pass</td><td>                       </td><td>        </td></tr>
-<tr><td>G1 = <br>SUM(B4:B)<br> >=COUNT(B3:B)/2                         </td><td>G2 = IF(G1,1,0)  </td><td class="g2">1   </td><td>G4 = <br>B4=G$2        </td><td>rep →</td></tr>
-<tr><td>H1 = <br>SUMIF(G4:G,"=TRUE",C3:C)<br> >=COUNTIF(G4:G,"=TRUE")/2</td><td>repeat ↓         </td><td class="g2">2   </td><td>H4 = <br>AND(B4,C3=H$2)</td><td>rep →</td></tr>
-<tr><td>repeat ↓                                                        </td><td>repeat ↓         </td><td class="g2">3   </td><td>repeat ↓               </td><td>rep ↘</td></tr>
+<tr class="F">    <th>1 MORE COMMON                                                                </th><th>GC BIT              </th><th>pass </td><td>                                      </td><td>        </td></tr>
+<tr class="grn G"><td>G1 = <br>SUM(<span class="red">B4:B</span>)<br>>=COUNT(<span class="red">B4:B</span>)/2                              </td><td>G2 = IF(<span class="grn">G1</span>,1,0)</td><th>1    </th><td>G4 = <br><span class="red">B4</span>=<span class="grn">G$2</span>             </td><td>rep →</td></tr>
+<tr class="prp H"><td>H1 = <br>SUMIF(<span class="grn">G4:G</span>,"=TRUE",<span class="org">C4:C</span>)<br>>=COUNTIF(<span class="grn">G4:G</span>,"=TRUE")/2</td><td>repeat ↓            </td><th>2    </th><td>H4 = <br>AND(<span class="red">B4</span>,<span class="org">C3</span>=<span class="prp">H$2</span>)</td><td>rep →</td></tr>
+<tr class="mag I"><td>repeat ↓                                                                     </td><td>repeat ↓            </td><td>rep ↓</td><td>repeat ↓                              </td><td>rep ↘</td></tr>
 </tbody></table>
-<p>Finally, finding the line with the most &ldquo;passes&rdquo;.</p>
+<p>Finally, there is a cell finding what binary number passes the most checks.</p>
 <table><tbody>
-<tr><td class="g3">PASSES</td><td>L4 = COUNTIF(G4:I4,"=TRUE")</td></tr>
-<tr><td>       OXYGEN STR</td><td>M4 = <br>INDEX(A4:A, <br>MATCH(MAX(L4:L), L4:L, 0))</td></tr>
+<tr class="cyn L"><th>PASSES    </th><td>L4 = COUNTIF(<span class="grn">G4</span>:<span class="mag">I4</span>,"=TRUE")</td></tr>
+<tr>              <th>OXYGEN STR</th><td>M4 = <br>INDEX(<span class="blk">A4:A</span>,<br>MATCH(MAX(<span class="cyn">L4:L</span>),<span class="cyn">L4:L</span>,0))</td></tr>
 </tbody></table>
-<p>Converting that oxygen bitstring to decimal is left out.</p>
+<p>Converting that oxygen binary number to decimal is left out.</p>
 <h3 id="how-part-two-works">How Part Two Works</h3>
 <h4 id="sum--count2">SUM &gt;= COUNT/2</h4>
-<p>Comparing <code>SUM(B4:B)</code> to <code>COUNT(B3:B)/2</code> is a de-simplification of using <a href="#AVERAGE">AVERAGE in part 1</a>.<sup>3</sup>
-NOTE <code>SUM</code> becomes <code>SUMIF</code> on the second pass.
-This is to prevent summing across input lines already filtered out by the first pass.</p>
-<small>(3) This was NOT done because <code>SUM</code> and <code>COUNT</code> have <code>SUMIF</code> and <code>SUMIF</code> complements &hellip;
-<a href="https://support.google.com/docs/answer/3256529?hl=en">There is an <code>AVERAGEIF</code> function</a>!
-This was done for fine-grain control on tie-breaking (something necessary for <code>carbon</code> bitstring formula changes).</small>
+<p>Comparing <code>SUM(B4:B)</code> to <code>COUNT(B3:B)/2</code> is a slight re-working of <a href="#AVERAGE">AVERAGE in part 1</a><sup>4</sup>.
+<code>SUM</code> becomes <code>SUMIF</code> on the second pass to prevent summing across rows already filtered out.</p>
+<small>(4) I use <code>SUMIF</code> and <code>COUNTIF</code> to control tie-breaking behavior (necessary for <code>carbon</code>).</small>
 <h4 id="why-not-filter">Why not FILTER</h4>
-<p>An alternative solution might rely on the <a href="https://support.google.com/docs/answer/3093197?hl=en"><code>FILTER</code> function</a><sup>4</sup>.
-This is a function taking a range, and returning a range matching a criteria (lots of spill!).
-Using this function would produce a spreadsheet with progressively shorter and shorter lists after each pass.</p>
-<small>(4) <code>FILTER</code> works differently than other functions on ranges with conditions seen before (e.g COUNTIFS).
+<p>The <a href="https://support.google.com/docs/answer/3093197?hl=en"><code>FILTER</code> function</a><sup>5</sup> could power alternative solutions.
+This function takes a range and returns a range matching a criteria.</p>
+<small>(5) <code>FILTER</code> doesn&rsquo;t work like <code>COUNTIF</code>.
 There&rsquo;s no string &ldquo;criteria&rdquo;.
-<code>FILTER</code> takes a range (matching the shape of the list to filter) of boolean values.</small>
+Instead it takes in a range of boolean values.</small>
 <p>Here&rsquo;s a sample.
-The list starts at 3 values 1, 5, and 10.
-After the first <code>FILTER</code> the list becomes just 5 and 10.
-After the second <code>FILTER</code> the list becomes just 5.</p>
+The list starts at 3 values: 1, 5, and 10.</p>
+<ul>
+<li>After the first <code>FILTER</code> the list is 5 and 10.</li>
+<li>After the second one the list is just 5.</li>
+</ul>
 <table><tbody>
-<tr><td class="b">DATA       </td><td>A2 = 1                     </td><td>5    </td><td>10  </td></tr>
-<tr><td class="g0">> 4       </td><td>B2 = A2 > 4 = FALSE        </td><td>TRUE </td><td>TRUE</td></tr>
-<tr><td class="g1">FILTER > 4</td><td>C2 = FILTER(A2:A, B2:B) = 5</td><td>10   </td><td>    </td></tr>
-<tr><td class="g1">< 6       </td><td>D2 = D2 < 6 = TRUE         </td><td>FALSE</td><td>    </td></tr>
-<tr><td class="g1">FILTER < 6</td><td>E2 = FILTER(C2:C, D2:D) = 5</td><td>     </td><td>    </td></tr>
+<tr class="blk A"><th>DATA      </td><td>A2 = 1                                </td><td>5    </td><td>10  </td></tr>
+<tr class="red B"><th>> 4       </td><td>B2 = <span class="blk">A2</span>>4 => FALSE               </td><td>TRUE </td><td>TRUE</td></tr>
+<tr class="ylw C"><th>FILTER > 4</td><td>C2 = FILTER(<span class="blk">A2:A</span>, <span class="red">B2:B</span>) => 5</td><td>10   </td><td>    </td></tr>
+<tr class="cyn D"><th>< 6       </td><td>D2 = <span class="ylw">C2</span> < 6 => TRUE              </td><td>FALSE</td><td>    </td></tr>
+<tr class="prp E"><th>FILTER < 6</td><td>E2 = FILTER(<span class="cyn">C2:C</span>, <span class="cyn">D2:D</span>) => 5</td><td>     </td><td>    </td></tr>
 </tbody></table>
-<p>There are two annoyances with <code>FILTER</code> &hellip;</p>
-<ul>
-<li>an extra column is needed to get the bit in question</li>
-<li>there are a variable number of cells needing formulas, the number getting shorter each time</li>
-</ul>
-<p>Instead of <code>FILTER</code> a pattern that will become useful later is employed.
-Each column represents a pass and that pass checks both &hellip;</p>
-<ul>
-<li>if the bitstring has the right bit</li>
-<li>if the bitstring had all the previous bits right (chaining <code>AND</code>s)</li>
-</ul>
+<p>Ultimately, <code>FILTER</code> wasn&rsquo;t the right fit.</p>
 <h4 id="the-famous-duo-index-and-match">The Famous Duo INDEX and MATCH</h4>
 <p>In the spreadsheet world there might not be a better duo than <code>INDEX</code> and <code>MATCH</code>.</p>
 <ul>
 <li><code>MATCH</code> gives the row number a &ldquo;match&rdquo; occurs at (the third parameter adjusts what &ldquo;match&rdquo; means).</li>
-<li><code>INDEX</code> gives the value in a range at that row.
-Combined they allow you to look up cells by a different column<sup>5</sup>.
-For programming folk if you were writing a SQL statement to <code>SELECT</code> one row &hellip;</li>
+<li><code>INDEX</code> gives the value in a range at that row.</li>
+</ul>
+<p>Combined they allow you to look up cells by a different column<sup>6</sup>.
+For programming folk if you were writing a SQL statement to <code>SELECT</code> one row &hellip;</p>
+<small>(6) Excel users get this in one function:
+<a href="https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">XLOOKUP</a>.</small>
+<ul>
 <li><code>MATCH</code> gives you <code>WHERE</code> functionality on one column</li>
 <li><code>INDEX</code> gives you <code>SELECT</code> functionality on one column</li>
 </ul>
-<small>(5) Excel users can enjoy this in one function:
-<a href="https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">XLOOKUP</a>!
-This hasn&rsquo;t come to Google Sheets yet.
-There are alternatives like <code>VLOOKUP</code>, but I don&rsquo;t think they are as readable.</small>
-<p>It is used in Part Two to lookup the bitstring that passed the most checks.</p>
+<p>Unpacking this formula <code>M4 = INDEX(A4:A, MATCH(MAX(L4:L), L4:L, 0))</code> &hellip;</p>
+<ul>
+<li><code>MAX(L4:L)</code> returns the maximum number in the range <code>L4:L</code>.</li>
+<li><code>MATCH(MAX(L4:L), L4:L, 0)</code> then returns the row (relative to the range) that maximum value is at.</li>
+<li><code>INDEX(A4:A, MATCH(MAX(L4:L), L4:L, 0))</code> is a lookup for what input in the range <code>A4:A</code> created this maximum value.</li>
+</ul>
 
 
     </div>

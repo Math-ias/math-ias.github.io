@@ -28,6 +28,10 @@ table {
     font-family: monospace, monospace;
 }
 
+code {
+    font-family: monospace, monospace;
+}
+
 th {
     font-weight: 600;
 }
@@ -83,7 +87,7 @@ tr span.blu,
 tr span.prp,
 tr span.mag {
     text-decoration: underline;
-    text-decoration-thickness: 0.12em;
+    text-decoration-thickness: 0.15em;
 }
 
 tr.blk th {
@@ -95,10 +99,6 @@ tr span.blk {
     text-decoration-color: rgb(0, 0, 0);
 }
 
-tr.blk td {
-    background-color: rgb(241, 241, 241);
-}
-
 tr.red th {
     background-color: rgb(210, 7, 24);
     color: white;
@@ -106,10 +106,6 @@ tr.red th {
 
 tr span.red {
     text-decoration-color: rgb(210, 7, 24);
-}
-
-tr.red td {
-    background-color: rgb(248, 197, 198);
 }
 
 tr.org th {
@@ -120,10 +116,6 @@ tr span.org {
     text-decoration-color: rgb(238, 132, 63);
 }
 
-tr.org td {
-    background-color: rgb(255, 224, 200);
-}
-
 tr.ylw th {
     background-color: rgb(249, 183, 66);
 }
@@ -132,20 +124,12 @@ tr span.ylw {
     text-decoration-color: rgb(249, 183, 66);
 }
 
-tr.ylw td {
-    background-color: rgb(255, 239, 200);
-}
-
 tr.grn th {
     background-color: rgb(90, 155, 76);
 }
 
 tr span.grn {
     text-decoration-color: rgb(90, 155, 76);
-}
-
-tr.grn td {
-    background-color: rgb(210, 230, 206);
 }
 
 tr.cyn th {
@@ -157,10 +141,6 @@ tr span.cyn {
     text-decoration-color: rgb(46, 118, 129);
 }
 
-tr.cyn td {
-    background-color: rgb(199, 220, 222);
-}
-
 tr.blu th {
     background-color: rgb(0, 114, 205);
     color: white;
@@ -168,10 +148,6 @@ tr.blu th {
 
 tr span.blu {
     text-decoration-color: rgb(0, 114, 205);
-}
-
-tr.blu td {
-    background-color: rgb(189, 214, 245);
 }
 
 tr.prp th {
@@ -183,10 +159,6 @@ tr span.prp {
     text-decoration-color: rgb(88, 74, 152);
 }
 
-tr.prp td {
-    background-color: rgb(211, 205, 228);
-}
-
 tr.mag th {
     background-color: rgb(163, 70, 109);
     color: white;
@@ -196,9 +168,6 @@ tr span.mag {
     text-decoration-color: rgb(163, 70, 109);
 }
 
-tr.mag td {
-    background-color: rgb(234, 203, 215);
-}
     </style>
 
     
@@ -245,8 +214,8 @@ The goal is to count how many numbers are greater than the previous one.</p>
 <small>(1) This was a confidence I came to regret.</small>
 <table><tbody>
 <tr class="blk A"><th>DATA    </th><td>A2                                        </td><td>A3               </td><td>...     </td></tr>
-<tr class="org B"><th>INCREASE</th><td>-                                         </td><td>B3 = <span class="blk">A3 > A2</span></td><td>repeat →</td></tr>
-<tr class="C">    <th>OUTPUT  </th><td>C3 = <br>COUNTIF(<span class="org">B3:B</span></span>,"=TRUE")</td><td>                 </td><td>        </td></tr>
+<tr class="red B"><th>INCREASE</th><td>-                                         </td><td>B3 = <span class="blk">A3 > A2</span></td><td>repeat →</td></tr>
+<tr class="C">    <th>OUTPUT  </th><td>C3 = <br>COUNTIF(<span class="red">B3:B</span></span>,"=TRUE")</td><td>                 </td><td>        </td></tr>
 </tbody></table>
 <p>I&rsquo;ve omitted row numbers and columns and just done them inline.
 I think this format is more readable.</p>
@@ -275,8 +244,8 @@ This series forced me to learn.</small>
 <table><tbody>
 <tr>              <td> </td><td>1     </td><td>2                                     </td><td>3                                     </td></tr>
 <tr class="blk A"><td>A</td><th>DATA  </th><td>199                                   </td><td>399                                   </td></tr>
-<tr class="org B"><td>B</td><th>HEADER</th><td>B2 = <span class="blk">A2</span>+1 =><br> 200+1 =><br> 201</td><td>B3 = <span class="blk">A3</span>+1 =><br> 399+1 =><br> 400</td></tr>
-<tr class="ylw C"><td>C</td><th>HEADER</th><td>C2 = <span class="org">B2</span>+1 =><br> 201+1 =><br> 202</td><td>                                      </td></tr>
+<tr class="red B"><td>B</td><th>HEADER</th><td>B2 = <span class="blk">A2</span>+1 =><br> 200+1 =><br> 201</td><td>B3 = <span class="blk">A3</span>+1 =><br> 399+1 =><br> 400</td></tr>
+<tr class="ylw C"><td>C</td><th>HEADER</th><td>C2 = <span class="red">B2</span>+1 =><br> 201+1 =><br> 202</td><td>                                      </td></tr>
 </tbody></table>
 <p>There is a way to instruct Google Sheets to keep a part of the cell reference absolute <code>$</code>.
 This isn&rsquo;t used in this example.</p>
@@ -331,19 +300,19 @@ Some example string criteria are &hellip;</p>
 <h2 id="part-two">Part Two</h2>
 <p>Part two asks<sup>7</sup> to count the number of 3-wide sliding windows with a sum greater than the previous one.</p>
 <small>(7) Part two isn&rsquo;t readable from the website until you do part one.</small>
-<p>To understand 3-wide sliding window think &hellip;</p>
+<p>To understand 3-wide sliding windows think &hellip;</p>
 <ul>
 <li>Ruby Enumerable&rsquo;s <a href="https://ruby-doc.org/core-2.5.1/Enumerable.html#method-i-each_cons">each_cons(3)</a>.</li>
 <li>Python itertool&rsquo;s <a href="https://docs.python.org/3/library/itertools.html#itertools.pairwise">pairwise</a> except for triples.</li>
 <li>Implemented as <a href="https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.triplewise">triplewise in more_itertools</a>.</li>
 </ul>
 <h3 id="solving-part-two">Solving Part Two</h3>
-<p>This is simpler in a spreadsheet than in a computer program.</p>
+<p>This requires one extra column.</p>
 <table><tbody>
-<tr class="blk A"><th>DATA    </th><td>A2                         </td><td>A3</td><td>A4                    </td><td>A5                    </td><td>...     </td></tr>
-<tr class="org B"><th>3SUM<sup>8</sup></th><td>-                          </td><td>- </td><td>B4 = <br><span class="blk">A2+A3+A4</span></td><td>B5 = <br><span class="blk">A3+A4+A5</span></td><td>repeat →</td></tr>
-<tr class="ylw C"><th>INCREASE</th><td>-                          </td><td>- </td><td>-                     </td><td>C5 = <br><span class="org">B5 > B4</span>     </td><td>repeat →</td></tr>
-<tr>              <th>OUTPUT  </th><td>D2 = <br>COUNTIF(<span class="ylw">C5:C</span>)</td><td>  </td><td>                      </td><td>                      </td><td>        </td></tr>
+<tr class="red A"><th>DATA    </th><td>A2                         </td><td>A3</td><td>A4                    </td><td>A5                    </td><td>...     </td></tr>
+<tr class="ylw B"><th>3SUM<sup>8</sup></th><td>-                          </td><td>- </td><td>B4 = <br><span class="blk">A2+A3+A4</span></td><td>B5 = <br><span class="blk">A3+A4+A5</span></td><td>repeat →</td></tr>
+<tr class="cyn C"><th>INCREASE</th><td>-                          </td><td>- </td><td>-                     </td><td>C5 = <br><span class="red">B5 > B4</span> </td><td>repeat →</td></tr>
+<tr>              <th>OUTPUT  </th><td>D2 = <br>COUNTIF(<span class="cyn">C5:C</span>)</td><td>  </td><td>                      </td><td>                      </td><td>        </td></tr>
 </tbody></table>
 <small>(8) You can simplify away the <code>3SUM</code> column.
 Do the sum inline in the <code>INCREASE</code> column <code>A3 + A4 + A5 &gt; A2 + A3 + A4</code>.</small>
