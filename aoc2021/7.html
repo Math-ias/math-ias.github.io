@@ -3,7 +3,7 @@
     
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>AOC Day 6 2021</title>
+        <title>AOC Day 7 2021</title>
         
         <style type="text/css">
             body {
@@ -175,58 +175,71 @@ tr span.mag {
     <body>
     <div class="content">
         
-    <h1 id="aoc-day-6httpsadventofcodecom2021day6-2021"><a href="https://adventofcode.com/2021/day/6">AOC Day 6</a> 2021</h1>
+    <h1 id="aoc-day-7httpsadventofcodecom2021day5-2021"><a href="https://adventofcode.com/2021/day/5">AOC Day 7</a> 2021</h1>
 <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#part-one-and-part-two">Part One AND Part Two</a>
+    <li><a href="#part-one-and-two">Part One And Two</a>
       <ul>
-        <li><a href="#solving-part-one-and-part-two">Solving Part One and Part Two</a></li>
+        <li><a href="#solving-part-one-and-two">Solving Part One and Two</a></li>
         <li><a href="#how-part-one-and-part-two-work">How Part One and Part Two Work</a>
           <ul>
-            <li><a href="#split-into-countif">SPLIT into COUNTIF</a></li>
+            <li><a href="#part-one-and-the-median">Part One and the MEDIAN</a></li>
+            <li><a href="#part-two-and-the-average">Part Two and the AVERAGE</a></li>
           </ul>
         </li>
       </ul>
     </li>
   </ul>
 </nav>
-<h2 id="part-one-and-part-two">Part One AND Part Two</h2>
+<h2 id="part-one-and-two">Part One And Two</h2>
 <p>As always, read the problem text first.
-In summary, the goal is to model the growth of splitting fish.
-At 0 days away from splitting one fish becomes two.
-One of the new fish is 6 days away from splitting and the second is 8 days away.</p>
-<p>The output to part one is the total number of fish on day 80.
-Part two is the total number of fish on day 256.</p>
-<h3 id="solving-part-one-and-part-two">Solving Part One and Part Two</h3>
-<p>The key is counting the number of fish in each stage of splitting.
-Each day move that count one stage further.
-This makes for a small spreadsheet<sup>0</sup>.</p>
-<small>(0) Many first tries tracked each fish.
-This will <a href="https://www.reddit.com/r/adventofcode/comments/rag811/2021_day_6_part_2_when_you_thought_you_aced_part/">make even beefy computers hurt</a>.</small>
-<p>The comma separated list of initial fish goes into <code>A2</code>.</p>
-<table><tbody>
-<tr class="blk A"><th>DAY/DATA</th><td>A2                                                 </td><td>1                     </td><td>...</td></tr>
-<tr class="red B"><th>STAGE 8 </th><td>B2 = <br>COUNTIF(<br>SPLIT(<span class="blk">$A2</span>,","),"=8")</td><td>B3 = <span class="blu">J2</span>          </td><td>repeat →</td></tr>
-<tr class="org C"><th>7       </th><td>C2 = <br>COUNTIF(<br>SPLIT(<span class="blk">$A2</span>,","),"=7")</td><td>C3 = <span class="red">B2</span>          </td><td>repeat →</td></tr>
-<tr class="grn D"><th>6<sup>1</sup>   </th><td>D2 = <br>COUNTIF(<br>SPLIT(<span class="blk">$A2</span>,","),"=6")</td><td>D3 = <span class="org">C2</span> + <span class="blu">J2</span></td><td>repeat →</td></tr>
-<tr class="cyn E"><th>5       </th><td>E2 = <br>COUNTIF(<br>SPLIT(<span class="blk">$A2</span>,","),"=5")</td><td>E3 = <span class="grn">D2</span>          </td><td>repeat →</td></tr>
-<tr>            <th>etc       </th><td>etc                                               </td><td>etc                   </td><td>repeat →</td></tr>
-<tr class="blu J"><th>0       </th><td>J2 = <br>COUNTIF(<br>SPLIT(<span class="blk">$A2</span>,","),"=0")</td><td>J3 = I2               </td><td>repeat →</td></tr>
-<tr>            <th>COUNT     </th><td>K2 = SUM(<span class="red">B2</span>:<span class="blu">J2</span>)                         </td><td>repeat →              </td><td>repeat →</td></tr>
-</tbody></table>
-<small><p>(1) NOTE the formulas for stage 6 and 8.</p>
-<ul>
-<li>8 needs to reference the number of fish splitting.</li>
-<li>6 needs that number as well but also the fish at stage 7.</li>
-</ul>
-</small>
+In summary, part one and two are optimization problems.</p>
+<p>In part one the goal is to find a number (X) that minimizes the sum of distances to elements in a set (A) <code>∑|A - X|</code>.
+The goal of part two is to minimize the square distance<sup>0</sup> <code>∑((A - X)^2 + |A - X|)/2</code>.</p>
+<small>(0) This exact formula comes from <a href="https://en.wikipedia.org/wiki/Arithmetic_progression#Derivation">finite arithmetic series</a>.</small>
+<p>The final output is value of the distances sum.</p>
+<h3 id="solving-part-one-and-two">Solving Part One and Two</h3>
+<p>The comma separated list of elements goes into A2.</p>
+<p>In part one the optimal number is.</p>
+<table>
+<tr class="red B"><th>GUESS</th><td>B2 = MEDIAN(SPLIT(<span class="blk">A2</span>,","))</td></tr>
+</table>
+<p>In part two the optimal number is close to this. Adjust in place as necessary.</p>
+<table>
+<tr class="red B"><th>GUESS</th><td>B2 = AVERAGE(SPLIT(<span class="blk">A2</span>,","))</td></tr>
+</table>
+<p>Without guesses, use the <code>GUESS</code> column to binary search for the optimal number<sup>1</sup>.</p>
+<small>(1) I won&rsquo;t be able to <strong>prove</strong> why. 😛</small>
+<p>All of the elements are turned into rows like this.</p>
+<table>
+<tr class="blk C"><th>ELEMENTS<sup>2</sup></th><td>C2 = TRANSPOSE(SPLIT(<span class="blk">A2</span>,","))</td><td>← spill</td><td>etc</td></tr>
+</table>
+<small>(2) <code>TRANPOSE</code> makes the spill go into rows.</small>
+<p>Distances are then collected like this in part one.</p>
+<table>
+<tr class="cyn D"><th>DISTANCE</th><td>D2 = ABS(<span class="blk">C2</span> - <span class="red">B$2</span>)</td><td>repeat →</td></tr>
+</table>
+<p>And like this in part two.</p>
+<table>
+<tr class="cyn D"><th>DISTANCE</th><td>D2 = ((<span class="blk">C2</span> - <span class="red">B$2</span>)^2<br> + ABS(<span class="blk">C2</span> - <span class="red">B$2</span>))/2</td><td>repeat →</td></tr>
+</table>
+<p>The sum then is.</p>
+<table>
+<tr><th>OUTPUT</th><td>E2 = SUM(<span class="cyn">D2:D</span>)</td></tr>
+</table>
 <h3 id="how-part-one-and-part-two-work">How Part One and Part Two Work</h3>
-<h4 id="split-into-countif">SPLIT into COUNTIF</h4>
-<p>The only clever formula in this parses input.
-While <code>COUNTIF</code> works on a range, that range doesn&rsquo;t have to be in the spreadsheet.
-It can be the output of another function like <code>SPLIT</code>.</p>
-<p>This enables a one-liner for measuring the count of fish in some stage.</p>
+<p>This challenge was math heavy.
+I shied away from that challenge and went with some guesses.
+Here is some half-baked reasoning.</p>
+<h4 id="part-one-and-the-median">Part One and the MEDIAN</h4>
+<p>Someone has proved <a href="https://math.stackexchange.com/a/113336">&ldquo;the median minimizes the sum of absolute deviations&rdquo;</a>.
+That&rsquo;s good enough for me.</p>
+<h4 id="part-two-and-the-average">Part Two and the AVERAGE</h4>
+<p>Someone has proved the <a href="https://math.stackexchange.com/q/696622">average minimizes square number line distance</a>.
+In the formula <code>((A - X)^2 + |A - X|)/2</code> the squared term looks dominant.
+So I ignored the other term with my guess.
+This turned out to be good enough since the optimal number was 1 away.</p>
 
 
     </div>

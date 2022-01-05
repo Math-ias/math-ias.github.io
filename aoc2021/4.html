@@ -192,116 +192,118 @@ tr span.mag {
   </ul>
 </nav>
 <h2 id="part-one-and-part-two">Part One AND Part Two</h2>
-<p>As always, read the problem text first.
-This one is pretty funny.
-The author has managed to shoe-horn bingo into an important task.</p>
-<p>The input is both a list of number call-outs, and bingo boards.
-The objective is figure out at which number call-out a board bingoes.
-And then to pick the board with the least number of call-outs necessary (the winning board).</p>
+<p>This one is pretty funny.
+The author has managed to squeeze bingo into the story.</p>
+<p>The input is both a list of numbers and boards.
+The goal is to figure out at which number call-out a board bingos.
+Part one asks for the the board that bingos first.
+Part two asks for the one that bingos last.</p>
 <p>Some notes &hellip;</p>
 <ul>
-<li>In this version of bingo you can only win along rows and along columns.</li>
+<li>In this version of bingo, bingo comes from completing only a row or column. Diagonals don&rsquo;t win.</li>
 <li>The center square isn&rsquo;t free.</li>
 <li>The final output is of course a little bit of arithmetic.
-It is equal to the sum of all the uncalled numbers on the winning board TIMES the last number called out to win.</li>
+It is the sum of all uncalled numbers TIMES the last number called out.</li>
 </ul>
-<p>Part two is picking the board with the greatest number of call-outs necessary (the losing board).</p>
 <h3 id="solving-part-one-and-part-two">Solving Part One and Part Two</h3>
-<p>This solution only goes halfway to &ldquo;automating&rdquo; the entire challenge<sup>0</sup>.
-It&rsquo;s a build-out of a &ldquo;bingo calculator&rdquo;.
-This takes the list of number callouts and a <em>single</em> board and returns the winning move number and score.</p>
-<small>(0) This begs the question: did I <em>actually</em> solve the challenge with spreadsheets?</small>
-<p>Copy-paste each board into the calculator and jot the result down elsewhere<sup>1</sup>.
-From this BOTH the quickest and slowest board to win can be found.</p>
+<p>This solution goes only halfway<sup>0</sup>.
+The spreadsheet is a &ldquo;bingo calculator&rdquo;.
+It takes a list of numbers and a <em>single</em> board and returns the winning score.</p>
+<small>(0) Sometimes it&rsquo;s not worth overcomplicating the solution and just doing some pen and paper.</small>
+<p>I copy-pasted each board in and wrote the round number and score down<sup>1</sup>.
+I then <code>MATCH</code>ed for the lowest and highest number of moves.
+These could be then be <code>INDEX</code>ed into scores.</p>
 <small><p>(1) Very quickly how I automated that &hellip;</p>
 <ul>
-<li>The input was not &ldquo;copied in&rdquo;. It used a dynamic lookup.</li>
-<li>A series of cells all were set to equal to the calculator result cells.
-To &ldquo;freeze&rdquo; one of these results, I copied and then pasted values only.</li>
+<li>The input was not &ldquo;copied in&rdquo;. It used dynamic lookup.</li>
+<li>A series of cells were set to equal to the calculator results.
+<ul>
+<li>To &ldquo;freeze&rdquo; a result, I copied and then pasted &ldquo;values only&rdquo;.</li>
+</ul>
+</li>
 </ul>
 </small>
-<p>The bingo board is represented as the following.
+<p>The bingo board has this representation.
 There will be many absolute references ($) to these cells.</p>
 <table><tbody>
-<tr><td>               </td><td class="b">ROW 1</td><td class="b">2</td><td class="b">3</td><td class="b">4</td><td class="b">5</td></tr>
-<tr><td class="b">COL 1</td><td>             K2</td><td>         K3</td><td>         K4</td><td>         K5</td><td>         K6</td></tr>
-<tr><td class="b">2    </td><td>             L2</td><td>         L3</td><td>         L4</td><td>         L5</td><td>         L6</td></tr>
-<tr><td class="b">3    </td><td>             M2</td><td>         M3</td><td>         M4</td><td>         M5</td><td>         M6</td></tr>
-<tr><td class="b">4    </td><td>             N2</td><td>         N3</td><td>         N4</td><td>         N5</td><td>         N6</td></tr>
-<tr><td class="b">5    </td><td>             O2</td><td>         O3</td><td>         O4</td><td>         O5</td><td>         O6</td></tr>
+<tr><td>                 </td><th>ROW 1          </th><th>2          </th><th>3          </th><th>4          </th><th>5          </th></tr>
+<tr class="blk"><th>COL 1</th><td>             K2</td><td>         K3</td><td>         K4</td><td>         K5</td><td>         K6</td></tr>
+<tr class="blk"><th>2    </th><td>             L2</td><td>         L3</td><td>         L4</td><td>         L5</td><td>         L6</td></tr>
+<tr class="blk"><th>3    </th><td>             M2</td><td>         M3</td><td>         M4</td><td>         M5</td><td>         M6</td></tr>
+<tr class="blk"><th>4    </th><td>             N2</td><td>         N3</td><td>         N4</td><td>         N5</td><td>         N6</td></tr>
+<tr class="blk"><th>5    </th><td>             O2</td><td>         O3</td><td>         O4</td><td>         O5</td><td>         O6</td></tr>
 </tbody></table>
 <p>Each row starts with a number call-out.
-This is followed by if a specific coordinate on the bingo board is or ever was called out<sup>2</sup>.
-From these booleans if the win question and score is calculated.</p>
+Columns for each bingo square represent if they are or ever were called out<sup>2</sup>.</p>
 <small>(2) This requires 25 columns to do.
 Quickly the sheet is out of single letters for columns.
 After column Z the next one is AA then AB.</small>
 <table><tbody>
-<tr><td class="b">CALLOUT </td><td>J8           </td><td>J9                   </td><td>...</td></tr>
-<tr><td class="g0">DOT 1,1</td><td>K8 = K$2=$J8 </td><td>K9 = OR(K8,K$2=$J9)  </td><td>repeat →</td></tr>
-<tr><td class="g0">2,1    </td><td>L8 = L$2=$J8 </td><td>L9 = OR(L8,L$2=$J9)  </td><td>repeat →</td></tr>
-<tr><td class="g0">3,1    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
-<tr><td class="g0">4,1    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
-<tr><td class="g0">5,1    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
-<tr><td class="g1">1,2    </td><td>P8 = K$3=$J8 </td><td>P9 = OR(P8,K$3=$J9)  </td><td>repeat →</td></tr>
-<tr><td class="g1">2,2    </td><td>Q8 = L$3=$J8 </td><td>Q9 = OR(Q8,L$3=$J9)  </td><td>repeat →</td></tr>
-<tr><td class="g1">3,2    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
-<tr><td class="g1">4,2    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
-<tr><td class="g1">5,2    </td><td>repeat ↓     </td><td>repeat ↓             </td><td>repeat →</td></tr>
-<tr><td class="g1">etc    </td><td>etc          </td><td>etc                  </td><td>repeat →</td></tr>
-<tr><td class="g2">5,5    </td><td>AI8 = O$6=$J8</td><td>AI9 = OR(AI8,O$6=$J9)</td><td>repeat →</td></tr>
+<tr class="blk J"><td>CALLOUT</td><td>J8                </td><td>J9                             </td><td>...     </td></tr>
+<tr class="red K"><th>DOT 1,1</th><td>K8 = <span class="blk">K$2=$J8</span> </td><td>K9 = OR(<span class="red">K8</span>,<span class="blk">K$2=$J9</span>)  </td><td>repeat →</td></tr>
+<tr class="red L"><th>2,1    </th><td>L8 = <span class="blk">L$2=$J8</span> </td><td>L9 = OR(<span class="red">L8</span>,<span class="blk">L$2=$J9</span>)  </td><td>repeat →</td></tr>
+<tr class="red M"><th>3,1    </th><td>repeat ↓          </td><td>repeat ↓                       </td><td>repeat →</td></tr>
+<tr class="red N"><th>4,1    </th><td>repeat ↓          </td><td>repeat ↓                       </td><td>repeat →</td></tr>
+<tr class="red O"><th>5,1    </th><td>repeat ↓          </td><td>repeat ↓                       </td><td>repeat →</td></tr>
+<tr class="ylw P"><th>1,2    </th><td>P8 = <span class="blk">K$3=$J8</span> </td><td>P9 = OR(<span class="ylw">P8</span>,<span class="blk">K$3=$J9</span>)  </td><td>repeat →</td></tr>
+<tr class="ylw Q"><th>2,2    </th><td>Q8 = <span class="blk">L$3=$J8</span> </td><td>Q9 = OR(<span class="ylw">Q8</span>,<span class="blk">L$3=$J9</span>)  </td><td>repeat →</td></tr>
+<tr class="ylw R"><th>3,2    </th><td>repeat ↓          </td><td>repeat ↓                       </td><td>repeat →</td></tr>
+<tr class="ylw S"><th>4,2    </th><td>repeat ↓          </td><td>repeat ↓                       </td><td>repeat →</td></tr>
+<tr class="ylw T"><th>5,2    </th><td>repeat ↓          </td><td>repeat ↓                       </td><td>repeat →</td></tr>
+<tr>            <th>etc    </th><td>etc               </td><td>etc                            </td><td>etc     </td></tr>
+<tr class="grn Ai"><th>5,5    </th><td>AI8 = <span class="blk">O$6=$J8</span></td><td>AI9 = OR(<span class="grn">AI8</span>,<span class="blk">O$6=$J9</span>)</td><td>repeat →</td></tr>
 </tbody></table>
-<p>Win conditions are calculated with long chains of ORs and ANDs.</p>
+<p>The score is calculated by conditionally summing across rows of the board.
+Win conditions are calculated with plain-old ORs and ANDs.</p>
 <table><tbody>
-<tr><td class="g3">SCORE</td>
+<tr class="cyn"><th>SCORE</th>
   <td>
-    AJ8 = J8 * (<br>
-    SUMIF(K8:O8, "=FALSE",K$2:O$2) +<br>
-    SUMIF(P8:T8, "=FALSE",K$3:O$3) +<br>
-    SUMIF(U8:Y8, "=FALSE",K$4:O$4) +<br>
-    SUMIF(Z8:AD8,"=FALSE",K$5:O$5) +<br>
-    SUMIF(AE8:AI8,"=FALSE",K$6:O$6))
+    AJ8 = <span class="blk">J8</span> * (<br>
+    SUMIF(<span class="red">K8:O8</span>, "=FALSE",<span class="blk">K$2:O$2</span>) +<br>
+    SUMIF(<span class="ylw">P8:T8</span>, "=FALSE",<span class="blk">K$3:O$3</span>) +<br>
+    SUMIF(U8:Y8, "=FALSE",<span class="blk">K$4:O$4</span>) +<br>
+    SUMIF(Z8:AD8,"=FALSE",<span class="blk">K$5:O$5</span>) +<br>
+    SUMIF(<span class="grn">AE8:AI8</span>,"=FALSE",<span class="blk">K$6:O$6</span>))
   </td>
   <td>repeat →</td></tr>
-<tr><td class="g3">ROW WIN</td>
+<tr class="blu"><th>ROW WIN</th>
   <td>
     AK8 = OR(<br>
-    AND(K8:O8),<br>
-    AND(P8:T8),<br>
+    AND(<span class="red">K8:O8</span>),<br>
+    AND(<span class="ylw">P8:T8</span>),<br>
     AND(U8:Y8),<br>
     AND(Z8:AD8),<br>
-    AND(AE8:AI8))
+    AND(<span class="grn">AE8:AI8</span>))
   </td>
   <td>repeat →</td></tr>
-<tr><td class="g3">COL WIN</td>
+<tr class="prp"><th>COL WIN</th>
   <td>
     AL8 = OR(<br>
-    AND(K8,P8,U8,Z8,AE8),<br>
-    AND(L8,Q8,V8,AA8,AF8),<br>
-    AND(M8,R8,W8,AB8,AG8),<br>
-    AND(N8,S8,X8,AC8,AH8),<br>
-    AND(O8,T8,Y8,AD8,AI8))
+    AND(<span class="red">K8</span>,<span class="ylw">P8</span>,U8,Z8,<span class="grn">AE8</span>),<br>
+    AND(<span class="red">L8</span>,<span class="ylw">Q8</span>,V8,AA8,<span class="grn">AF8</span>),<br>
+    AND(<span class="red">M8</span>,<span class="ylw">R8</span>,W8,AB8,<span class="grn">AG8</span>),<br>
+    AND(<span class="red">N8</span>,<span class="ylw">S8</span>,X8,AC8,<span class="grn">AH8</span>),<br>
+    AND(<span class="red">O8</span>,<span class="ylw">T8</span>,Y8,AD8,<span class="grn">AI8</span>))
   </td>
   <td>repeat →</td></tr>
-<tr><td class="g4">WIN</td><td>AM8 = OR(AK8, AL8)</td><td>repeat →</td></tr>
+<tr class="mag"><th>WIN</th><td>AM8 = OR(<span class="blu">AK8</span>, <span class="prp">AL8</span>)</td><td>repeat →</td></tr>
 </tbody></table>
-<p>The exact row where the board starts to be winning is calculated.
+<p>The exact row where the board first wins is calculated.
 The score on that row is fetched.</p>
 <table><tbody>
-<tr><td class="g5">WINNING ROW #</td><td>D2 = MATCH(TRUE, AM8:AM, 0)</td></tr>
-<tr><td class="g5">WINNING SCORE</td><td>E2 = INDEX(AJ8:AJ, D2, 0)  </td></tr>
+<tr class="red"><th>WINNING ROW #</th><td>D2 = MATCH(TRUE, <span class="mag">AM8:AM</span>, 0)   </td></tr>
+<tr>            <th>WINNING SCORE</th><td>E2 = INDEX(<span class="cyn">AJ8:AJ</span>, <span class="red">D2</span>, 0)</td></tr>
 </tbody></table>
 <h3 id="how-part-one-and-part-two-work">How Part One and Part Two Work</h3>
 <h4 id="the-woes-of-cross-referencing-lists">The Woes of Cross Referencing Lists</h4>
-<p>This challenge really pushed the spreadsheet envelope.
-It captures one limitation of how I know to combine functions.
-Cross referencing lists is hard<sup>3</sup>.
+<p>This challenge pushed the spreadsheet envelope.
+It captures one area of difficulty for me: cross-referencing lists<sup>3</sup>.
 To do something interesting on the product of two lists,
-one list must be spread out over rows,
-and the other must be spread out over columns.
-And spreading out over columns is hard!<sup>4</sup></p>
+one list must spread out over rows,
+and the other must spread out over columns.
+This can be unwieldy<sup>4</sup>.</p>
 <small><p>(3) With the exception of what can be squeezed in a string criteria in a <code>SUMIF</code> or <code>COUNTIF</code> call.</p>
-<p>(4) It is hard to <a href="https://webapps.stackexchange.com/a/109811">add a specific number of columns to the sheet</a>.</p>
+<p>(4) It is a pain to <a href="https://webapps.stackexchange.com/a/109811">add a specific number of columns</a>.</p>
 </small>
 
 
