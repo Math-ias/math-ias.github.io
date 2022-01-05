@@ -232,7 +232,7 @@ Lines of 1&rsquo;s represent a single line segment.
 ..........
 222111....
 </code></pre><small>(2) This view made the goal very clear.
-Lines on-top each other intersect at an infinite number of points.
+Lines on-top of each other intersect at an infinite number of points.
 They intersect with integer x&rsquo;s and y&rsquo;s only a few times.</small>
 <p>The line segments are parsed into the following columns.</p>
 <table><tbody>
@@ -308,7 +308,7 @@ The sheet would need 1,000,000 cells.
 When I tried a million cells the program froze.</p>
 <p>Instead of all this, the sheet deals in &ldquo;slices&rdquo;.
 Each map cell is independent of other map cells and so it&rsquo;s possible to &ldquo;batch&rdquo; maps<sup>3</sup>.
-I chose to deal in 50 column by 1000 row slices.
+I chose to deal in 50 columns by 1000 row slices.
 Each slice took about 20 seconds so I was through 20 of them in no time<sup>4</sup>.</p>
 <small><p>(3) Batches are not perfect.
 I miscopied the result of one of them.
@@ -327,7 +327,7 @@ It has four criteria.</p>
 <ul>
 <li>This <code>COUNTIFS($H$2:$H,&quot;=TRUE&quot;,</code> checks that the line is HORIZONTAL (column H).</li>
 <li><code>$M$2:$M,&quot;&lt;=&quot;&amp;AB$1,</code> checks that the x of the cell is within the line&rsquo;s MINX (column M).<sup>5</sup></li>
-<li><code>$N$2:$N,&quot;&gt;=&quot;&amp;AB$1,</code> checks that the x is within the within the line&rsquo;s MAXX(column N).</li>
+<li><code>$N$2:$N,&quot;&gt;=&quot;&amp;AB$1,</code> checks that the x is within the line&rsquo;s MAXX(column N).</li>
 <li><code>$O$2:$O,&quot;=&quot;&amp;$AA2</code> checks the y of the cell is equal to the line&rsquo;s y (column O is MINY).</li>
 </ul>
 <small>(5) In these formulas <a href="https://support.google.com/docs/answer/3093592?hl=en"><code>&amp;</code> is shorthand for string concatenation</a>.</small>
