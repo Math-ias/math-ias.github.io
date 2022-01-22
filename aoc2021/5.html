@@ -1,19 +1,19 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AOC Day 5 2021</title>
     
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>AOC Day 5 2021</title>
-        
-        <style type="text/css">
-            body {
+    <style type="text/css">body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* General style. */
 .content {
     box-sizing: border-box;
-    width: 600px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -41,11 +41,26 @@ td, th {
     padding: 10px;
     border: 1px solid #999;
 }
-        </style>
-        
-        
-    <style type="text/css">
-        /* Sidenote layout. */
+
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding-left: 0;
+}
+
+.breadcrumb li {
+    display: inline;
+    white-space: nowrap;
+}
+
+.breadcrumb li + li:before {
+    content: ">";
+    padding: 0.25rem;
+}
+
+/* Sidenote layout. */
 
 @media (min-width: 921px) {
     .content {
@@ -75,7 +90,13 @@ td, th {
         margin-bottom: 0;
     }
 }
+
+sup {
+    line-height: 0;
+}
     </style>
+    
+    
     <style type="text/css">
         tr span.blk,
 tr span.red,
@@ -170,11 +191,15 @@ tr span.mag {
 
     </style>
 
-    
-    </head>
-    <body>
+</head>
+
+<body>
     <div class="content">
-        
+        <ol class="breadcrumb">
+    <li><a href="../index.html">Mathias Kools</a></li>
+    <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
+    <li class="active"><a href="../aoc2021/5.html">AOC Day 5 2021</a></li>
+</ol>
     <h1 id="aoc-day-5httpsadventofcodecom2021day5-2021"><a href="https://adventofcode.com/2021/day/5">AOC Day 5</a> 2021</h1>
 <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
 <nav id="TableOfContents">
@@ -343,6 +368,6 @@ This checks if a line with a slope of 1 intersected the cell if it would have th
 
 
     </div>
-    
-    </body>
+</body>
+
 </html>

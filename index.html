@@ -1,20 +1,20 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 	<meta name="generator" content="Hugo 0.91.2" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mathias Kools</title>
     
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Mathias Kools</title>
-        
-        <style type="text/css">
-            body {
+    <style type="text/css">body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* General style. */
 .content {
     box-sizing: border-box;
-    width: 600px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -42,13 +42,66 @@ td, th {
     padding: 10px;
     border: 1px solid #999;
 }
-        </style>
-        
-        
-        
+
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding-left: 0;
+}
+
+.breadcrumb li {
+    display: inline;
+    white-space: nowrap;
+}
+
+.breadcrumb li + li:before {
+    content: ">";
+    padding: 0.25rem;
+}
+
+/* Sidenote layout. */
+
+@media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
     
-    </head>
-    <body>
+    .content > :not(small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+sup {
+    line-height: 0;
+}
+    </style>
+    
+    
+    
+</head>
+
+<body>
     <div class="content">
         
     <h1 style="font-size: 100px; text-align: center; margin-bottom: 16px;">Mathias Kools</h1>
@@ -74,14 +127,14 @@ That means my first programming language, out of all the options, was <strong>lu
 </li>
 <li>Redstone in Minecraft is the best game mechanic ever imagined by a developer.</li>
 </ul>
-<h2 id="external-links">External Links</h2>
+<h2 id="external-pages">External Pages</h2>
 <p>These are public profiles I maintain.</p>
 <ul>
 <li><a href="https://github.com/Math-ias">Math-ias on GitHub</a></li>
 <li><a href="https://www.linkedin.com/in/math-ias">Math-ias on LinkedIn</a></li>
 </ul>
 
-    <h2>Site Links</h2>
+    <h2>Links</h2>
     <ul>
         
         <li><a href="./aoc2021.html">Advent of Code 2021 in Spreadsheets ( Jan 4, 2022 )</a></li>
@@ -91,6 +144,6 @@ That means my first programming language, out of all the options, was <strong>lu
     </ul>
 
     </div>
-    
-    </body>
+</body>
+
 </html>

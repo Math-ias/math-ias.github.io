@@ -1,19 +1,19 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clickr</title>
     
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Clickr</title>
-        
-        <style type="text/css">
-            body {
+    <style type="text/css">body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* General style. */
 .content {
     box-sizing: border-box;
-    width: 600px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -41,11 +41,26 @@ td, th {
     padding: 10px;
     border: 1px solid #999;
 }
-        </style>
-        
-        
-    <style type="text/css">
-        /* Sidenote layout. */
+
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding-left: 0;
+}
+
+.breadcrumb li {
+    display: inline;
+    white-space: nowrap;
+}
+
+.breadcrumb li + li:before {
+    content: ">";
+    padding: 0.25rem;
+}
+
+/* Sidenote layout. */
 
 @media (min-width: 921px) {
     .content {
@@ -75,14 +90,23 @@ td, th {
         margin-bottom: 0;
     }
 }
-    </style>
 
+sup {
+    line-height: 0;
+}
+    </style>
     
-    </head>
-    <body>
+    
+    
+</head>
+
+<body>
     <div class="content">
-        
-    <h1 id="clickr">Clickr</h1>
+        <ol class="breadcrumb">
+    <li><a href="./index.html">Mathias Kools</a></li>
+    <li class="active"><a href="./clickr.html">Clickr</a></li>
+</ol>
+        <h1 id="clickr">Clickr</h1>
 <p><strong>Clickr</strong> is a minigame redstone contraption.
 A lectern faces the player showing a written book containing one hundred pages.
 The player&rsquo;s goal is to flip through that book as fast as possible.
@@ -662,8 +686,8 @@ Keep two stacks of items in the feed for slower first-timers.</p>
 <li>When resetting the game take the book out and put it back in. This saves time.</li>
 </ul>
 
-
+        
     </div>
-    
-    </body>
+</body>
+
 </html>
