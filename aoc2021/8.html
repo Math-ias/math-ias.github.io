@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AOC Day 7 2021</title>
+    
+    <style type="text/css">body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* General style. */
+.content {
+    box-sizing: border-box;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+}
+
+code {
+    font-family: monospace, monospace;
+}
+
+th {
+    font-weight: 600;
+}
+
+td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+}
+
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding-left: 0;
+}
+
+.breadcrumb li {
+    display: inline;
+    white-space: nowrap;
+}
+
+.breadcrumb li + li:before {
+    content: ">";
+    padding: 0.25rem;
+}
+
+/* Sidenote layout. */
+
+@media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        max-width: unset;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
+    
+    .content > :not(small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+sup {
+    line-height: 0;
+}
+    </style>
+    
+    
+    <style type="text/css">
+        tr span.blk,
+tr span.red,
+tr span.org,
+tr span.ylw,
+tr span.grn,
+tr span.cyn,
+tr span.blu,
+tr span.prp,
+tr span.mag {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15em;
+}
+
+tr.blk th {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+tr span.blk {
+    text-decoration-color: rgb(0, 0, 0);
+}
+
+tr.red th {
+    background-color: rgb(210, 7, 24);
+    color: white;
+}
+
+tr span.red {
+    text-decoration-color: rgb(210, 7, 24);
+}
+
+tr.org th {
+    background-color: rgb(238, 132, 63);
+}
+
+tr span.org {
+    text-decoration-color: rgb(238, 132, 63);
+}
+
+tr.ylw th {
+    background-color: rgb(249, 183, 66);
+}
+
+tr span.ylw {
+    text-decoration-color: rgb(249, 183, 66);
+}
+
+tr.grn th {
+    background-color: rgb(90, 155, 76);
+}
+
+tr span.grn {
+    text-decoration-color: rgb(90, 155, 76);
+}
+
+tr.cyn th {
+    background-color: rgb(46, 118, 129);
+    color: white;
+}
+
+tr span.cyn {
+    text-decoration-color: rgb(46, 118, 129);
+}
+
+tr.blu th {
+    background-color: rgb(0, 114, 205);
+    color: white;
+}
+
+tr span.blu {
+    text-decoration-color: rgb(0, 114, 205);
+}
+
+tr.prp th {
+    background-color: rgb(88, 74, 153);
+    color: white;
+}
+
+tr span.prp {
+    text-decoration-color: rgb(88, 74, 152);
+}
+
+tr.mag th {
+    background-color: rgb(163, 70, 109);
+    color: white;
+}
+
+tr span.mag {
+    text-decoration-color: rgb(163, 70, 109);
+}
+
+    </style>
+
+</head>
+
+<body>
+    <div class="content">
+        <ol class="breadcrumb">
+    <li><a href="../index.html">Mathias Kools</a></li>
+    <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
+    <li class="active"><a href="../aoc2021/8.html">AOC Day 7 2021</a></li>
+</ol>
+    <h1 id="aoc-day-8httpsadventofcodecom2021day8-2021"><a href="https://adventofcode.com/2021/day/8">AOC Day 8</a> 2021</h1>
+<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-one-and-part-two">Part One AND Part Two</a>
+      <ul>
+        <li><a href="#solving-part-one-and-part-two">Solving Part One AND Part Two</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="part-one-and-part-two">Part One AND Part Two</h2>
+<p>As always, read the problem text first.</p>
+<p>In summary, this problem requires a process to unscramble segments and numbers.
+Each line of input contains two pieces of data &hellip;</p>
+<ul>
+<li>The 7-segment display representation of all ten digits in a random order.</li>
+<li>Four of any of these digits. The number these digits build is a desired output.
+Part one asks for the count of specific numbers. Part two asks for the total sum.</li>
+</ul>
+<h3 id="solving-part-one-and-part-two">Solving Part One AND Part Two</h3>
+<p>The first part is regular ole parsing.</p>
+<table><tbody>
+<tr><th class="blk">DATA</th><td>A2</td></tr>
+<tr><th class="blk">DIGITS</th><td>B2,C2=SPLIT(<span class="blk">A2</span>,“|”)</td></tr>
+<tr><th class="blk">NUMBER</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="blk">DIGIT0</th><td>D2,E2,...,M2=SPLIT(<span class="blk">B2</span>," ")</td></tr>
+<tr><th class="blk">DIGIT0</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="blk">DIGIT0</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="blk">...</th><td>...</td></tr>
+<tr><th class="blk">DIGIT9</th><td>↑ SPILLOVER ↑</td></tr>
+</tbody></table>
+<p>The length of each digit is a good hint of what it is.</p>
+<table><tbody>
+<tr><th class="red">LENGTH 0</th><td>N2=LEN(<span class="blk">D2</span>)</td></tr>
+<tr><th class="red">LENGTH 1</th><td>↑ DRAG ↑</td></tr>
+<tr><th class="red">...</th><td>...</td></tr>
+<tr><th class="red">LENGTH 9</th><td>↑ DRAG ↑</td></tr>
+</tbody></table>
+<p>For example, the length cracks digit 1, 4, 7 and 8.</p>
+<table><tbody>
+<tr><th class="org">1</th><td>X2=INDEX(<span class="blk">D2:M2</span>, 1, MATCH(2, <span class="red">N2:W2</span>, 0))</td></tr>
+<tr><th class="org">4</th><td>Y2=INDEX(<span class="blk">D2:M2</span>, 1, MATCH(3, <span class="red">N2:W2</span>, 0))</td></tr>
+<tr><th class="org">7</th><td>Z2=same, match for 4 segments</td></tr>
+<tr><th class="org">8</th><td>AA2=match for 7</td></tr>
+</tbody></table>
+<p>Future logic needs the segments used to display 1 and 7.
+<a href="https://webapps.stackexchange.com/a/130617">This trick by StackExchange’s user0</a>
+splits that string into individual characters.</p>
+<table><tbody>
+<tr><th class="prp">7 SEG 0</th><td>AB2,AC2,AD2=REGEXEXTRACT(<span class="org">Y2</span>, REPT("(.)", LEN(<span class="org">Y2</span>)))</td></tr>
+<tr><th class="prp">7 SEG 1</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="prp">7 SEG 2</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="prp">C or F 0</th><td>AE2,AF2=REGEXEXTRACT(<span class="org">X2</span>, REPT("(.)", LEN(<span class="org">X2</span>)))</td></tr>
+<tr><th class="prp">C or F 1</th><td>↑ SPILLOVER ↑</td></tr>
+</tbody></table>
+<p>A is the one segment that distinguishes 7 from 1.
+A is recoverable with <a href="https://stackoverflow.com/a/60139378">StackExchange’s marc meyers set operation trick</a>.</p>
+<table><tbody>
+<tr><th class="prp">A</th><td>AG2=FILTER(<span class="prp">AB2:AD2</span>, ISERROR(MATCH(<span class="prp">AB2:AD2</span>, <span class="prp">AE2:AF2</span>, false)))</td></tr>
+</tbody></table>
+<p>Onto breaking apart 4.
+B and D are segments that distinguish 4 and 1.
+The same set difference trick is reusable.</p>
+<table><tbody>
+<tr><th class="mag">4 SEG 0</th><td>AH2,AI2,AJ2,AK2=REGEXEXTRACT(<span class="org">Z2</span>, REPT("(.)", LEN(<span class="org">Z2</span>)))</td></tr>
+<tr><th class="mag">4 SEG 1</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="mag">4 SEG 2</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="mag">4 SEG 3</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="mag">B or D 0</th><td>AL2,AM2=FILTER(<span class="prp">AH2:AK2</span>, ISERROR(MATCH(<span class="prp">AH2:AK2</span>, <span class="prp">AE2:AF2</span>, false)))</td></tr>
+<tr><th class="mag">B or D 1</th><td>↑ SPILLOVER ↑</td></tr>
+</tbody></table>
+<p>Next, recovering 0, 6 and 9.
+These three digits are the only to use 6 segments.</p>
+<table><tbody>
+<tr><th class="ylw">6 LEN WORD 0</th><td>AN2,AO2,AP2=FILTER(<span class="blk">D2:M2</span>, <span class="blk">N2:W2</span> = 6)</td></tr>
+<tr><th class="ylw">6 LEN WORD 1</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="ylw">6 LEN WORD 2</th><td>↑ SPILLOVER ↑</td></tr>
+</tbody></table>
+<p>While these three digits use F, 6 lacks C.
+Searching for these two returns two hits on 0 or 9, and one if it is 6.</p>
+<table><tbody>
+<tr><th class="ylw">W0 CF0 INDEX</th><td>AQ2=FIND(<span class="prp">AE2</span>, <span class="ylw">AN2</span>)</td></tr>
+<tr><th class="ylw">W0 CF1 INDEX</th><td>↑ DRAG ↑</td></tr>
+<tr><th class="ylw">W1 CF0 INDEX</th><td>AS2=FIND(<span class="prp">AE2</span>, <span class="ylw">AO2</span>)</td></tr>
+<tr><th class="ylw">W1 CF1 INDEX</th><td>↑ DRAG ↑</td></tr>
+<tr><th class="ylw">W2 CF0 INDEX</th><td>AU2=FIND(<span class="prp">AE2</span>, <span class="ylw">AP2</span>)</td></tr>
+<tr><th class="ylw">W2 CF1 INDEX</th><td>↑ DRAG ↑</td></tr>
+</tbody></table>
+<p>FIND will error if the substring isn’t found.
+This error shows which digit is 6.
+This check also reveals which segment is the missing C.
+F is then the other segment.</p>
+<table><tbody>
+<tr><th class="ylw">6</th><td>AW2=IFS(
+ISERROR(<span class="ylw">AQ2+AR2</span>),<span class="ylw">AN2</span>,
+ISERROR(<span class="ylw">AS2+AT2</span>),<span class="ylw">AO2</span>,
+ISERROR(<span class="ylw">AU2+AV2</span>),<span class="ylw">AP2</span>
+)
+</td></tr>
+<tr><th class="ylw">C</th><td>AX2,AY2=IF(ISERROR(<span class="ylw">AQ2 + AS2 + AU2</span>), <span class="prp">{AE2,AF2</span>}, <span class="prp">{AF2,AE2</span>})</td></tr>
+<tr><th class="ylw">F</th><td>↑ SPILLOVER ↑</td></tr>
+</tbody></table>
+<p>The same kind of test works to figure out 0, this digit lacks D.</p>
+<table><tbody>
+<tr><th class="ylw">W0 BD0 INDEX</th><td>AZ2=FIND(<span class="mag">AL2</span>, <span class="ylw">AN2</span>)</td></tr>
+<tr><th class="ylw">W0 BD1 INDEX</th><td>↑ DRAG ↑</td></tr>
+<tr><th class="ylw">W1 BD0 INDEX</th><td>BB2=FIND(<span class="mag">AL2</span>, <span class="ylw">AO2</span>)</td></tr>
+<tr><th class="ylw">W1 BD1 INDEX</th><td>↑ DRAG ↑</td></tr>
+<tr><th class="ylw">W2 BD0 INDEX</th><td>BD2=FIND(<span class="mag">AL2</span>, <span class="ylw">AP2</span>)</td></tr>
+<tr><th class="ylw">W2 BD1 INDEX</th><td>↑ DRAG ↑</td></tr>
+</tbody></table>
+<p>With 0 and 6 figured out, 9 is the only remaining digit.</p>
+<table><tbody>
+<tr><th class="ylw">0</th><td>BF2=IFS(
+ISERROR(<span class="ylw">AZ2+BA2</span>),<span class="ylw">AN2</span>,
+ISERROR(<span class="ylw">BB2+BC2</span>),<span class="ylw">AO2</span>,
+ISERROR(<span class="ylw">BD2+BE2</span>),<span class="ylw">AP2</span>
+)
+</td></tr>
+<tr><th class="ylw">D</th><td>BG2=IF(ISERROR(<span class="ylw">AZ2 + BB2 + BD2</span>), <span class="mag">{AL2,AM2</span>}, <span class="mag">{AM2,AL2</span>})</td></tr>
+<tr><th class="ylw">B</th><td>↑ DRAG ↑</td></tr>
+<tr><th class="ylw">9</th><td>BI2=FILTER(<span class="ylw">AN2:AP2</span>, NOT(<span class="ylw">AN2:AP2</span> = <span class="ylw">AW2</span>), NOT(<span class="ylw">AN2:AP2</span> = <span class="ylw">BF2</span>))</td></tr>
+</tbody></table>
+<p>There are three digits left to decipher: 5, 3, and 2.
+Each digit needs five segments for display.</p>
+<table><tbody>
+<tr><th class="grn">5 LEN WORD 0</th><td>BJ2,BK2,BL2=FILTER(<span class="blk">D2:M2</span>, <span class="red">N2:W2</span> = 5)</td></tr>
+<tr><th class="grn">5 LEN WORD 1</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="grn">5 LEN WORD 2</th><td>↑ SPILLOVER ↑</td></tr>
+</tbody></table>
+<p>5 is the lone digit of this set using segment B.
+Additionally, 5 uses one unknown: G.
+To know 5 is to then know G.</p>
+<table><tbody>
+<tr><th class="grn">5</th><td>BM2=FILTER(<span class="grn">BJ2:BL2</span>, IFERROR(FIND(<span class="ylw">BH2</span>, <span class="grn">BJ2:BL2</span>), false))</td></trs>
+<tr><th class="grn">5 SEG 0</th><td>BN2,BM2,BO2,BP2,BQ2,BR2=REGEXEXTRACT(<span class="grn">BM2</span>, REPT("(.)", LEN(<span class="grn">BM2</span>)))</td></tr>
+<tr><th class="grn">5 SEG 1</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="grn">...</th><td>...</td></tr>
+<tr><th class="grn">5 SEG 4</th><td>↑ SPILLOVER ↑</td></tr>
+<tr><th class="grn">G</th><td>BS2=FILTER(<span class="grn">BN2:BR2</span>,
+NOT(<span class="grn">BN2:BR2</span> = <span class="prp">AG2</span>),
+NOT(<span class="grn">BN2:BR2</span> = <span class="ylw">BH2</span>),
+NOT(<span class="grn">BN2:BR2</span> = <span class="ylw">BG2</span>),
+NOT(<span class="grn">BN2:BR2</span> = <span class="ylw">AY2</span>))</td></tr>
+</tbody></table>
+<p>There is one last unknown, E.
+The set difference comes in handy again.</p>
+<table><tbody>
+<tr><th class="grn">E</th><td>BT2=FILTER({"a","b","c","d","e","f","g"},
+ISERROR(MATCH({"a","b","c","d","e","f","g"},
+{<span class="prp">AG2</span>, <span class="ylw">AX2</span>, <span class="ylw">AY2</span>, <span class="ylw">BG2</span>, <span class="ylw">BH2</span>, <span class="grn">BS2</span>}, false)))</td></tr>
+</tbody></table>
+<p>3 is the last of this group to use F. The last digit then must be 2.</p>
+<table><tbody>
+<tr><th class="grn">3</th><td>BU2=FILTER(<span class="grn">BJ2:BL2</span>, IFERROR(FIND(<span class="ylw">AY2</span>,<span class="grn">BJ2:BL2</span>), FALSE), NOT(<span class="grn">BJ2:BL2</span> = <span class="grn">BM2</span>))</td></tr>
+<tr><th class="grn">2</th><td>BV2=FILTER(<span class="grn">BJ2:BL2</span>, NOT(<span class="grn">BJ2:BL2</span> = <span class="grn">BU2</span>), NOT(<span class="grn">BJ2:BL2</span> = <span class="grn">BM2</span>))
+</td></tr>
+</tbody></table>
+<p>Phew! The last few columns are too much to include.
+Each formula breaks apart numbers into characters, sorts, and then reassembles.
+This helps match unscrambled numbers and input.</p>
+
+
+    </div>
+</body>
+
+</html>
