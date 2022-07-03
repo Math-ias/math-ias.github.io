@@ -99,7 +99,11 @@ sup {
     
     
     <style type="text/css">
-        tr span.blk,
+        tr.sheets td {
+    background-color: rgb(238, 241, 242);
+}
+
+tr span.blk,
 tr span.red,
 tr span.org,
 tr span.ylw,
@@ -201,6 +205,24 @@ tr span.mag {
     <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
     <li class="active"><a href="../aoc2021/6.html">AOC Day 6 2021</a></li>
 </ol>
+    <h1><a href="https://adventofcode.com/2021/day/6">AOC Day 6</a> 2021</h1>
+    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-one-and-part-two">Part One AND Part Two</a>
+      <ul>
+        <li><a href="#solving-part-one-and-part-two">Solving Part One and Part Two</a></li>
+        <li><a href="#how-part-one-and-part-two-work">How Part One and Part Two Work</a>
+          <ul>
+            <li><a href="#split-into-countif">SPLIT into COUNTIF</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
     <h1 id="aoc-day-6httpsadventofcodecom2021day6-2021"><a href="https://adventofcode.com/2021/day/6">AOC Day 6</a> 2021</h1>
 <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
 <nav id="TableOfContents">
@@ -254,6 +276,12 @@ While <code>COUNTIF</code> works on a range, that range doesn&rsquo;t have to be
 It can be the output of another function like <code>SPLIT</code>.</p>
 <p>This enables a one-liner for measuring the count of fish in some stage.</p>
 
+
+    
+        <p>You may be interested in the
+            <a href="../aoc2021/5.html">previous</a> or
+            <a href="../aoc2021/7.html">next</a> day's solution.</p>
+    
 
     </div>
 </body>

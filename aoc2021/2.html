@@ -99,7 +99,11 @@ sup {
     
     
     <style type="text/css">
-        tr span.blk,
+        tr.sheets td {
+    background-color: rgb(238, 241, 242);
+}
+
+tr span.blk,
 tr span.red,
 tr span.org,
 tr span.ylw,
@@ -201,9 +205,10 @@ tr span.mag {
     <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
     <li class="active"><a href="../aoc2021/2.html">AOC Day 2 2021</a></li>
 </ol>
-    <h1 id="aoc-day-2httpsadventofcodecom2021day2-2021"><a href="https://adventofcode.com/2021/day/2">AOC Day 2</a> 2021</h1>
-<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
-<nav id="TableOfContents">
+    <h1><a href="https://adventofcode.com/2021/day/2">AOC Day 2</a> 2021</h1>
+    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#part-one">Part One</a>
       <ul>
@@ -223,7 +228,8 @@ tr span.mag {
     </li>
   </ul>
 </nav>
-<h2 id="part-one">Part One</h2>
+
+    <h2 id="part-one">Part One</h2>
 <p>As always, read the problem text first.
 In summary, the input is a list of movement commands.
 The format of the data is <code>&lt;direction&gt; &lt;amount&gt;</code> where direction can be <code>forward</code>, <code>down</code>, and <code>up</code><sup>0</sup>.</p>
@@ -289,6 +295,12 @@ instead they change the <code>aim</code>.</p>
 <tr><th>OUTPUT             </th><td> 0 </td><td>G3 = <span class="blu">E3</span>*<span class="mag">F3</span>                                                                      </td><td>repeat →</td></tr>
 </tbody></table>
 
+
+    
+        <p>You may be interested in the
+            <a href="../aoc2021/1.html">previous</a> or
+            <a href="../aoc2021/3.html">next</a> day's solution.</p>
+    
 
     </div>
 </body>

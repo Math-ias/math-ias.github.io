@@ -99,7 +99,11 @@ sup {
     
     
     <style type="text/css">
-        tr span.blk,
+        tr.sheets td {
+    background-color: rgb(238, 241, 242);
+}
+
+tr span.blk,
 tr span.red,
 tr span.org,
 tr span.ylw,
@@ -201,9 +205,10 @@ tr span.mag {
     <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
     <li class="active"><a href="../aoc2021/3.html">AOC Day 3 2021</a></li>
 </ol>
-    <h1 id="aoc-day-3httpsadventofcodecom2021day3-2021"><a href="https://adventofcode.com/2021/day/3">AOC Day 3</a> 2021</h1>
-<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
-<nav id="TableOfContents">
+    <h1><a href="https://adventofcode.com/2021/day/3">AOC Day 3</a> 2021</h1>
+    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#foreword">Foreword</a></li>
     <li><a href="#part-one">Part One</a>
@@ -232,7 +237,8 @@ tr span.mag {
     </li>
   </ul>
 </nav>
-<h2 id="foreword">Foreword</h2>
+
+    <h2 id="foreword">Foreword</h2>
 <p>There was a lot of repetitive work in this challenge.
 Easy enough in sheets but not easy on readers.
 Particularly on the number of bits &hellip;</p>
@@ -429,6 +435,12 @@ For programming folk if you were writing a SQL statement to <code>SELECT</code> 
 <li><code>INDEX(A4:A, MATCH(MAX(L4:L), L4:L, 0))</code> is a lookup for what input in the range <code>A4:A</code> created this maximum value.</li>
 </ul>
 
+
+    
+        <p>You may be interested in the
+            <a href="../aoc2021/2.html">previous</a> or
+            <a href="../aoc2021/4.html">next</a> day's solution.</p>
+    
 
     </div>
 </body>

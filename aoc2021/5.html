@@ -99,7 +99,11 @@ sup {
     
     
     <style type="text/css">
-        tr span.blk,
+        tr.sheets td {
+    background-color: rgb(238, 241, 242);
+}
+
+tr span.blk,
 tr span.red,
 tr span.org,
 tr span.ylw,
@@ -201,9 +205,10 @@ tr span.mag {
     <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
     <li class="active"><a href="../aoc2021/5.html">AOC Day 5 2021</a></li>
 </ol>
-    <h1 id="aoc-day-5httpsadventofcodecom2021day5-2021"><a href="https://adventofcode.com/2021/day/5">AOC Day 5</a> 2021</h1>
-<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
-<nav id="TableOfContents">
+    <h1><a href="https://adventofcode.com/2021/day/5">AOC Day 5</a> 2021</h1>
+    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#part-one-and-two">Part One and Two</a>
       <ul>
@@ -219,7 +224,8 @@ tr span.mag {
     </li>
   </ul>
 </nav>
-<h2 id="part-one-and-two">Part One and Two</h2>
+
+    <h2 id="part-one-and-two">Part One and Two</h2>
 <p>As always, read the problem text first.
 In summary, the input is a list of line segments made by two points.
 The goal is to count the number of points where at least two lines overlap.</p>
@@ -367,6 +373,12 @@ It checks if the line is a BL-TR DIAG (column K).</li>
 This checks if a line with a slope of 1 intersected the cell if it would have the same y intercept.</li>
 </ul>
 
+
+    
+        <p>You may be interested in the
+            <a href="../aoc2021/4.html">previous</a> or
+            <a href="../aoc2021/6.html">next</a> day's solution.</p>
+    
 
     </div>
 </body>

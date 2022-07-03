@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AOC Day 7 2021</title>
+    <title>AOC Day 8 2021</title>
     
     <style type="text/css">body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -99,7 +99,11 @@ sup {
     
     
     <style type="text/css">
-        tr span.blk,
+        tr.sheets td {
+    background-color: rgb(238, 241, 242);
+}
+
+tr span.blk,
 tr span.red,
 tr span.org,
 tr span.ylw,
@@ -199,11 +203,12 @@ tr span.mag {
         <ol class="breadcrumb">
     <li><a href="../index.html">Mathias Kools</a></li>
     <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
-    <li class="active"><a href="../aoc2021/8.html">AOC Day 7 2021</a></li>
+    <li class="active"><a href="../aoc2021/8.html">AOC Day 8 2021</a></li>
 </ol>
-    <h1 id="aoc-day-8httpsadventofcodecom2021day8-2021"><a href="https://adventofcode.com/2021/day/8">AOC Day 8</a> 2021</h1>
-<p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
-<nav id="TableOfContents">
+    <h1><a href="https://adventofcode.com/2021/day/8">AOC Day 8</a> 2021</h1>
+    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
+
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#part-one-and-part-two">Part One AND Part Two</a>
       <ul>
@@ -212,14 +217,17 @@ tr span.mag {
     </li>
   </ul>
 </nav>
-<h2 id="part-one-and-part-two">Part One AND Part Two</h2>
+
+    <h2 id="part-one-and-part-two">Part One AND Part Two</h2>
 <p>As always, read the problem text first.</p>
 <p>In summary, this problem requires a process to unscramble segments and numbers.
 Each line of input contains two pieces of data &hellip;</p>
 <ul>
 <li>The 7-segment display representation of all ten digits in a random order.</li>
-<li>Four of any of these digits. The number these digits build is a desired output.
-Part one asks for the count of specific numbers. Part two asks for the total sum.</li>
+<li>Four of any of these digits.
+The number these digits build is a desired output.
+Part one asks for the count of specific numbers.
+Part two asks for the total sum.</li>
 </ul>
 <h3 id="solving-part-one-and-part-two">Solving Part One AND Part Two</h3>
 <p>The first part is regular ole parsing.</p>
@@ -255,10 +263,19 @@ splits that string into individual characters.</p>
 REGEXEXTRACT(<span class="org">Y2</span>, REPT("(.)", LEN(<span class="org">Y2</span>)))</td></tr>
 <tr class="prp"><th>7 SEG 1</th><td>↑ SPILLOVER ↑</td></tr>
 <tr class="prp"><th>7 SEG 2</th><td>↑ SPILLOVER ↑</td></tr>
-<tr class="prp"><th>C or F 0</th><td>AE2,AF2=<br>
+<tr class="prp"><th>C or F 0<sup>0</sup></th><td>AE2,AF2=<br>
 REGEXEXTRACT(<span class="org">X2</span>, REPT("(.)", LEN(<span class="org">X2</span>)))</td></tr>
 <tr class="prp"><th>C or F 1</th><td>↑ SPILLOVER ↑</td></tr>
 </tbody></table>
+<small><p>(0) C or F refers to the segments originally mapped out in the problem text.</p>
+<pre tabindex="0"><code> aaaa
+b    c
+b    c
+ dddd
+e    f
+e    f
+ gggg
+</code></pre></small>
 <p>A is the one segment that distinguishes 7 from 1.
 A is recoverable with <a href="https://stackoverflow.com/a/60139378">StackExchange’s marc meyers set operation trick</a>.</p>
 <table><tbody>
@@ -302,16 +319,21 @@ This check also reveals which segment is the missing C.
 F is then the other segment.</p>
 <table><tbody>
 <tr class="ylw"><th>6</th><td>AW2=IFS(<br>
-ISERROR(<span class="ylw">AQ2+AR2</span>),<span class="ylw">AN2</span>,<br>
+ISERROR(<span class="ylw">AQ2+AR2<sup>1</sup></span>),<span class="ylw">AN2</span>,<br>
 ISERROR(<span class="ylw">AS2+AT2</span>),<span class="ylw">AO2</span>,<br>
 ISERROR(<span class="ylw">AU2+AV2</span>),<span class="ylw">AP2</span><br>
 )
 </td></tr>
 <tr class="ylw"><th>C</th><td>AX2,AY2=IF(ISERROR(<span class="ylw">AQ2 + AS2 + AU2</span>),<br>
-<span class="prp">{AE2,AF2</span>},<br>
+<span class="prp">{AE2,AF2</span><sup>2</sup>},<br>
 <span class="prp">{AF2,AE2</span>})</td></tr>
 <tr class="ylw"><th>F</th><td>↑ SPILLOVER ↑</td></tr>
 </tbody></table>
+<small><p>(1) If either <code>AQ2</code> or <code>AR2</code> are errors then their addition will be an error.
+This is more concise than using an <code>OR</code> and two <code>ISERROR</code>s.</p>
+<p>(2) This is another new trick.
+Formulas <a href="https://support.google.com/docs/answer/6208276?hl=en">can return arrays</a> that spillover.</p>
+</small>
 <p>The same kind of test works to figure out 0, this digit lacks D.</p>
 <table><tbody>
 <tr class="ylw"><th>W0 BD0 INDEX</th><td>AZ2=FIND(<span class="mag">AL2</span>, <span class="ylw">AN2</span>)</td></tr>
@@ -383,6 +405,12 @@ NOT(<span class="grn">BJ2:BL2</span> = <span class="grn">BM2</span>))
 Each formula breaks apart numbers into characters, sorts, and then reassembles.
 This helps match unscrambled numbers and input.</p>
 
+
+    
+        <p>You may be interested in the
+            <a href="../aoc2021/7.html">previous</a> or
+            <a href="../aoc2021/9.html">next</a> day's solution.</p>
+    
 
     </div>
 </body>
