@@ -275,19 +275,19 @@ They intersect with integer x&rsquo;s and y&rsquo;s only a few times.</small>
 </tbody></table>
 <p>These 5 columns classify the type of line.</p>
 <table><tbody>
-<tr class="red H"><td>HORIZONTAL</td><td>H2 = <span class="blk">E2=G2</span>               </td><td>repeat →</td></tr>
-<tr class="org I"><td>VERTICAL  </td><td>I2 = <span class="blk">D2=F2</span>               </td><td>repeat →</td></tr>
-<tr class="ylw J"><td>SLOPE     </td><td>J2 = <span class="blk">(G2 - E2)/(F2 - D2)</span> </td><td>repeat →</td></tr>
-<tr class="grn K"><td>BL TR DIAG</td><td>K2 = IFERROR(<span class="ylw">J2</span>=1,FALSE) </td><td>repeat →</td></tr>
-<tr class="cyn L"><td>TL BR DIAG</td><td>L2 = IFERROR(<span class="ylw">J2</span>=-1,FALSE)</td><td>repeat →</td></tr>
+<tr class="red H"><th>HORIZONTAL</th><td>H2 = <span class="blk">E2=G2</span>               </td><td>repeat →</td></tr>
+<tr class="org I"><th>VERTICAL  </th><td>I2 = <span class="blk">D2=F2</span>               </td><td>repeat →</td></tr>
+<tr class="ylw J"><th>SLOPE     </th><td>J2 = <span class="blk">(G2 - E2)/(F2 - D2)</span> </td><td>repeat →</td></tr>
+<tr class="grn K"><th>BL TR DIAG</th><td>K2 = IFERROR(<span class="ylw">J2</span>=1,FALSE) </td><td>repeat →</td></tr>
+<tr class="cyn L"><th>TL BR DIAG</th><td>L2 = IFERROR(<span class="ylw">J2</span>=-1,FALSE)</td><td>repeat →</td></tr>
 </tbody></table>
 <p>These 5 columns will help figure out if a line exists at a point or not.</p>
 <table><tbody>
-<tr><td class="blu M">MIN X      </td><td>M2 = MIN(<span class="blk">D2,F2</span>)                                         </td><td>repeat →</td></tr>
-<tr><td class="prp N">MAX X      </td><td>N2 = MAX(<span class="blk">D2,F2</span>)                                         </td><td>repeat →</td></tr>
-<tr><td class="mag O">MIN Y      </td><td>O2 = MIN(<span class="blk">E2,G2</span>)                                         </td><td>repeat →</td></tr>
-<tr><td class="red P">MAX Y      </td><td>P2 = MIN(<span class="blk">E2,G2</span>)                                         </td><td>repeat →</td></tr>
-<tr><td class="org Q">Y INTERCEPT</td><td>Q2 = IFERROR(<br><span class="blk">E2</span> - <span class="blk">D2</span> * <span class="ylw">J2</span>,<br> "vertical")</td><td>repeat →</td></tr>
+<tr><th class="blu M">MIN X      </th><td>M2 = MIN(<span class="blk">D2,F2</span>)                                         </td><td>repeat →</td></tr>
+<tr><th class="prp N">MAX X      </th><td>N2 = MAX(<span class="blk">D2,F2</span>)                                         </td><td>repeat →</td></tr>
+<tr><th class="mag O">MIN Y      </th><td>O2 = MIN(<span class="blk">E2,G2</span>)                                         </td><td>repeat →</td></tr>
+<tr><th class="red P">MAX Y      </th><td>P2 = MIN(<span class="blk">E2,G2</span>)                                         </td><td>repeat →</td></tr>
+<tr><th class="org Q">Y INTERCEPT</th><td>Q2 = IFERROR(<br><span class="blk">E2</span> - <span class="blk">D2</span> * <span class="ylw">J2</span>,<br> "vertical")</td><td>repeat →</td></tr>
 </tbody></table>
 <p>This table uses an x-offset defined by cell <code>AA1</code>. <a href="#slices">More on this later</a>.</p>
 <p>The cells of the map work like this.
