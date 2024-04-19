@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AOC Day 5 2021</title>
-    
-    <style type="text/css">body {
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <title>AOC Day 5 2021</title>
+  <style type="text/css">
+  body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  }
 
-/* General style. */
-.content {
+  /* General style. */
+  .content {
     box-sizing: border-box;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-}
+  }
 
-.content > * {
+  .content > * {
     margin-top: 20px;
     margin-bottom: 20px;
-}
+  }
 
-table {
+  table {
     border-collapse: collapse;
     font-family: monospace, monospace;
-}
+  }
 
-code {
+  code {
     font-family: monospace, monospace;
-}
+  }
 
-th {
+  th {
     font-weight: 600;
-}
+  }
 
-td, th {
+  td, th {
     text-align: left;
     padding: 10px;
     border: 1px solid #999;
-}
+  }
 
-.breadcrumb {
+  .breadcrumb {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     padding-left: 0;
-}
+  }
 
-.breadcrumb li {
+  .breadcrumb li {
     display: inline;
     white-space: nowrap;
-}
+  }
 
-.breadcrumb li + li:before {
+  .breadcrumb li + li:before {
     content: ">";
     padding: 0.25rem;
-}
+  }
 
-/* Sidenote layout. */
+  /* Sidenote layout. */
 
-@media (min-width: 921px) {
+  @media (min-width: 921px) {
     .content {
         box-sizing: border-box;
         max-width: unset;
@@ -90,170 +92,193 @@ td, th {
         margin-top: 0;
         margin-bottom: 0;
     }
-}
+  }
 
-sup {
+  sup {
     line-height: 0;
-}
-    </style>
-    
-    
-    <style type="text/css">
+  }
+  </style>
+  <style type="text/css">
         tr.sheets td {
     background-color: rgb(238, 241, 242);
-}
+  }
 
-tr span.blk,
-tr span.red,
-tr span.org,
-tr span.ylw,
-tr span.grn,
-tr span.cyn,
-tr span.blu,
-tr span.prp,
-tr span.mag {
+  tr span.blk,
+  tr span.red,
+  tr span.org,
+  tr span.ylw,
+  tr span.grn,
+  tr span.cyn,
+  tr span.blu,
+  tr span.prp,
+  tr span.mag {
     text-decoration: underline;
     text-decoration-thickness: 0.15em;
-}
+  }
 
-tr.blk th {
+  tr.blk th {
     background-color: rgb(0, 0, 0);
     color: white;
-}
+  }
 
-tr span.blk {
+  tr span.blk {
     text-decoration-color: rgb(0, 0, 0);
-}
+  }
 
-tr.red th {
+  tr.red th {
     background-color: rgb(210, 7, 24);
     color: white;
-}
+  }
 
-tr span.red {
+  tr span.red {
     text-decoration-color: rgb(210, 7, 24);
-}
+  }
 
-tr.org th {
+  tr.org th {
     background-color: rgb(238, 132, 63);
-}
+  }
 
-tr span.org {
+  tr span.org {
     text-decoration-color: rgb(238, 132, 63);
-}
+  }
 
-tr.ylw th {
+  tr.ylw th {
     background-color: rgb(249, 183, 66);
-}
+  }
 
-tr span.ylw {
+  tr span.ylw {
     text-decoration-color: rgb(249, 183, 66);
-}
+  }
 
-tr.grn th {
+  tr.grn th {
     background-color: rgb(90, 155, 76);
-}
+  }
 
-tr span.grn {
+  tr span.grn {
     text-decoration-color: rgb(90, 155, 76);
-}
+  }
 
-tr.cyn th {
+  tr.cyn th {
     background-color: rgb(46, 118, 129);
     color: white;
-}
+  }
 
-tr span.cyn {
+  tr span.cyn {
     text-decoration-color: rgb(46, 118, 129);
-}
+  }
 
-tr.blu th {
+  tr.blu th {
     background-color: rgb(0, 114, 205);
     color: white;
-}
+  }
 
-tr span.blu {
+  tr span.blu {
     text-decoration-color: rgb(0, 114, 205);
-}
+  }
 
-tr.prp th {
+  tr.prp th {
     background-color: rgb(88, 74, 153);
     color: white;
-}
+  }
 
-tr span.prp {
+  tr span.prp {
     text-decoration-color: rgb(88, 74, 152);
-}
+  }
 
-tr.mag th {
+  tr.mag th {
     background-color: rgb(163, 70, 109);
     color: white;
-}
+  }
 
-tr span.mag {
+  tr span.mag {
     text-decoration-color: rgb(163, 70, 109);
-}
+  }
 
-    </style>
-
+  </style>
 </head>
-
 <body>
-    <div class="content">
-        <ol class="breadcrumb">
-    <li><a href="../index.html">Mathias Kools</a></li>
-    <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
-    <li class="active"><a href="../aoc2021/5.html">AOC Day 5 2021</a></li>
-</ol>
-    <h1><a href="https://adventofcode.com/2021/day/5">AOC Day 5</a> 2021</h1>
-    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
-
+  <div class="content">
+    <ol class="breadcrumb">
+      <li>
+        <a href="../index.html">Mathias Kools</a>
+      </li>
+      <li>
+        <a href="../aoc2021.html">Advent of Code 2021 in
+        Spreadsheets</a>
+      </li>
+      <li class="active">
+        <a href="../aoc2021/5.html">AOC Day 5 2021</a>
+      </li>
+    </ol>
+    <h1><a href="https://adventofcode.com/2021/day/5">AOC Day 5</a>
+    2021</h1>
+    <p>This is part of a greater series about <a href=
+    "../aoc2021.html">solving advent of code with
+    spreadsheets</a>.</p>
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#part-one-and-two">Part One and Two</a>
       <ul>
-        <li><a href="#solving-part-one-and-part-two">Solving Part One and Part Two</a></li>
-        <li><a href="#how-part-one-and-part-two-works">How Part One and Part Two Works</a>
+        <li>
+          <a href="#part-one-and-two">Part One and Two</a>
           <ul>
-            <li><a href="#iferror">IFERROR</a></li>
-            <li><a href="#slices">Slices</a></li>
-            <li><a href="#unpacking-countifs">Unpacking COUNTIFS</a></li>
+            <li>
+              <a href="#solving-part-one-and-part-two">Solving Part
+              One and Part Two</a>
+            </li>
+            <li>
+              <a href="#how-part-one-and-part-two-works">How Part
+              One and Part Two Works</a>
+              <ul>
+                <li>
+                  <a href="#iferror">IFERROR</a>
+                </li>
+                <li>
+                  <a href="#slices">Slices</a>
+                </li>
+                <li>
+                  <a href="#unpacking-countifs">Unpacking
+                  COUNTIFS</a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
-    </li>
-  </ul>
-</nav>
-
+    </nav>
     <h2 id="part-one-and-two">Part One and Two</h2>
-<p>As always, read the problem text first.
-In summary, the input is a list of line segments made by two points.
-The goal is to count the number of points where at least two lines overlap.</p>
-<p>The data uses some simplifications &hellip;</p>
-<ul>
-<li>Each line is horizontal, vertical, or diagonal (slope of 1 or -1)<sup>0</sup>.</li>
-<li>Everything happens on integer coordinates.</li>
-<li>Every line fits within a known square box.
-<ul>
-<li>The example has line segments between <code>(0,0)</code> and <code>(10,10)</code>.</li>
-<li>The challenge is mostly between <code>(0,0)</code> and <code>(100, 100)</code><sup>1</sup>.</li>
-</ul>
-</li>
-</ul>
-<small><p>(0) My co-worker helped me identify this when I was overthinking part one.
-<a href="https://alienryderflex.com/intersect/">Arbitrary line segment intersection</a> is hard.</p>
-<p>(1) My challenge input is contained to <code>(10, 10)</code> and <code>(989, 989)</code>.</p>
-</small>
-<p>Part one asks to count unique intersections of horizontal and vertical lines only.
-Part two removes that filter.</p>
-<h3 id="solving-part-one-and-part-two">Solving Part One and Part Two</h3>
-<p>The solution makes a grid of numbers.
-This creates a picture like the author&rsquo;s example<sup>2</sup>.
-Each cell is a single point.
-Lines of 1&rsquo;s represent a single line segment.
-2 or more&rsquo;s represent intersections.
-0 replaces &ldquo;.&quot;&rsquo;s to depict empty points.</p>
-<pre tabindex="0"><code>.......1..
+    <p>As always, read the problem text first. In summary, the
+    input is a list of line segments made by two points. The goal
+    is to count the number of points where at least two lines
+    overlap.</p>
+    <p>The data uses some simplifications …</p>
+    <ul>
+      <li>Each line is horizontal, vertical, or diagonal (slope of
+      1 or -1)<sup>0</sup>.</li>
+      <li>Everything happens on integer coordinates.</li>
+      <li>Every line fits within a known square box.
+        <ul>
+          <li>The example has line segments between
+          <code>(0,0)</code> and <code>(10,10)</code>.</li>
+          <li>The challenge is mostly between <code>(0,0)</code>
+          and <code>(100, 100)</code><sup>1</sup>.</li>
+        </ul>
+      </li>
+    </ul>
+    <p><small>(0) My co-worker helped me identify this when I was
+    overthinking part one. <a href=
+    "https://alienryderflex.com/intersect/">Arbitrary line segment
+    intersection</a> is hard.</small></p>
+    <p><small>(1) My challenge input is contained to <code>(10,
+    10)</code> and <code>(989, 989)</code>.</small></p>
+    <p>Part one asks to count unique intersections of horizontal
+    and vertical lines only. Part two removes that filter.</p>
+    <h3 id="solving-part-one-and-part-two">Solving Part One and
+    Part Two</h3>
+    <p>The solution makes a grid of numbers. This creates a picture
+    like the author’s example<sup>2</sup>. Each cell is a single
+    point. Lines of 1’s represent a single line segment. 2 or
+    more’s represent intersections. 0 replaces “."’s to depict
+    empty points.</p>
+    <pre tabindex="0"><code>.......1..
 ..1....1..
 ..1....1..
 .......1..
@@ -263,124 +288,235 @@ Lines of 1&rsquo;s represent a single line segment.
 ..........
 ..........
 222111....
-</code></pre><small>(2) This view made the goal very clear.
-Lines on-top of each other intersect at an infinite number of points.
-They intersect with integer x&rsquo;s and y&rsquo;s only a few times.</small>
-<p>The line segments are parsed into the following columns.</p>
-<table><tbody>
-<tr class="blk"><td>X1</td><td>D2</td><td>...</td></tr>
-<tr class="blk"><td>Y1</td><td>E2</td><td>...</td></tr>
-<tr class="blk"><td>X2</td><td>F2</td><td>...</td></tr>
-<tr class="blk"><td>Y2</td><td>G2</td><td>...</td></tr>
-</tbody></table>
-<p>These 5 columns classify the type of line.</p>
-<table><tbody>
-<tr class="red H"><th>HORIZONTAL</th><td>H2 = <span class="blk">E2=G2</span>               </td><td>repeat →</td></tr>
-<tr class="org I"><th>VERTICAL  </th><td>I2 = <span class="blk">D2=F2</span>               </td><td>repeat →</td></tr>
-<tr class="ylw J"><th>SLOPE     </th><td>J2 = <span class="blk">(G2 - E2)/(F2 - D2)</span> </td><td>repeat →</td></tr>
-<tr class="grn K"><th>BL TR DIAG</th><td>K2 = IFERROR(<span class="ylw">J2</span>=1,FALSE) </td><td>repeat →</td></tr>
-<tr class="cyn L"><th>TL BR DIAG</th><td>L2 = IFERROR(<span class="ylw">J2</span>=-1,FALSE)</td><td>repeat →</td></tr>
-</tbody></table>
-<p>These 5 columns will help figure out if a line exists at a point or not.</p>
-<table><tbody>
-<tr><th class="blu M">MIN X      </th><td>M2 = MIN(<span class="blk">D2,F2</span>)                                         </td><td>repeat →</td></tr>
-<tr><th class="prp N">MAX X      </th><td>N2 = MAX(<span class="blk">D2,F2</span>)                                         </td><td>repeat →</td></tr>
-<tr><th class="mag O">MIN Y      </th><td>O2 = MIN(<span class="blk">E2,G2</span>)                                         </td><td>repeat →</td></tr>
-<tr><th class="red P">MAX Y      </th><td>P2 = MIN(<span class="blk">E2,G2</span>)                                         </td><td>repeat →</td></tr>
-<tr><th class="org Q">Y INTERCEPT</th><td>Q2 = IFERROR(<br><span class="blk">E2</span> - <span class="blk">D2</span> * <span class="ylw">J2</span>,<br> "vertical")</td><td>repeat →</td></tr>
-</tbody></table>
-<p>This table uses an x-offset defined by cell <code>AA1</code>. <a href="#slices">More on this later</a>.</p>
-<p>The cells of the map work like this.
-This includes the diagonal lines.
-To remove them for part one take away the last 2 terms of the sum.</p>
-<table><tbody>
-<tr><td>AA1</td><th>AA2 = AA1</th><th>AA3 = AA2 + 1</th></tr>
-<tr><td>0</td>
-<td>AB2 = <br>
-COUNTIFS(<span class="red">$H$2:$H</span>,"=TRUE",<br>
-<span class="blu">$M$2:$M</span>,"<="&AB$1,<br>
-<span class="prp">$N$2:$N</span>,">="&AB$1,<br>
-<span class="mag">$O$2:$O</span>,"="&$AA2) + <br><br>
-COUNTIFS(<span class="org">$I$2:$I</span>,"=TRUE",<br>
-<span class="blu">$M$2:$M</span>,"="&AB$1,<br>
-<span class="mag">$O$2:$O</span>,"<="&$AA2,<br>
-<span class="red">$P$2:$P</span>,">="&$AA2) + <br><br>
-COUNTIFS(<span class="grn">$K$2:$K</span>,"=TRUE",<br>
-<span class="blu">$M$2:$M</span>,"<="&AB$1,<br>
-<span class="prp">$N$2:$N</span>,">="&AB$1,<br>
-<span class="org">$Q$2:$Q</span>,"="&($AA2-AB$1)) + <br><br>
-COUNTIFS(<span class="cyn">$L$2:$L</span>,"=TRUE",<br>
-<span class="blu">$M$2:$M</span>,"<="&AB$1),<br>
-<span class="prp">$N$2:$N</span>,">="&AB$1),<br>
-<span class="org">$Q$2:$Q</span>,"="&($AA2+AB$1))
-</td><td>repeat →</td></tr>
-</tbody></table>
-<p>This cell counts the number of points where at least two lines intersect.</p>
-<table><tbody>
-<td>>=2 INTERSECTIONS</td><td>R2 = COUNTIF(AB2:AL, ">=2")</td>
-<tbody></table>
-<h3 id="how-part-one-and-part-two-works">How Part One and Part Two Works</h3>
-<p>There are two new concepts at work here.</p>
-<h4 id="iferror">IFERROR</h4>
-<p>Errors in spreadsheets are poison.
-If one cell errors most uses of it will also error.
-For example, this table is full of errors.</p>
-<table><tbody>
-<tr class="blk A"><th>DATA</th><td>A2 = 1/0 =><br> #DIV/0!</td></tr>
-<tr class="red B"><th>USE1</th><td>B2 = <span class="blk">A2</span> + 10 =><br> #DIV/0!</td></tr>
-<tr class="org C"><th>USE2</th><td>C2 = <span class="blk">A2</span>=10 =><br> #DIV/0!</td></tr>
-</tbody></table>
-<p><code>IFERROR</code> checks if the value is in error and returns a new value if so.
-This cleans out divide by 0&rsquo;s from vertical line slopes.</p>
-<h4 id="slices">Slices</h4>
-<p>The challenge had lines between (0,0) and (1000,1000).
-To recreate the author&rsquo;s map each point requires a cell.
-This doesn&rsquo;t scale well.
-The sheet would need 1,000,000 cells.
-When I tried a million cells the program froze.</p>
-<p>Instead of all this, the sheet deals in &ldquo;slices&rdquo;.
-Each map cell is independent of other map cells and so it&rsquo;s possible to &ldquo;batch&rdquo; maps<sup>3</sup>.
-I chose to deal in 50 columns by 1000 row slices.
-Each slice took about 20 seconds so I was through 20 of them in no time<sup>4</sup>.</p>
-<small><p>(3) Batches are not perfect.
-I miscopied the result of one of them.
-It took hours (and writing a python solution) to figure this out.</p>
-<p>(4) &ldquo;No time&rdquo; compared to <a href="../aoc2021/4.html">day 4</a>.</p>
-</small>
-<h4 id="unpacking-countifs">Unpacking COUNTIFS</h4>
-<p>There are four <code>COUNTIFS</code> in each cell of the map. Each of them &hellip;</p>
-<ul>
-<li>Counts the number of line segments overlapping with the point.</li>
-<li>Belongs to a different type of line.</li>
-</ul>
-<p>Two of these are worth unpacking.</p>
-<p>The first formula is for horizontal lines.
-It has four criteria.</p>
-<ul>
-<li>This <code>COUNTIFS($H$2:$H,&quot;=TRUE&quot;,</code> checks that the line is HORIZONTAL (column H).</li>
-<li><code>$M$2:$M,&quot;&lt;=&quot;&amp;AB$1,</code> checks that the x of the cell is within the line&rsquo;s MINX (column M).<sup>5</sup></li>
-<li><code>$N$2:$N,&quot;&gt;=&quot;&amp;AB$1,</code> checks that the x is within the line&rsquo;s MAXX(column N).</li>
-<li><code>$O$2:$O,&quot;=&quot;&amp;$AA2</code> checks the y of the cell is equal to the line&rsquo;s y (column O is MINY).</li>
-</ul>
-<small>(5) In these formulas <a href="https://support.google.com/docs/answer/3093592?hl=en"><code>&amp;</code> is shorthand for string concatenation</a>.</small>
-<p>The second formula is for diagonals with a slope of 1.
-It too uses four criteria.</p>
-<ul>
-<li><code>COUNTIFS(<span class="cyn">$K$2:$K</span>,&quot;=TRUE&quot;,</code> is familiar.
-It checks if the line is a BL-TR DIAG (column K).</li>
-<li><code>$M$2:$M,&quot;&lt;=&quot;&amp;AB$1),</code> and <code>$N$2:$N,&quot;&gt;=&quot;&amp;AB$1,</code> are repeats as well. This checks min&rsquo;s and max&rsquo;s on x.</li>
-<li><code>$Q$2:$Q,&quot;=&quot;&amp;($AA2-AB$1)</code> is the special sauce.
-This checks if a line with a slope of 1 intersected the cell if it would have the same y intercept.</li>
-</ul>
-
-
-    
-        <p>You may be interested in the
-            <a href="../aoc2021/4.html">previous</a> or
-            <a href="../aoc2021/6.html">next</a> day's solution.</p>
-    
-
-    </div>
+</code></pre><small>(2) This view made the goal very clear. Lines
+on-top of each other intersect at an infinite number of points.
+They intersect with integer x’s and y’s only a few times.</small>
+    <p>The line segments are parsed into the following columns.</p>
+    <table>
+      <tbody>
+        <tr class="blk">
+          <td>X1</td>
+          <td>D2</td>
+          <td>...</td>
+        </tr>
+        <tr class="blk">
+          <td>Y1</td>
+          <td>E2</td>
+          <td>...</td>
+        </tr>
+        <tr class="blk">
+          <td>X2</td>
+          <td>F2</td>
+          <td>...</td>
+        </tr>
+        <tr class="blk">
+          <td>Y2</td>
+          <td>G2</td>
+          <td>...</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>These 5 columns classify the type of line.</p>
+    <table>
+      <tbody>
+        <tr class="red H">
+          <th>HORIZONTAL</th>
+          <td>H2 = <span class="blk">E2=G2</span></td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="org I">
+          <th>VERTICAL</th>
+          <td>I2 = <span class="blk">D2=F2</span></td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="ylw J">
+          <th>SLOPE</th>
+          <td>J2 = <span class="blk">(G2 - E2)/(F2 -
+          D2)</span></td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="grn K">
+          <th>BL TR DIAG</th>
+          <td>K2 = IFERROR(<span class=
+          "ylw">J2</span>=1,FALSE)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="cyn L">
+          <th>TL BR DIAG</th>
+          <td>L2 = IFERROR(<span class=
+          "ylw">J2</span>=-1,FALSE)</td>
+          <td>repeat →</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>These 5 columns will help figure out if a line exists at a
+    point or not.</p>
+    <table>
+      <tbody>
+        <tr>
+          <th class="blu M">MIN X</th>
+          <td>M2 = MIN(<span class="blk">D2,F2</span>)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr>
+          <th class="prp N">MAX X</th>
+          <td>N2 = MAX(<span class="blk">D2,F2</span>)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr>
+          <th class="mag O">MIN Y</th>
+          <td>O2 = MIN(<span class="blk">E2,G2</span>)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr>
+          <th class="red P">MAX Y</th>
+          <td>P2 = MIN(<span class="blk">E2,G2</span>)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr>
+          <th class="org Q">Y INTERCEPT</th>
+          <td>Q2 = IFERROR(<br>
+          <span class="blk">E2</span> - <span class="blk">D2</span>
+          * <span class="ylw">J2</span>,<br>
+          "vertical")</td>
+          <td>repeat →</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This table uses an x-offset defined by cell
+    <code>AA1</code>. <a href="#slices">More on this later</a>.</p>
+    <p>The cells of the map work like this. This includes the
+    diagonal lines. To remove them for part one take away the last
+    2 terms of the sum.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>AA1</td>
+          <th>AA2 = AA1</th>
+          <th>AA3 = AA2 + 1</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>AB2 =<br>
+          COUNTIFS(<span class="red">$H$2:$H</span>,"=TRUE",<br>
+          <span class="blu">$M$2:$M</span>,"&lt;="&amp;AB$1,<br>
+          <span class="prp">$N$2:$N</span>,"&gt;="&amp;AB$1,<br>
+          <span class="mag">$O$2:$O</span>,"="&amp;$AA2) +<br>
+          <br>
+          COUNTIFS(<span class="org">$I$2:$I</span>,"=TRUE",<br>
+          <span class="blu">$M$2:$M</span>,"="&amp;AB$1,<br>
+          <span class="mag">$O$2:$O</span>,"&lt;="&amp;$AA2,<br>
+          <span class="red">$P$2:$P</span>,"&gt;="&amp;$AA2) +<br>
+          <br>
+          COUNTIFS(<span class="grn">$K$2:$K</span>,"=TRUE",<br>
+          <span class="blu">$M$2:$M</span>,"&lt;="&amp;AB$1,<br>
+          <span class="prp">$N$2:$N</span>,"&gt;="&amp;AB$1,<br>
+          <span class="org">$Q$2:$Q</span>,"="&amp;($AA2-AB$1))
+          +<br>
+          <br>
+          COUNTIFS(<span class="cyn">$L$2:$L</span>,"=TRUE",<br>
+          <span class="blu">$M$2:$M</span>,"&lt;="&amp;AB$1),<br>
+          <span class="prp">$N$2:$N</span>,"&gt;="&amp;AB$1),<br>
+          <span class=
+          "org">$Q$2:$Q</span>,"="&amp;($AA2+AB$1))</td>
+          <td>repeat →</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This cell counts the number of points where at least two
+    lines intersect.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>&gt;=2 INTERSECTIONS</td>
+          <td>R2 = COUNTIF(AB2:AL, "&gt;=2")</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="how-part-one-and-part-two-works">How Part One and Part
+    Two Works</h3>
+    <p>There are two new concepts at work here.</p>
+    <h4 id="iferror">IFERROR</h4>
+    <p>Errors in spreadsheets are poison. If one cell errors most
+    uses of it will also error. For example, this table is full of
+    errors.</p>
+    <table>
+      <tbody>
+        <tr class="blk A">
+          <th>DATA</th>
+          <td>A2 = 1/0 =&gt;<br>
+          #DIV/0!</td>
+        </tr>
+        <tr class="red B">
+          <th>USE1</th>
+          <td>B2 = <span class="blk">A2</span> + 10 =&gt;<br>
+          #DIV/0!</td>
+        </tr>
+        <tr class="org C">
+          <th>USE2</th>
+          <td>C2 = <span class="blk">A2</span>=10 =&gt;<br>
+          #DIV/0!</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><code>IFERROR</code> checks if the value is in error and
+    returns a new value if so. This cleans out divide by 0’s from
+    vertical line slopes.</p>
+    <h4 id="slices">Slices</h4>
+    <p>The challenge had lines between (0,0) and (1000,1000). To
+    recreate the author’s map each point requires a cell. This
+    doesn’t scale well. The sheet would need 1,000,000 cells. When
+    I tried a million cells the program froze.</p>
+    <p>Instead of all this, the sheet deals in “slices”. Each map
+    cell is independent of other map cells and so it’s possible to
+    “batch” maps<sup>3</sup>. I chose to deal in 50 columns by 1000
+    row slices. Each slice took about 20 seconds so I was through
+    20 of them in no time<sup>4</sup>.</p>
+    <p><small>(3) Batches are not perfect. I miscopied the result
+    of one of them. It took hours (and writing a python solution)
+    to figure this out.</small></p>
+    <p><small>(4) “No time” compared to <a href=
+    "../aoc2021/4.html">day 4</a>.</small></p>
+    <h4 id="unpacking-countifs">Unpacking COUNTIFS</h4>
+    <p>There are four <code>COUNTIFS</code> in each cell of the
+    map. Each of them …</p>
+    <ul>
+      <li>Counts the number of line segments overlapping with the
+      point.</li>
+      <li>Belongs to a different type of line.</li>
+    </ul>
+    <p>Two of these are worth unpacking.</p>
+    <p>The first formula is for horizontal lines. It has four
+    criteria.</p>
+    <ul>
+      <li>This <code>COUNTIFS($H$2:$H,"=TRUE",</code> checks that
+      the line is HORIZONTAL (column H).</li>
+      <li><code>$M$2:$M,"&lt;="&amp;AB$1,</code> checks that the x
+      of the cell is within the line’s MINX (column
+      M).<sup>5</sup></li>
+      <li><code>$N$2:$N,"&gt;="&amp;AB$1,</code> checks that the x
+      is within the line’s MAXX(column N).</li>
+      <li><code>$O$2:$O,"="&amp;$AA2</code> checks the y of the
+      cell is equal to the line’s y (column O is MINY).</li>
+    </ul><small>(5) In these formulas <a href=
+    "https://support.google.com/docs/answer/3093592?hl=en"><code>&</code>
+    is shorthand for string concatenation</a>.</small>
+    <p>The second formula is for diagonals with a slope of 1. It
+    too uses four criteria.</p>
+    <ul>
+      <li><code>COUNTIFS(<span class=
+      "cyn">$K$2:$K</span>,"=TRUE",</code> is familiar. It checks
+      if the line is a BL-TR DIAG (column K).</li>
+      <li><code>$M$2:$M,"&lt;="&amp;AB$1),</code> and
+      <code>$N$2:$N,"&gt;="&amp;AB$1,</code> are repeats as well.
+      This checks min’s and max’s on x.</li>
+      <li><code>$Q$2:$Q,"="&amp;($AA2-AB$1)</code> is the special
+      sauce. This checks if a line with a slope of 1 intersected
+      the cell if it would have the same y intercept.</li>
+    </ul>
+    <p>You may be interested in the <a href=
+    "../aoc2021/4.html">previous</a> or <a href=
+    "../aoc2021/6.html">next</a> day's solution.</p>
+  </div>
 </body>
-
 </html>

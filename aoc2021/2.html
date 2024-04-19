@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AOC Day 2 2021</title>
-    
-    <style type="text/css">body {
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <title>AOC Day 2 2021</title>
+  <style type="text/css">
+  body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  }
 
-/* General style. */
-.content {
+  /* General style. */
+  .content {
     box-sizing: border-box;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-}
+  }
 
-.content > * {
+  .content > * {
     margin-top: 20px;
     margin-bottom: 20px;
-}
+  }
 
-table {
+  table {
     border-collapse: collapse;
     font-family: monospace, monospace;
-}
+  }
 
-code {
+  code {
     font-family: monospace, monospace;
-}
+  }
 
-th {
+  th {
     font-weight: 600;
-}
+  }
 
-td, th {
+  td, th {
     text-align: left;
     padding: 10px;
     border: 1px solid #999;
-}
+  }
 
-.breadcrumb {
+  .breadcrumb {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     padding-left: 0;
-}
+  }
 
-.breadcrumb li {
+  .breadcrumb li {
     display: inline;
     white-space: nowrap;
-}
+  }
 
-.breadcrumb li + li:before {
+  .breadcrumb li + li:before {
     content: ">";
     padding: 0.25rem;
-}
+  }
 
-/* Sidenote layout. */
+  /* Sidenote layout. */
 
-@media (min-width: 921px) {
+  @media (min-width: 921px) {
     .content {
         box-sizing: border-box;
         max-width: unset;
@@ -90,219 +92,341 @@ td, th {
         margin-top: 0;
         margin-bottom: 0;
     }
-}
+  }
 
-sup {
+  sup {
     line-height: 0;
-}
-    </style>
-    
-    
-    <style type="text/css">
+  }
+  </style>
+  <style type="text/css">
         tr.sheets td {
     background-color: rgb(238, 241, 242);
-}
+  }
 
-tr span.blk,
-tr span.red,
-tr span.org,
-tr span.ylw,
-tr span.grn,
-tr span.cyn,
-tr span.blu,
-tr span.prp,
-tr span.mag {
+  tr span.blk,
+  tr span.red,
+  tr span.org,
+  tr span.ylw,
+  tr span.grn,
+  tr span.cyn,
+  tr span.blu,
+  tr span.prp,
+  tr span.mag {
     text-decoration: underline;
     text-decoration-thickness: 0.15em;
-}
+  }
 
-tr.blk th {
+  tr.blk th {
     background-color: rgb(0, 0, 0);
     color: white;
-}
+  }
 
-tr span.blk {
+  tr span.blk {
     text-decoration-color: rgb(0, 0, 0);
-}
+  }
 
-tr.red th {
+  tr.red th {
     background-color: rgb(210, 7, 24);
     color: white;
-}
+  }
 
-tr span.red {
+  tr span.red {
     text-decoration-color: rgb(210, 7, 24);
-}
+  }
 
-tr.org th {
+  tr.org th {
     background-color: rgb(238, 132, 63);
-}
+  }
 
-tr span.org {
+  tr span.org {
     text-decoration-color: rgb(238, 132, 63);
-}
+  }
 
-tr.ylw th {
+  tr.ylw th {
     background-color: rgb(249, 183, 66);
-}
+  }
 
-tr span.ylw {
+  tr span.ylw {
     text-decoration-color: rgb(249, 183, 66);
-}
+  }
 
-tr.grn th {
+  tr.grn th {
     background-color: rgb(90, 155, 76);
-}
+  }
 
-tr span.grn {
+  tr span.grn {
     text-decoration-color: rgb(90, 155, 76);
-}
+  }
 
-tr.cyn th {
+  tr.cyn th {
     background-color: rgb(46, 118, 129);
     color: white;
-}
+  }
 
-tr span.cyn {
+  tr span.cyn {
     text-decoration-color: rgb(46, 118, 129);
-}
+  }
 
-tr.blu th {
+  tr.blu th {
     background-color: rgb(0, 114, 205);
     color: white;
-}
+  }
 
-tr span.blu {
+  tr span.blu {
     text-decoration-color: rgb(0, 114, 205);
-}
+  }
 
-tr.prp th {
+  tr.prp th {
     background-color: rgb(88, 74, 153);
     color: white;
-}
+  }
 
-tr span.prp {
+  tr span.prp {
     text-decoration-color: rgb(88, 74, 152);
-}
+  }
 
-tr.mag th {
+  tr.mag th {
     background-color: rgb(163, 70, 109);
     color: white;
-}
+  }
 
-tr span.mag {
+  tr span.mag {
     text-decoration-color: rgb(163, 70, 109);
-}
+  }
 
-    </style>
-
+  </style>
 </head>
-
 <body>
-    <div class="content">
-        <ol class="breadcrumb">
-    <li><a href="../index.html">Mathias Kools</a></li>
-    <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
-    <li class="active"><a href="../aoc2021/2.html">AOC Day 2 2021</a></li>
-</ol>
-    <h1><a href="https://adventofcode.com/2021/day/2">AOC Day 2</a> 2021</h1>
-    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
-
+  <div class="content">
+    <ol class="breadcrumb">
+      <li>
+        <a href="../index.html">Mathias Kools</a>
+      </li>
+      <li>
+        <a href="../aoc2021.html">Advent of Code 2021 in
+        Spreadsheets</a>
+      </li>
+      <li class="active">
+        <a href="../aoc2021/2.html">AOC Day 2 2021</a>
+      </li>
+    </ol>
+    <h1><a href="https://adventofcode.com/2021/day/2">AOC Day 2</a>
+    2021</h1>
+    <p>This is part of a greater series about <a href=
+    "../aoc2021.html">solving advent of code with
+    spreadsheets</a>.</p>
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#part-one">Part One</a>
       <ul>
-        <li><a href="#solving-part-one">Solving Part One</a></li>
-        <li><a href="#how-part-one-works">How Part One Works</a>
+        <li>
+          <a href="#part-one">Part One</a>
           <ul>
-            <li><a href="#split">SPLIT</a></li>
-            <li><a href="#if-statements">IF Statements</a></li>
+            <li>
+              <a href="#solving-part-one">Solving Part One</a>
+            </li>
+            <li>
+              <a href="#how-part-one-works">How Part One Works</a>
+              <ul>
+                <li>
+                  <a href="#split">SPLIT</a>
+                </li>
+                <li>
+                  <a href="#if-statements">IF Statements</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#part-two">Part Two</a>
+          <ul>
+            <li>
+              <a href="#solving-part-two">Solving Part Two</a>
+            </li>
           </ul>
         </li>
       </ul>
-    </li>
-    <li><a href="#part-two">Part Two</a>
-      <ul>
-        <li><a href="#solving-part-two">Solving Part Two</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
+    </nav>
     <h2 id="part-one">Part One</h2>
-<p>As always, read the problem text first.
-In summary, the input is a list of movement commands.
-The format of the data is <code>&lt;direction&gt; &lt;amount&gt;</code> where direction can be <code>forward</code>, <code>down</code>, and <code>up</code><sup>0</sup>.</p>
-<small>(0) NOTE there is no backwards.
-There are sometimes unsaid invariants.
-<code>&lt;amount&gt;</code> is always a positive integer in my challenge input.</small>
-<p>Starting at (0,0) the objective is to figure out the final position.</p>
-<ul>
-<li><code>forward</code> increases x.</li>
-<li><code>down</code> <em>increases</em> y.</li>
-<li><code>up</code> <em>decreases</em> y.</li>
-</ul>
-<p>Finally multiply x by y<sup>1</sup>.</p>
-<small>(1) The advent of code challenges will often ask for a single number instead of two.</small>
-<h3 id="solving-part-one">Solving Part One</h3>
-<p>This can be squished into a single table.</p>
-<table><tbody>
-<tr class="blk A"><th>DATA      </th><td> - </td><td>A3                                                                               </td><td>...     </td></tr>
-<tr class="red B"><th>MOVE      </th><td> - </td><td>B3,C3 = SPLIT(<span class="blk">A3</span>, " ")                                                      </td><td>repeat →</td></tr>
-<tr class="ylw C"><th>AMOUNT<sup>2</sup></th><td> - </td><td>↑ SPILLOVER ↑                                                                    </td><td>repeat →</td></tr>
-<tr class="cyn D"><th>X         </th><td> 0 </td><td>D3 = <span class="cyn">D2</span> + <br>IF(<span class="red">B3</span>="forward",<span class="ylw">C3</span>,0)                               </td><td>repeat →</td></tr>
-<tr class="prp E"><th>Y         </th><td> 0 </td><td>E3 = <span class="prp">E2</span> + <br>IF(<span class="red">B3</span>="up",<span class="ylw">-C3</span>,0) + <br>IF(<span class="red">B3</span>="down",<span class="ylw">C3</span>,0)</td><td>repeat →</td></tr>
-<tr>              <th>OUTPUT    </th><td> 0 </td><td>F3 = <span class="cyn">D3</span> * <span class="prp">E2</span>                                                           </td><td>repeat →</td></tr>
-</tbody></table>
-<small>(2) I had to coerce the type of <code>AMOUNT</code> in Google Sheets.
-I formatted the column as a number.</small>
-<h3 id="how-part-one-works">How Part One Works</h3>
-<h4 id="split">SPLIT</h4>
-<p>According to the rules, getting data into the right format isn&rsquo;t required.
-I&rsquo;ve done it anyway using the  <code>SPLIT</code> formula.
-This function splits text into <strong>multiple values</strong> with a separator.
-When a function returns multiple values it &ldquo;spills over&rdquo;<sup>3</sup> in neighboring cells.</p>
-<small>(3) Spilling is my word.
-I don&rsquo;t know the official term for it.</small>
-<table><tbody>
-<tr class="blk"><th>DATA      </th><td>A2 = hi,my                       </td><td>A3 = name,is,slim shady       </td></tr>
-<tr class="red"><th>SPLIT     </th><td>B1 = SPLIT(<span class="blk">A1</span>,",") =><br> hi</td><td>B2 = SPLIT(<span class="blk">A2</span>,",") =><br> name</td></tr>
-<tr class="ylw"><th>SPILL     </th><td>my                               </td><td>is                                 </td></tr>
-<tr class="cyn"><th>MORE SPILL</th><td>                                 </td><td>slim shady                    </td></tr>
-</tbody></table>
-<h4 id="if-statements">IF Statements</h4>
-<p>IF^{4} is a function returning the first value if the boolean is TRUE,
-and the second if it is FALSE.</p>
-<small>(4) If you&rsquo;re curious, there is an <code>elseif</code> substitute: <code>IFS</code>.</small>
-<h2 id="part-two">Part Two</h2>
-<p>Part two re-interprets the moves <code>up</code> and <code>down</code>.
-No longer do they change the <code>y</code> coordinate,
-instead they change the <code>aim</code>.</p>
-<ul>
-<li><code>down</code> <em>increases</em> aim.</li>
-<li><code>up</code> <em>decreases</em> aim.</li>
-<li><code>forward</code> BOTH <em>increases</em> x by the amount BUT ALSO <em>increases</em> y by <code>aim * amount</code>.</li>
-</ul>
-<h3 id="solving-part-two">Solving Part Two</h3>
-<p>Solving part two requires one extra column.</p>
-<table><tbody>
-<tr class="blk A"><th>DATA </th><td> - </td><td>A3                                                                              </td><td> ... </td></tr>
-<tr class="org B"><th>MOVE </th><td> - </td><td>B3 = SPLIT(<span class="blk">A3</span>, " ")                                                        </td><td>repeat →</td></tr>
-<tr class="prp C"><th>UNITS</th><td> - </td><td>↑ SPILLOVER ↑                                                                   </td><td>repeat →</td></tr>
-<tr class="grn D"><th>AIM  </th><td> 0 </td><td>D3 = <span class="grn">D2</span> + <br>IF(<span class="org">B3</span>="down",<span class="prp">C3</span>,0) +<br>IF(<span class="org">B3</span>="up",<span class="prp">-C3</span>,0)</td><td>repeat →</td></tr>
-<tr class="blu E"><th>X    </th><td> 0 </td><td>E3 = <span class="blu">E2</span> + <br>IF(<span class="org">B3</span>="forward",<span class="prp">C3</span>,0)                                   </td><td>repeat →</td></tr>
-<tr class="mag F"><th>Y    </th><td> 0 </td><td>F3 = <span class="mag">F2</span> + <br>IF(<span class="org">B3</span>="forward",<span class="prp">C3</span>*<span class="grn">D3</span>,0)                           </td><td>repeat →</td></tr>
-<tr><th>OUTPUT             </th><td> 0 </td><td>G3 = <span class="blu">E3</span>*<span class="mag">F3</span>                                                                      </td><td>repeat →</td></tr>
-</tbody></table>
-
-
-    
-        <p>You may be interested in the
-            <a href="../aoc2021/1.html">previous</a> or
-            <a href="../aoc2021/3.html">next</a> day's solution.</p>
-    
-
-    </div>
+    <p>As always, read the problem text first. In summary, the
+    input is a list of movement commands. The format of the data is
+    <code>&lt;direction&gt; &lt;amount&gt;</code> where direction
+    can be <code>forward</code>, <code>down</code>, and
+    <code>up</code><sup>0</sup>.</p><small>(0) NOTE there is no
+    backwards. There are sometimes unsaid invariants.
+    <code>&lt;amount&gt;</code> is always a positive integer in my
+    challenge input.</small>
+    <p>Starting at (0,0) the objective is to figure out the final
+    position.</p>
+    <ul>
+      <li><code>forward</code> increases x.</li>
+      <li><code>down</code> <em>increases</em> y.</li>
+      <li><code>up</code> <em>decreases</em> y.</li>
+    </ul>
+    <p>Finally multiply x by y<sup>1</sup>.</p><small>(1) The
+    advent of code challenges will often ask for a single number
+    instead of two.</small>
+    <h3 id="solving-part-one">Solving Part One</h3>
+    <p>This can be squished into a single table.</p>
+    <table>
+      <tbody>
+        <tr class="blk A">
+          <th>DATA</th>
+          <td>-</td>
+          <td>A3</td>
+          <td>...</td>
+        </tr>
+        <tr class="red B">
+          <th>MOVE</th>
+          <td>-</td>
+          <td>B3,C3 = SPLIT(<span class="blk">A3</span>, " ")</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="ylw C">
+          <th>AMOUNT<sup>2</sup></th>
+          <td>-</td>
+          <td>↑ SPILLOVER ↑</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="cyn D">
+          <th>X</th>
+          <td>0</td>
+          <td>D3 = <span class="cyn">D2</span> +<br>
+          IF(<span class="red">B3</span>="forward",<span class=
+          "ylw">C3</span>,0)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="prp E">
+          <th>Y</th>
+          <td>0</td>
+          <td>E3 = <span class="prp">E2</span> +<br>
+          IF(<span class="red">B3</span>="up",<span class=
+          "ylw">-C3</span>,0) +<br>
+          IF(<span class="red">B3</span>="down",<span class=
+          "ylw">C3</span>,0)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr>
+          <th>OUTPUT</th>
+          <td>0</td>
+          <td>F3 = <span class="cyn">D3</span> * <span class=
+          "prp">E2</span></td>
+          <td>repeat →</td>
+        </tr>
+      </tbody>
+    </table><small>(2) I had to coerce the type of
+    <code>AMOUNT</code> in Google Sheets. I formatted the column as
+    a number.</small>
+    <h3 id="how-part-one-works">How Part One Works</h3>
+    <h4 id="split">SPLIT</h4>
+    <p>According to the rules, getting data into the right format
+    isn’t required. I’ve done it anyway using the
+    <code>SPLIT</code> formula. This function splits text into
+    <strong>multiple values</strong> with a separator. When a
+    function returns multiple values it “spills over”<sup>3</sup>
+    in neighboring cells.</p><small>(3) Spilling is my word. I
+    don’t know the official term for it.</small>
+    <table>
+      <tbody>
+        <tr class="blk">
+          <th>DATA</th>
+          <td>A2 = hi,my</td>
+          <td>A3 = name,is,slim shady</td>
+        </tr>
+        <tr class="red">
+          <th>SPLIT</th>
+          <td>B1 = SPLIT(<span class="blk">A1</span>,",") =&gt;<br>
+          hi</td>
+          <td>B2 = SPLIT(<span class="blk">A2</span>,",") =&gt;<br>
+          name</td>
+        </tr>
+        <tr class="ylw">
+          <th>SPILL</th>
+          <td>my</td>
+          <td>is</td>
+        </tr>
+        <tr class="cyn">
+          <th>MORE SPILL</th>
+          <td></td>
+          <td>slim shady</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 id="if-statements">IF Statements</h4>
+    <p>IF^{4} is a function returning the first value if the
+    boolean is TRUE, and the second if it is FALSE.</p><small>(4)
+    If you’re curious, there is an <code>elseif</code> substitute:
+    <code>IFS</code>.</small>
+    <h2 id="part-two">Part Two</h2>
+    <p>Part two re-interprets the moves <code>up</code> and
+    <code>down</code>. No longer do they change the <code>y</code>
+    coordinate, instead they change the <code>aim</code>.</p>
+    <ul>
+      <li><code>down</code> <em>increases</em> aim.</li>
+      <li><code>up</code> <em>decreases</em> aim.</li>
+      <li><code>forward</code> BOTH <em>increases</em> x by the
+      amount BUT ALSO <em>increases</em> y by <code>aim *
+      amount</code>.</li>
+    </ul>
+    <h3 id="solving-part-two">Solving Part Two</h3>
+    <p>Solving part two requires one extra column.</p>
+    <table>
+      <tbody>
+        <tr class="blk A">
+          <th>DATA</th>
+          <td>-</td>
+          <td>A3</td>
+          <td>...</td>
+        </tr>
+        <tr class="org B">
+          <th>MOVE</th>
+          <td>-</td>
+          <td>B3 = SPLIT(<span class="blk">A3</span>, " ")</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="prp C">
+          <th>UNITS</th>
+          <td>-</td>
+          <td>↑ SPILLOVER ↑</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="grn D">
+          <th>AIM</th>
+          <td>0</td>
+          <td>D3 = <span class="grn">D2</span> +<br>
+          IF(<span class="org">B3</span>="down",<span class=
+          "prp">C3</span>,0) +<br>
+          IF(<span class="org">B3</span>="up",<span class=
+          "prp">-C3</span>,0)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="blu E">
+          <th>X</th>
+          <td>0</td>
+          <td>E3 = <span class="blu">E2</span> +<br>
+          IF(<span class="org">B3</span>="forward",<span class=
+          "prp">C3</span>,0)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr class="mag F">
+          <th>Y</th>
+          <td>0</td>
+          <td>F3 = <span class="mag">F2</span> +<br>
+          IF(<span class="org">B3</span>="forward",<span class=
+          "prp">C3</span>*<span class="grn">D3</span>,0)</td>
+          <td>repeat →</td>
+        </tr>
+        <tr>
+          <th>OUTPUT</th>
+          <td>0</td>
+          <td>G3 = <span class="blu">E3</span>*<span class=
+          "mag">F3</span></td>
+          <td>repeat →</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>You may be interested in the <a href=
+    "../aoc2021/1.html">previous</a> or <a href=
+    "../aoc2021/3.html">next</a> day's solution.</p>
+  </div>
 </body>
-
 </html>

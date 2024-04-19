@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AOC Day 9 2021</title>
-    
-    <style type="text/css">body {
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <title>AOC Day 9 2021</title>
+  <style type="text/css">
+  body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  }
 
-/* General style. */
-.content {
+  /* General style. */
+  .content {
     box-sizing: border-box;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-}
+  }
 
-.content > * {
+  .content > * {
     margin-top: 20px;
     margin-bottom: 20px;
-}
+  }
 
-table {
+  table {
     border-collapse: collapse;
     font-family: monospace, monospace;
-}
+  }
 
-code {
+  code {
     font-family: monospace, monospace;
-}
+  }
 
-th {
+  th {
     font-weight: 600;
-}
+  }
 
-td, th {
+  td, th {
     text-align: left;
     padding: 10px;
     border: 1px solid #999;
-}
+  }
 
-.breadcrumb {
+  .breadcrumb {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     padding-left: 0;
-}
+  }
 
-.breadcrumb li {
+  .breadcrumb li {
     display: inline;
     white-space: nowrap;
-}
+  }
 
-.breadcrumb li + li:before {
+  .breadcrumb li + li:before {
     content: ">";
     padding: 0.25rem;
-}
+  }
 
-/* Sidenote layout. */
+  /* Sidenote layout. */
 
-@media (min-width: 921px) {
+  @media (min-width: 921px) {
     .content {
         box-sizing: border-box;
         max-width: unset;
@@ -90,344 +92,565 @@ td, th {
         margin-top: 0;
         margin-bottom: 0;
     }
-}
+  }
 
-sup {
+  sup {
     line-height: 0;
-}
-    </style>
-    
-    
-    <style type="text/css">
+  }
+  </style>
+  <style type="text/css">
         tr.sheets td {
     background-color: rgb(238, 241, 242);
-}
+  }
 
-tr span.blk,
-tr span.red,
-tr span.org,
-tr span.ylw,
-tr span.grn,
-tr span.cyn,
-tr span.blu,
-tr span.prp,
-tr span.mag {
+  tr span.blk,
+  tr span.red,
+  tr span.org,
+  tr span.ylw,
+  tr span.grn,
+  tr span.cyn,
+  tr span.blu,
+  tr span.prp,
+  tr span.mag {
     text-decoration: underline;
     text-decoration-thickness: 0.15em;
-}
+  }
 
-tr.blk th {
+  tr.blk th {
     background-color: rgb(0, 0, 0);
     color: white;
-}
+  }
 
-tr span.blk {
+  tr span.blk {
     text-decoration-color: rgb(0, 0, 0);
-}
+  }
 
-tr.red th {
+  tr.red th {
     background-color: rgb(210, 7, 24);
     color: white;
-}
+  }
 
-tr span.red {
+  tr span.red {
     text-decoration-color: rgb(210, 7, 24);
-}
+  }
 
-tr.org th {
+  tr.org th {
     background-color: rgb(238, 132, 63);
-}
+  }
 
-tr span.org {
+  tr span.org {
     text-decoration-color: rgb(238, 132, 63);
-}
+  }
 
-tr.ylw th {
+  tr.ylw th {
     background-color: rgb(249, 183, 66);
-}
+  }
 
-tr span.ylw {
+  tr span.ylw {
     text-decoration-color: rgb(249, 183, 66);
-}
+  }
 
-tr.grn th {
+  tr.grn th {
     background-color: rgb(90, 155, 76);
-}
+  }
 
-tr span.grn {
+  tr span.grn {
     text-decoration-color: rgb(90, 155, 76);
-}
+  }
 
-tr.cyn th {
+  tr.cyn th {
     background-color: rgb(46, 118, 129);
     color: white;
-}
+  }
 
-tr span.cyn {
+  tr span.cyn {
     text-decoration-color: rgb(46, 118, 129);
-}
+  }
 
-tr.blu th {
+  tr.blu th {
     background-color: rgb(0, 114, 205);
     color: white;
-}
+  }
 
-tr span.blu {
+  tr span.blu {
     text-decoration-color: rgb(0, 114, 205);
-}
+  }
 
-tr.prp th {
+  tr.prp th {
     background-color: rgb(88, 74, 153);
     color: white;
-}
+  }
 
-tr span.prp {
+  tr span.prp {
     text-decoration-color: rgb(88, 74, 152);
-}
+  }
 
-tr.mag th {
+  tr.mag th {
     background-color: rgb(163, 70, 109);
     color: white;
-}
+  }
 
-tr span.mag {
+  tr span.mag {
     text-decoration-color: rgb(163, 70, 109);
-}
+  }
 
-    </style>
-
+  </style>
 </head>
-
 <body>
-    <div class="content">
-        <ol class="breadcrumb">
-    <li><a href="../index.html">Mathias Kools</a></li>
-    <li><a href="../aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
-    <li class="active"><a href="../aoc2021/9.html">AOC Day 9 2021</a></li>
-</ol>
-    <h1><a href="https://adventofcode.com/2021/day/9">AOC Day 9</a> 2021</h1>
-    <p>This is part of a greater series about <a href="../aoc2021.html">solving advent of code with spreadsheets</a>.</p>
-
+  <div class="content">
+    <ol class="breadcrumb">
+      <li>
+        <a href="../index.html">Mathias Kools</a>
+      </li>
+      <li>
+        <a href="../aoc2021.html">Advent of Code 2021 in
+        Spreadsheets</a>
+      </li>
+      <li class="active">
+        <a href="../aoc2021/9.html">AOC Day 9 2021</a>
+      </li>
+    </ol>
+    <h1><a href="https://adventofcode.com/2021/day/9">AOC Day 9</a>
+    2021</h1>
+    <p>This is part of a greater series about <a href=
+    "../aoc2021.html">solving advent of code with
+    spreadsheets</a>.</p>
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#part-one">Part One</a>
       <ul>
-        <li><a href="#solving-part-one">Solving Part One</a></li>
-        <li><a href="#how-part-one-works">How Part One Works</a></li>
-      </ul>
-    </li>
-    <li><a href="#part-two">Part Two</a>
-      <ul>
-        <li><a href="#solving-part-two">Solving Part Two</a>
+        <li>
+          <a href="#part-one">Part One</a>
           <ul>
-            <li><a href="#borders-of-9">Borders of 9</a></li>
-            <li><a href="#formulas">Formulas</a></li>
+            <li>
+              <a href="#solving-part-one">Solving Part One</a>
+            </li>
+            <li>
+              <a href="#how-part-one-works">How Part One Works</a>
+            </li>
           </ul>
         </li>
-        <li><a href="#how-part-two-works">How Part Two Works</a>
+        <li>
+          <a href="#part-two">Part Two</a>
           <ul>
-            <li><a href="#google-sheets-circular-reference-detection-is-smart">Google Sheet&rsquo;s Circular Reference Detection is Smart</a></li>
+            <li>
+              <a href="#solving-part-two">Solving Part Two</a>
+              <ul>
+                <li>
+                  <a href="#borders-of-9">Borders of 9</a>
+                </li>
+                <li>
+                  <a href="#formulas">Formulas</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#how-part-two-works">How Part Two Works</a>
+              <ul>
+                <li>
+                  <a href=
+                  "#google-sheets-circular-reference-detection-is-smart">
+                  Google Sheet’s Circular Reference Detection is
+                  Smart</a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
+        <li>
+          <a href="#related-works">Related Works</a>
+        </li>
       </ul>
-    </li>
-    <li><a href="#related-works">Related Works</a></li>
-  </ul>
-</nav>
-
+    </nav>
     <h2 id="part-one">Part One</h2>
-<p>As always, read the problem text first.</p>
-<p>In summary, part one asks to identify “low cells” in a grid.
-A low cell has a value less than all cells next to it.
-The output takes all low cells, changes them by adding 1, and sums.</p>
-<h3 id="solving-part-one">Solving Part One</h3>
-<p>This solution requires multiple sheets.</p>
-<p>Given a map of data<sup>0</sup> &hellip;</p>
-<table><tbody>
-<tr><td>A1=6</td><td>A1=2</td><td>A1=3</td></tr>
-<tr><td>A1=7</td><td>A1=4</td><td>A1=5</td></tr>
-<tr><td>A1=6</td><td>A1=5</td><td>A1=9</td></tr>
-<tr class="blk sheets"><th>MAP</th><td></td><td></td></tr>
-</tbody></table>
-<small><p>(0) Each digit gets a cell via Python.</p>
-<pre tabindex="0"><code>python3 -c '
+    <p>As always, read the problem text first.</p>
+    <p>In summary, part one asks to identify “low cells” in a grid.
+    A low cell has a value less than all cells next to it. The
+    output takes all low cells, changes them by adding 1, and
+    sums.</p>
+    <h3 id="solving-part-one">Solving Part One</h3>
+    <p>This solution requires multiple sheets.</p>
+    <p>Given a map of data<sup>0</sup> …</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>A1=6</td>
+          <td>A1=2</td>
+          <td>A1=3</td>
+        </tr>
+        <tr>
+          <td>A1=7</td>
+          <td>A1=4</td>
+          <td>A1=5</td>
+        </tr>
+        <tr>
+          <td>A1=6</td>
+          <td>A1=5</td>
+          <td>A1=9</td>
+        </tr>
+        <tr class="blk sheets">
+          <th>MAP</th>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p><small>(0) Each digit gets a cell via Python.</small></p>
+    <pre tabindex="0"><small><code>python3 -c '
 import sys
-print(&quot;\n&quot;
-    .join([ &quot;,&quot;.join(ln.strip())
+print("\n"
+    .join([ ",".join(ln.strip())
         for ln in sys.stdin ]))
 ' &lt; data.txt | pbcopy
-</code></pre></small>
-<p>The first sheet finds low cells.</p>
-<table><tbody>
-<tr><td>A1=<br>
-AND(<span class="blk">MAP!A1</span> < <span class="blk">MAP!B1</span>,<br>
-<span class="blk">MAP!A1</span> < <span class="blk">MAP!A2</span>)</td>
-<td>B1=<br>
-AND(<span class="blk">MAP!B1</span> < <span class="blk">MAP!C1</span>,<br>
-<span class="blk">MAP!B1</span> < <span class="blk">MAP!B2</span>,<br>
-<span class="blk">MAP!B1</span> < A1)</td>
-<td>C1=AND(<br>
-<span class="blk">MAP!J1</span> < <span class="blk">MAP!J2</span>,<br>
-<span class="blk">MAP!J1</span> < I1)
-</td></tr>
-<tr><td>A2=AND(<br>
-<span class="blk">MAP!A2</span> < <span class="blk">MAP!B2</span>,<br>
-<span class="blk">MAP!A2</span> < <span class="blk">MAP!A3</span>,<br>
-<span class="blk">MAP!A2</span> < <span class="blk">MAP!A1</span>)</td>
-<td>B2=AND(<br>
-<span class="blk">MAP!B2</span> < <span class="blk">MAP!C2</span>,<br>
-<span class="blk">MAP!B2</span> < <span class="blk">MAP!B3</span>, <span class="blk">MAP!B2</span> < <span class="blk">MAP!B1</span>,<br>
-<span class="blk">MAP!B2</span> < <span class="blk">MAP!A2</span>)</td>
-<td>C2=AND(<br>
-<span class="blk">MAP!J2</span> < <span class="blk">MAP!I2</span>,<br>
-<span class="blk">MAP!J2</span> < <span class="blk">MAP!J3</span>,<br>
-<span class="blk">MAP!J2</span> < <span class="blk">MAP!J1</span>)</td></tr>
-<tr><td>A3=AND(<br>
-<span class="blk">MAP!A5</span> < <span class="blk">MAP!B5</span>,<br>
-<span class="blk">MAP!A5</span> < <span class="blk">MAP!A4</span>)</td>
-<td>B3=AND(<br>
-<span class="blk">MAP!I5</span> < <span class="blk">MAP!J5</span>,<br>
-<span class="blk">MAP!I5</span> < <span class="blk">MAP!I4</span>,<br>
-<span class="blk">MAP!I5</span> < <span class="blk">MAP!H5</span>)</td>
-<td>C3=AND(<br>
-<span class="blk">MAP!J5</span> < <span class="blk">MAP!I5</span>,<br>
-<span class="blk">MAP!J5</span> < <span class="blk">MAP!J4</span>)</td></tr>
-<tr class="red sheets"><td></td><th>LOW<sup>1</sup></th><td></td></tr>
-</tbody></table>
-<small>(1) Nine formulas handle the regular and corner cases.
-The input is large and requires dragging the side and middle cells.</small>
-<p>This sheet adds one to each cell.</p>
-<table><tbody>
-<tr><td>A1=<span class="blk">MAP!A1</span> + 1</td><td>← DRAG</td><td>...</td></tr>
-<tr><td>↑ DRAG</td><td>↑ DRAG</td><td>...</td></tr>
-<tr><td>...</td><td>...</td><td>...</td></tr>
-<tr class="ylw sheets"><td></td><td></td><th>RISK</th></tr>
-</tbody></table>
-<p>A SUMIF combines these sheets.</p>
-<table><tbody>
-<tr class="prp"><th>SUM</th><td>=SUMIF(<span class="red">LOW!A1:J5</span>, <span class="ylw">RISK!A5:J5</span>)</td></tr>
-</tbody></table>
-<h3 id="how-part-one-works">How Part One Works</h3>
-<p>This is the second day using multiple sheets.
-<a href='../aoc2021/5.html'>Check out the first.</a></p>
-<h2 id="part-two">Part Two</h2>
-<p>Part two asks for basins.
-Basins are groups of cells all “flowing” to one low cell.
-If a cell has a value of 9, it does not flow.
-Otherwise, it belongs to exactly one basin<sup>2</sup>.
-The output is the multiplication of the three largest basins&rsquo;s areas.</p>
-<p>A flow isn&rsquo;t defined.
-Maybe it means a path of values each lower than the previous.
-No plateaus (drawn below)!</p>
-<pre tabindex="0"><code>999999
+</code></small></pre>
+    <p>The first sheet finds low cells.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>A1=<br>
+          AND(<span class="blk">MAP!A1</span> &lt; <span class=
+          "blk">MAP!B1</span>,<br>
+          <span class="blk">MAP!A1</span> &lt; <span class=
+          "blk">MAP!A2</span>)</td>
+          <td>B1=<br>
+          AND(<span class="blk">MAP!B1</span> &lt; <span class=
+          "blk">MAP!C1</span>,<br>
+          <span class="blk">MAP!B1</span> &lt; <span class=
+          "blk">MAP!B2</span>,<br>
+          <span class="blk">MAP!B1</span> &lt; A1)</td>
+          <td>C1=AND(<br>
+          <span class="blk">MAP!J1</span> &lt; <span class=
+          "blk">MAP!J2</span>,<br>
+          <span class="blk">MAP!J1</span> &lt; I1)</td>
+        </tr>
+        <tr>
+          <td>A2=AND(<br>
+          <span class="blk">MAP!A2</span> &lt; <span class=
+          "blk">MAP!B2</span>,<br>
+          <span class="blk">MAP!A2</span> &lt; <span class=
+          "blk">MAP!A3</span>,<br>
+          <span class="blk">MAP!A2</span> &lt; <span class=
+          "blk">MAP!A1</span>)</td>
+          <td>B2=AND(<br>
+          <span class="blk">MAP!B2</span> &lt; <span class=
+          "blk">MAP!C2</span>,<br>
+          <span class="blk">MAP!B2</span> &lt; <span class=
+          "blk">MAP!B3</span>, <span class="blk">MAP!B2</span> &lt;
+          <span class="blk">MAP!B1</span>,<br>
+          <span class="blk">MAP!B2</span> &lt; <span class=
+          "blk">MAP!A2</span>)</td>
+          <td>C2=AND(<br>
+          <span class="blk">MAP!J2</span> &lt; <span class=
+          "blk">MAP!I2</span>,<br>
+          <span class="blk">MAP!J2</span> &lt; <span class=
+          "blk">MAP!J3</span>,<br>
+          <span class="blk">MAP!J2</span> &lt; <span class=
+          "blk">MAP!J1</span>)</td>
+        </tr>
+        <tr>
+          <td>A3=AND(<br>
+          <span class="blk">MAP!A5</span> &lt; <span class=
+          "blk">MAP!B5</span>,<br>
+          <span class="blk">MAP!A5</span> &lt; <span class=
+          "blk">MAP!A4</span>)</td>
+          <td>B3=AND(<br>
+          <span class="blk">MAP!I5</span> &lt; <span class=
+          "blk">MAP!J5</span>,<br>
+          <span class="blk">MAP!I5</span> &lt; <span class=
+          "blk">MAP!I4</span>,<br>
+          <span class="blk">MAP!I5</span> &lt; <span class=
+          "blk">MAP!H5</span>)</td>
+          <td>C3=AND(<br>
+          <span class="blk">MAP!J5</span> &lt; <span class=
+          "blk">MAP!I5</span>,<br>
+          <span class="blk">MAP!J5</span> &lt; <span class=
+          "blk">MAP!J4</span>)</td>
+        </tr>
+        <tr class="red sheets">
+          <td></td>
+          <th>LOW<sup>1</sup></th>
+          <td></td>
+        </tr>
+      </tbody>
+    </table><small>(1) Nine formulas handle the regular and corner
+    cases. The input is large and requires dragging the side and
+    middle cells.</small>
+    <p>This sheet adds one to each cell.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>A1=<span class="blk">MAP!A1</span> + 1</td>
+          <td>← DRAG</td>
+          <td>...</td>
+        </tr>
+        <tr>
+          <td>↑ DRAG</td>
+          <td>↑ DRAG</td>
+          <td>...</td>
+        </tr>
+        <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+        <tr class="ylw sheets">
+          <td></td>
+          <td></td>
+          <th>RISK</th>
+        </tr>
+      </tbody>
+    </table>
+    <p>A SUMIF combines these sheets.</p>
+    <table>
+      <tbody>
+        <tr class="prp">
+          <th>SUM</th>
+          <td>=SUMIF(<span class="red">LOW!A1:J5</span>,
+          <span class="ylw">RISK!A5:J5</span>)</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="how-part-one-works">How Part One Works</h3>
+    <p>This is the second day using multiple sheets. <a href=
+    '../aoc2021/5.html'>Check out the first.</a></p>
+    <h2 id="part-two">Part Two</h2>
+    <p>Part two asks for basins. Basins are groups of cells all
+    “flowing” to one low cell. If a cell has a value of 9, it does
+    not flow. Otherwise, it belongs to exactly one
+    basin<sup>2</sup>. The output is the multiplication of the
+    three largest basins’s areas.</p>
+    <p>A flow isn’t defined. Maybe it means a path of values each
+    lower than the previous. No plateaus (drawn below)!</p>
+    <pre tabindex="0"><code>999999
 955549
 999999
-</code></pre><h3 id="solving-part-two">Solving Part Two</h3>
-<h4 id="borders-of-9">Borders of 9</h4>
-<p>Handcrafting 8 corner-case formulas is good for content.
-Part two is more complex.
-Boxing in the input with 9&rsquo;s<sup>2</sup> enables perfecting one inner equation.</p>
-<small>(2) I like to visualize this like the walls of a sandbox.
-All the water is going to flow inwards.</small>
-<h4 id="formulas">Formulas</h4>
-<p>Here’s an example map with a border of 9’s.</p>
-<table><tbody>
-<tr><td>9</td><td>9</td><td>9</td><td>9</td></tr>
-<tr><td>9</td><td>B2</td><td>C2</td><td>9</td></tr>
-<tr><td>9</td><td>B3</td><td>C3</td><td>9</td></tr>
-<tr><td>9</td><td>9</td><td>9</td><td>9</td></tr>
-<tr class="sheets blk"><th>MAP</th><td></td><td></td><td></td></tr>
-</tbody></table>
-<p>The next sheet is the fabled single inner formula.
-Each cell displays the basin it belongs to.
-Cells &hellip;</p>
-<ul>
-<li>Are basinless (FALSE) if the value is 9.</li>
-<li>Use the basin name of a next-door cell of lower value.</li>
-<li>Or if it&rsquo;s a low cell, create their own basin name.</li>
-</ul>
-<table><tbody>
-<tr><td></td><td></td><td></td><td></td></tr>
-<tr><td></td>
-<td>B2=IFS(<span class="blk">MAP!B2</span> = 9, FALSE,<br>
-<span class="blk">MAP!B2 > MAP!A2</span>, <span class="red">A2</span>,<br>
-<span class="blk">MAP!B2 > MAP!B1</span>, <span class="red">B1</span>,<br>
-<span class="blk">MAP!B2 > MAP!C2</span>, <span class="red">C2</span>,<br>
-<span class="blk">MAP!B2 > MAP!B3</span>, <span class="red">B3</span>,<br>
-TRUE, COLUMN() + 100 * ROW())</td>
-<td>← DRAG</td><td>...</td></tr>
-<tr><td></td><td>↑ DRAG</td><td>↑ DRAG</td><td>...</td>
-<tr class="sheets red"><td></td><th>BASIN</th><td></td><td></td></tr>
-</tbody></table>
-<p>The final sheet fetches basin&rsquo;s names and areas.</p>
-<table><tbody>
-<tr class="ylw">
-<th>BASIN NAMES</th>
-<td>A2=UNIQUE(FLATTEN<sup>3</sup>(BASIN!B2:D))</td>
-<td>← SPILL</td></tr>
-<tr class="cyn">
-<th>AREA</th>
-<td>B2=COUNTIF(<br>
-FLATTEN(<span class="red">BASIN!B$2:D</span>),<br>
-"="&<span class="ylw">A2</span>)</td>
-<td>← SPILL</td></tr>
-</tbody></table>
-<small>(3) <a href="https://support.google.com/docs/answer/10307761?hl=en">FLATTEN</a> smushes 2D data into 1D.
-<a href="https://apidock.com/ruby/Array/flatten">Ruby has it</a>.</small>
-<p>These columns mark borders as one basin named &ldquo;FALSE&rdquo;.
-Throwing this out helps find the true three biggest basins.</p>
-<table><tbody>
-<tr class="blu"><th>ISNT BORDER</th><td>C2=NOT(<span class="ylw">A2</span>=FALSE)</td><td>← DRAG</td></tr>
-<tr class="prp"><th>LARGEST</th><td>D2=LARGE(FILTER(<span class="cyn">B$2:B</span>, <span class="blu">C$2:C</span>), 1)</td><td></td></tr>
-<tr class="prp"><th>2ND L</th><td>E2=LARGE(FILTER(<span class="cyn">B$2:B</span>, <span class="blu">C$2:C</span>), 2)</td><td></td></tr>
-<tr class="prp"><th>3RD</th><td>F2=above but 3rd biggest</td><td></td></tr>
-<tr class="mag"><th>OUT</th><td>G2=<span class="prp">D2*E2*F2</span></td></tr>
-</tbody></table>
-<h3 id="how-part-two-works">How Part Two Works</h3>
-<h4 id="google-sheets-circular-reference-detection-is-smart">Google Sheet&rsquo;s Circular Reference Detection is Smart</h4>
-<table><tbody>
-<tr><th>DATA</th><td>A2=1</td></tr>
-<tr><th>REF 1</th><td>B2=A2+1 evaluates to 2</td></tr>
-<tr><th>REF OF REF 1</th><td>C2=B2+1 evaluates to 3</td></tr>
-</tbody></table>
-<p>Finding the evaluation order of a chain of cells is hard<sup>4</sup>.
-The Google Sheets team has performed a greater miracle: detecting circular references.</p>
-<small>(4) It may seem mundane.
-But Northeastern teaches <a href="https://course.ccs.neu.edu/cs3500f19/hw_05_assignment.html">OOD students to fear it</a>.</small>
-<table><tbody>
-<tr><td>A1=B1 => #REF! (Circular dependency detected.)</td></tr>
-<tr><td>B1=A1 => #REF!</td></tr>
-</tbody></table>
-<p>This detection is careful. For example, these cells that reference one another work.</p>
-<table><tbody>
-<tr><td>A1=IF(FALSE, B1, 1) => 1</td></tr>
-<tr><td>B1=IF(FALSE, A1, 2) => 2</td></tr>
-</tbody></table>
-<p>This restraint seems to be “dynamic”.
-For example, the following table errors out ONLY with no data.
-If there’s a value present in one of DATA1 or DATA2,
-NON EMPTY DATA 1 and 2 equal that value.</p>
-<table><tbody>
-<tr class="red"><th>DATA1</th><td>A2</td></tr>
-<tr class="blu"><th>DATA2</th><td>B2</td></tr>
-<tr class="prp"><th>NONEMPTY DATA1</th><td>C2=IF(ISBLANK(<span class="red">A2</span>), <span class="cyn">D2</span>, <span class="red">A2</span>)</td></tr>
-<tr class="cyn"><th>NONEMPTY DATA2</th><td>D2=IF(ISBLANK(<span class="blu">B2</span>), <span class="prp">C2</span>, <span class="blu">B2</span>)</td></tr>
-</tbody></table>
-<p>This is an incredible advantage.
-Google Sheets finds the individual basin cells that evaluate to a name.
-It then propagates the names out.</p>
-<h2 id="related-works">Related Works</h2>
-<p>I found another advent of coder.
-They were doing challenges at the other end of the tech stack.
-Check out <a href="https://pgaleone.eu/tensorflow/2022/01/01/advent-of-code-tensorflow-day-9/">their solution to this problem in TensorFlow</a>.</p>
-
-
-    
-        <p>You may be interested in the
-            <a href="../aoc2021/8.html">previous</a> day's solution.</p>
-    
-
-    </div>
+</code></pre>
+    <h3 id="solving-part-two">Solving Part Two</h3>
+    <h4 id="borders-of-9">Borders of 9</h4>
+    <p>Handcrafting 8 corner-case formulas is good for content.
+    Part two is more complex. Boxing in the input with
+    9’s<sup>2</sup> enables perfecting one inner
+    equation.</p><small>(2) I like to visualize this like the walls
+    of a sandbox. All the water is going to flow inwards.</small>
+    <h4 id="formulas">Formulas</h4>
+    <p>Here’s an example map with a border of 9’s.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>9</td>
+          <td>9</td>
+          <td>9</td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>B2</td>
+          <td>C2</td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>B3</td>
+          <td>C3</td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>9</td>
+          <td>9</td>
+          <td>9</td>
+        </tr>
+        <tr class="sheets blk">
+          <th>MAP</th>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>The next sheet is the fabled single inner formula. Each cell
+    displays the basin it belongs to. Cells …</p>
+    <ul>
+      <li>Are basinless (FALSE) if the value is 9.</li>
+      <li>Use the basin name of a next-door cell of lower
+      value.</li>
+      <li>Or if it’s a low cell, create their own basin name.</li>
+    </ul>
+    <table>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>B2=IFS(<span class="blk">MAP!B2</span> = 9,
+          FALSE,<br>
+          <span class="blk">MAP!B2 &gt; MAP!A2</span>, <span class=
+          "red">A2</span>,<br>
+          <span class="blk">MAP!B2 &gt; MAP!B1</span>, <span class=
+          "red">B1</span>,<br>
+          <span class="blk">MAP!B2 &gt; MAP!C2</span>, <span class=
+          "red">C2</span>,<br>
+          <span class="blk">MAP!B2 &gt; MAP!B3</span>, <span class=
+          "red">B3</span>,<br>
+          TRUE, COLUMN() + 100 * ROW())</td>
+          <td>← DRAG</td>
+          <td>...</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>↑ DRAG</td>
+          <td>↑ DRAG</td>
+          <td>...</td>
+        </tr>
+        <tr class="sheets red">
+          <td></td>
+          <th>BASIN</th>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>The final sheet fetches basin’s names and areas.</p>
+    <table>
+      <tbody>
+        <tr class="ylw">
+          <th>BASIN NAMES</th>
+          <td>A2=UNIQUE(FLATTEN<sup>3</sup>(BASIN!B2:D))</td>
+          <td>← SPILL</td>
+        </tr>
+        <tr class="cyn">
+          <th>AREA</th>
+          <td>B2=COUNTIF(<br>
+          FLATTEN(<span class="red">BASIN!B$2:D</span>),<br>
+          "="&<span class="ylw">A2</span>)</td>
+          <td>← SPILL</td>
+        </tr>
+      </tbody>
+    </table><small>(3) <a href=
+    "https://support.google.com/docs/answer/10307761?hl=en">FLATTEN</a>
+    smushes 2D data into 1D. <a href=
+    "https://apidock.com/ruby/Array/flatten">Ruby has
+    it</a>.</small>
+    <p>These columns mark borders as one basin named “FALSE”.
+    Throwing this out helps find the true three biggest basins.</p>
+    <table>
+      <tbody>
+        <tr class="blu">
+          <th>ISNT BORDER</th>
+          <td>C2=NOT(<span class="ylw">A2</span>=FALSE)</td>
+          <td>← DRAG</td>
+        </tr>
+        <tr class="prp">
+          <th>LARGEST</th>
+          <td>D2=LARGE(FILTER(<span class="cyn">B$2:B</span>,
+          <span class="blu">C$2:C</span>), 1)</td>
+          <td></td>
+        </tr>
+        <tr class="prp">
+          <th>2ND L</th>
+          <td>E2=LARGE(FILTER(<span class="cyn">B$2:B</span>,
+          <span class="blu">C$2:C</span>), 2)</td>
+          <td></td>
+        </tr>
+        <tr class="prp">
+          <th>3RD</th>
+          <td>F2=above but 3rd biggest</td>
+          <td></td>
+        </tr>
+        <tr class="mag">
+          <th>OUT</th>
+          <td>G2=<span class="prp">D2*E2*F2</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="how-part-two-works">How Part Two Works</h3>
+    <h4 id="google-sheets-circular-reference-detection-is-smart">
+    Google Sheet’s Circular Reference Detection is Smart</h4>
+    <table>
+      <tbody>
+        <tr>
+          <th>DATA</th>
+          <td>A2=1</td>
+        </tr>
+        <tr>
+          <th>REF 1</th>
+          <td>B2=A2+1 evaluates to 2</td>
+        </tr>
+        <tr>
+          <th>REF OF REF 1</th>
+          <td>C2=B2+1 evaluates to 3</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Finding the evaluation order of a chain of cells is
+    hard<sup>4</sup>. The Google Sheets team has performed a
+    greater miracle: detecting circular references.</p><small>(4)
+    It may seem mundane. But Northeastern teaches <a href=
+    "https://course.ccs.neu.edu/cs3500f19/hw_05_assignment.html">OOD
+    students to fear it</a>.</small>
+    <table>
+      <tbody>
+        <tr>
+          <td>A1=B1 =&gt; #REF! (Circular dependency
+          detected.)</td>
+        </tr>
+        <tr>
+          <td>B1=A1 =&gt; #REF!</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This detection is careful. For example, these cells that
+    reference one another work.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>A1=IF(FALSE, B1, 1) =&gt; 1</td>
+        </tr>
+        <tr>
+          <td>B1=IF(FALSE, A1, 2) =&gt; 2</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This restraint seems to be “dynamic”. For example, the
+    following table errors out ONLY with no data. If there’s a
+    value present in one of DATA1 or DATA2, NON EMPTY DATA 1 and 2
+    equal that value.</p>
+    <table>
+      <tbody>
+        <tr class="red">
+          <th>DATA1</th>
+          <td>A2</td>
+        </tr>
+        <tr class="blu">
+          <th>DATA2</th>
+          <td>B2</td>
+        </tr>
+        <tr class="prp">
+          <th>NONEMPTY DATA1</th>
+          <td>C2=IF(ISBLANK(<span class="red">A2</span>),
+          <span class="cyn">D2</span>, <span class=
+          "red">A2</span>)</td>
+        </tr>
+        <tr class="cyn">
+          <th>NONEMPTY DATA2</th>
+          <td>D2=IF(ISBLANK(<span class="blu">B2</span>),
+          <span class="prp">C2</span>, <span class=
+          "blu">B2</span>)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This is an incredible advantage. Google Sheets finds the
+    individual basin cells that evaluate to a name. It then
+    propagates the names out.</p>
+    <h2 id="related-works">Related Works</h2>
+    <p>I found another advent of coder. They were doing challenges
+    at the other end of the tech stack. Check out <a href=
+    "https://pgaleone.eu/tensorflow/2022/01/01/advent-of-code-tensorflow-day-9/">
+    their solution to this problem in TensorFlow</a>.</p>
+    <p>You may be interested in the <a href=
+    "../aoc2021/8.html">previous</a> day's solution.</p>
+  </div>
 </body>
-
 </html>

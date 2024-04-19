@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent of Code 2021 in Spreadsheets</title>
-    
-    <style type="text/css">body {
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <title>Advent of Code 2021 in Spreadsheets</title>
+  <style type="text/css">
+  body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  }
 
-/* General style. */
-.content {
+  /* General style. */
+  .content {
     box-sizing: border-box;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-}
+  }
 
-.content > * {
+  .content > * {
     margin-top: 20px;
     margin-bottom: 20px;
-}
+  }
 
-table {
+  table {
     border-collapse: collapse;
     font-family: monospace, monospace;
-}
+  }
 
-code {
+  code {
     font-family: monospace, monospace;
-}
+  }
 
-th {
+  th {
     font-weight: 600;
-}
+  }
 
-td, th {
+  td, th {
     text-align: left;
     padding: 10px;
     border: 1px solid #999;
-}
+  }
 
-.breadcrumb {
+  .breadcrumb {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     padding-left: 0;
-}
+  }
 
-.breadcrumb li {
+  .breadcrumb li {
     display: inline;
     white-space: nowrap;
-}
+  }
 
-.breadcrumb li + li:before {
+  .breadcrumb li + li:before {
     content: ">";
     padding: 0.25rem;
-}
+  }
 
-/* Sidenote layout. */
+  /* Sidenote layout. */
 
-@media (min-width: 921px) {
+  @media (min-width: 921px) {
     .content {
         box-sizing: border-box;
         max-width: unset;
@@ -90,121 +92,153 @@ td, th {
         margin-top: 0;
         margin-bottom: 0;
     }
-}
+  }
 
-sup {
+  sup {
     line-height: 0;
-}
-    </style>
-    
-    
-    
+  }
+  </style>
 </head>
-
 <body>
-    <div class="content">
-        <ol class="breadcrumb">
-    <li><a href="./index.html">Mathias Kools</a></li>
-    <li class="active"><a href="./aoc2021.html">Advent of Code 2021 in Spreadsheets</a></li>
-</ol>
-    <h1 id="advent-of-code-2021-in-spreadsheets">Advent of Code 2021 in Spreadsheets</h1>
-<p><a href="https://adventofcode.com/2021/about">Advent of Code is &ldquo;an advent calendar of small programming puzzles&rdquo;</a>.
-Each puzzle comes with an example input and output.
-The site generates a unique challenge file<sup>0</sup> for each user,
-and rewards them for solving it.</p>
-<small>(0) These files dwarf the example input and output.
-This tests that solutions can scale.</small>
-<p>Programmers race on time to get onto a global leaderboard.
-I&rsquo;m more interested in racing towards the bottom of technology stacks.
-I want to answer the question, <strong>can you do a full advent of code calendar in <a href="https://en.wikipedia.org/wiki/Google_Sheets">Google Sheets</a><sup>1</sup></strong>?</p>
-<small>(1) Why not excel? I don&rsquo;t own an office license. 😛</small>
-<p>I encourage you to browse the advent of code challenges.
-Each puzzle gets a story fitting the advent of code lore.</p>
-<h2 id="rules">Rules</h2>
-<p>Solving &ldquo;in Google Sheets&rdquo; is too permissive.
-Google Sheets provides functionality to <a href="https://developers.google.com/apps-script/guides/sheets">write JavaScript</a>.</p>
-<ul>
-<li>Scripts in Google Sheets are NOT allowed.</li>
-<li><strong>Interesting</strong> work needs to be done with <strong>cell formulas</strong>.
-<ul>
-<li>Cleaning input is NOT interesting.
-<ul>
-<li>For example if data is <a href="https://adventofcode.com/2020/day/4">randomly spread across multiple lines</a>.</li>
-</ul>
-</li>
-<li>Getting data into the spreadsheet is NOT interesting.
-<ul>
-<li>For example if an <a href="https://adventofcode.com/2020/day/3">&ldquo;ASCII map&rdquo; of characters is the input</a>.
-Getting each character to a distinct cell is not the interesting part of the problem.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="progress">Progress</h2>
-<table>
-<thead>
-<tr>
-<th>Sun</th>
-<th>Mon</th>
-<th>Tue</th>
-<th>Wed</th>
-<th>Thu</th>
-<th>Fri</th>
-<th>Sat</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td><a href="./aoc2021/1.html">1</a></td>
-<td><a href="./aoc2021/2.html">2</a></td>
-<td><a href="./aoc2021/3.html">3</a></td>
-<td><a href="./aoc2021/4.html">4</a></td>
-</tr>
-<tr>
-<td><a href="./aoc2021/5.html">5</a></td>
-<td><a href="./aoc2021/6.html">6</a></td>
-<td><a href="./aoc2021/7.html">7</a></td>
-<td><a href="./aoc2021/8.html">8</a></td>
-<td><a href="./aoc2021/9.html">9</a></td>
-<td>10</td>
-<td>11</td>
-</tr>
-<tr>
-<td>12</td>
-<td>13</td>
-<td>14</td>
-<td>15</td>
-<td>16</td>
-<td>17</td>
-<td>18</td>
-</tr>
-<tr>
-<td>19</td>
-<td>20</td>
-<td>21</td>
-<td>22</td>
-<td>23</td>
-<td>24</td>
-<td>25</td>
-</tr>
-<tr>
-<td>❄️</td>
-<td>❄️</td>
-<td>❄️</td>
-<td>❄️</td>
-<td>❄️</td>
-<td>❄️</td>
-<td>❄️</td>
-</tr>
-</tbody>
-</table>
-
-
-    </div>
+  <div class="content">
+    <ol class="breadcrumb">
+      <li>
+        <a href="./index.html">Mathias Kools</a>
+      </li>
+      <li class="active">
+        <a href="./aoc2021.html">Advent of Code 2021 in
+        Spreadsheets</a>
+      </li>
+    </ol>
+    <h1 id="advent-of-code-2021-in-spreadsheets">Advent of Code
+    2021 in Spreadsheets</h1>
+    <p><a href="https://adventofcode.com/2021/about">Advent of Code
+    is “an advent calendar of small programming puzzles”</a>. Each
+    puzzle comes with an example input and output. The site
+    generates a unique challenge file<sup>0</sup> for each user,
+    and rewards them for solving it.</p><small>(0) These files
+    dwarf the example input and output. This tests that solutions
+    can scale.</small>
+    <p>Programmers race on time to get onto a global leaderboard.
+    I’m more interested in racing towards the bottom of technology
+    stacks. I want to answer the question, <strong>can you do a
+    full advent of code calendar in <a href=
+    "https://en.wikipedia.org/wiki/Google_Sheets">Google
+    Sheets</a><sup>1</sup></strong>?</p><small>(1) Why not excel? I
+    don’t own an office license. 😛</small>
+    <p>I encourage you to browse the advent of code challenges.
+    Each puzzle gets a story fitting the advent of code lore.</p>
+    <h2 id="rules">Rules</h2>
+    <p>Solving “in Google Sheets” is too permissive. Google Sheets
+    provides functionality to <a href=
+    "https://developers.google.com/apps-script/guides/sheets">write
+    JavaScript</a>.</p>
+    <ul>
+      <li>Scripts in Google Sheets are NOT allowed.</li>
+      <li>
+        <strong>Interesting</strong> work needs to be done with
+        <strong>cell formulas</strong>.
+        <ul>
+          <li>Cleaning input is NOT interesting.
+            <ul>
+              <li>For example if data is <a href=
+              "https://adventofcode.com/2020/day/4">randomly spread
+              across multiple lines</a>.
+              </li>
+            </ul>
+          </li>
+          <li>Getting data into the spreadsheet is NOT interesting.
+            <ul>
+              <li>For example if an <a href=
+              "https://adventofcode.com/2020/day/3">“ASCII map” of
+              characters is the input</a>. Getting each character
+              to a distinct cell is not the interesting part of the
+              problem.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="progress">Progress</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <a href="./aoc2021/1.html">1</a>
+          </td>
+          <td>
+            <a href="./aoc2021/2.html">2</a>
+          </td>
+          <td>
+            <a href="./aoc2021/3.html">3</a>
+          </td>
+          <td>
+            <a href="./aoc2021/4.html">4</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="./aoc2021/5.html">5</a>
+          </td>
+          <td>
+            <a href="./aoc2021/6.html">6</a>
+          </td>
+          <td>
+            <a href="./aoc2021/7.html">7</a>
+          </td>
+          <td>
+            <a href="./aoc2021/8.html">8</a>
+          </td>
+          <td>
+            <a href="./aoc2021/9.html">9</a>
+          </td>
+          <td>10</td>
+          <td>11</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>13</td>
+          <td>14</td>
+          <td>15</td>
+          <td>16</td>
+          <td>17</td>
+          <td>18</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td>20</td>
+          <td>21</td>
+          <td>22</td>
+          <td>23</td>
+          <td>24</td>
+          <td>25</td>
+        </tr>
+        <tr>
+          <td>❄️</td>
+          <td>❄️</td>
+          <td>❄️</td>
+          <td>❄️</td>
+          <td>❄️</td>
+          <td>❄️</td>
+          <td>❄️</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
-
 </html>
