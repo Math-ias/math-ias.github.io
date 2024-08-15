@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Advent of Code 2021 in Spreadsheets on Mathias Kools</title>
-    <link>http://matee.us/aoc2021.html</link>
+    <link>http://math-ias.github.io/aoc2021.html</link>
     <description>Recent content in Advent of Code 2021 in Spreadsheets on Mathias Kools</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://matee.us/aoc2021/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://math-ias.github.io/aoc2021/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AOC Day 8 2021</title>
-      <link>http://matee.us/aoc2021/8.html</link>
+      <link>http://math-ias.github.io/aoc2021/8.html</link>
       <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/8.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/8.html</guid>
       <description>Part One AND Part Two As always, read the problem text first.
 In summary, this problem requires a process to unscramble segments and numbers. Each line of input contains two pieces of data &amp;hellip;
  The 7-segment display representation of all ten digits in a random order. Four of any of these digits. The number these digits build is a desired output. Part one asks for the count of specific numbers.</description>
@@ -20,10 +20,10 @@ In summary, this problem requires a process to unscramble segments and numbers. 
     
     <item>
       <title>AOC Day 2 2021</title>
-      <link>http://matee.us/aoc2021/2.html</link>
+      <link>http://math-ias.github.io/aoc2021/2.html</link>
       <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/2.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/2.html</guid>
       <description>Part One As always, read the problem text first. In summary, the input is a list of movement commands. The format of the data is &amp;lt;direction&amp;gt; &amp;lt;amount&amp;gt; where direction can be forward, down, and up0.
 (0) NOTE there is no backwards. There are sometimes unsaid invariants. &amp;lt;amount&amp;gt; is always a positive integer in my challenge input. Starting at (0,0) the objective is to figure out the final position.
  forward increases x.</description>
@@ -31,20 +31,20 @@ In summary, this problem requires a process to unscramble segments and numbers. 
     
     <item>
       <title>AOC Day 3 2021</title>
-      <link>http://matee.us/aoc2021/3.html</link>
+      <link>http://math-ias.github.io/aoc2021/3.html</link>
       <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/3.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/3.html</guid>
       <description>Foreword There was a lot of repetitive work in this challenge. Easy enough in sheets but not easy on readers. Particularly on the number of bits &amp;hellip;
  The author&amp;rsquo;s examples use 5. The challenge input used 12. The written solution will demo 3.  Part One As always, read the problem text first. In summary, the input is a list of binary numbers (of the same length). The goal is to find, for each binary place, the most and least common values.</description>
     </item>
     
     <item>
       <title>AOC Day 1 2021</title>
-      <link>http://matee.us/aoc2021/1.html</link>
+      <link>http://math-ias.github.io/aoc2021/1.html</link>
       <pubDate>Thu, 30 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/1.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/1.html</guid>
       <description>Part One Read part one from the advent of code website.0 The input is a line-separated list of numbers. The goal is to count how many numbers are greater than the previous one.
 (0) This is the easiest way for me to navigate Advent of Code copyright. Solving Part One This challenge was easy with spreadsheets.1
 (1) This was a confidence I came to regret.  DATA A2 A3 ...  INCREASE- B3 = blk{A3  A2}repeat → OUTPUT C3 = COUNTIF(red{B3:B},&#34;</description>
@@ -52,10 +52,10 @@ In summary, this problem requires a process to unscramble segments and numbers. 
     
     <item>
       <title>AOC Day 4 2021</title>
-      <link>http://matee.us/aoc2021/4.html</link>
+      <link>http://math-ias.github.io/aoc2021/4.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/4.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/4.html</guid>
       <description>Part One AND Part Two This one is pretty funny. The author has managed to squeeze bingo into the story.
 The input is both a list of numbers and boards. The goal is to figure out at which number call-out a board bingos. Part one asks for the board that bingos first. Part two asks for the one that bingos last.
 Some notes &amp;hellip;
@@ -64,10 +64,10 @@ Some notes &amp;hellip;
     
     <item>
       <title>AOC Day 5 2021</title>
-      <link>http://matee.us/aoc2021/5.html</link>
+      <link>http://math-ias.github.io/aoc2021/5.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/5.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/5.html</guid>
       <description>Part One and Two As always, read the problem text first. In summary, the input is a list of line segments made by two points. The goal is to count the number of points where at least two lines overlap.
 The data uses some simplifications &amp;hellip;
  Each line is horizontal, vertical, or diagonal (slope of 1 or -1)0. Everything happens on integer coordinates. Every line fits within a known square box.</description>
@@ -75,20 +75,20 @@ The data uses some simplifications &amp;hellip;
     
     <item>
       <title>AOC Day 6 2021</title>
-      <link>http://matee.us/aoc2021/6.html</link>
+      <link>http://math-ias.github.io/aoc2021/6.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/6.html</guid>
-      <description>AOC Day 6 2021 This is part of a greater series about solving advent of code with spreadsheets.
- Part One AND Part Two  Solving Part One and Part Two How Part One and Part Two Work  SPLIT into COUNTIF       Part One AND Part Two As always, read the problem text first. In summary, the goal is to model the growth of splitting fish.</description>
+      <guid>http://math-ias.github.io/aoc2021/6.html</guid>
+      <description>Part One AND Part Two As always, read the problem text first. In summary, the goal is to model the growth of splitting fish. At 0 days away from splitting one fish becomes two. One of the new fish is 6 days away from splitting and the second is 8 days away.
+The output to part one is the total number of fish on day 80. Part two is the total number of fish on day 256.</description>
     </item>
     
     <item>
       <title>AOC Day 7 2021</title>
-      <link>http://matee.us/aoc2021/7.html</link>
+      <link>http://math-ias.github.io/aoc2021/7.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/7.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/7.html</guid>
       <description>Part One And Two As always, read the problem text first. In summary, part one and two are optimization problems.
 In part one the goal is to find a number (X) that minimizes the sum of distances to elements in a set (A) ∑|A - X|. The goal of part two is to minimize the square distance0 ∑((A - X)^2 + |A - X|)/2.
 (0) This exact formula comes from finite arithmetic series.</description>
@@ -96,10 +96,10 @@ In part one the goal is to find a number (X) that minimizes the sum of distances
     
     <item>
       <title>AOC Day 9 2021</title>
-      <link>http://matee.us/aoc2021/9.html</link>
+      <link>http://math-ias.github.io/aoc2021/9.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://matee.us/aoc2021/9.html</guid>
+      <guid>http://math-ias.github.io/aoc2021/9.html</guid>
       <description>Part One As always, read the problem text first.
 In summary, part one asks to identify “low cells” in a grid. A low cell has a value less than all cells next to it. The output takes all low cells, changes them by adding 1, and sums.
 Solving Part One This solution requires multiple sheets.
