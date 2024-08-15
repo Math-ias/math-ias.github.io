@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -267,15 +269,17 @@
     <h2 id="part-one">Part One</h2>
     <p>Read part one from the advent of code website.<sup>0</sup>
     The input is a line-separated list of numbers. The goal is to
-    count how many numbers are greater than the previous
-    one.</p><small>(0) This is the easiest way for me to navigate
-    <a href=
-    "https://www.reddit.com/r/adventofcode/comments/e4mkjq/comment/f9dy1e7/?utm_source=share&amp;utm_medium=web2x&amp;context=3">
-    Advent of Code copyright</a>.</small>
+    count how many numbers are greater than the previous one.</p>
+    <div class="small">
+      (0) This is the easiest way for me to navigate <a href=
+      "https://www.reddit.com/r/adventofcode/comments/e4mkjq/comment/f9dy1e7/?utm_source=share&amp;utm_medium=web2x&amp;context=3">
+      Advent of Code copyright</a>.
+    </div>
     <h3 id="solving-part-one">Solving Part One</h3>
-    <p>This challenge was easy with
-    spreadsheets.<sup>1</sup></p><small>(1) This was a confidence I
-    came to regret.</small>
+    <p>This challenge was easy with spreadsheets.<sup>1</sup></p>
+    <div class="small">
+      (1) This was a confidence I came to regret.
+    </div>
     <table>
       <tbody>
         <tr class="blk A">
@@ -310,19 +314,23 @@
     <p>Generally, each column is like a “stage” of the program.
     Some stages rely on previous ones. To make these connections
     clear, columns and their formula references are
-    colored<sup>2</sup>.</p><small>(2) The colors themselves come
-    from Google Sheets. I ripped them using <a href=
-    "https://superuser.com/a/372919">OSX’s Digital Color
-    Meter</a>.</small>
+    colored<sup>2</sup>.</p>
+    <div class="small">
+      (2) The colors themselves come from Google Sheets. I ripped
+      them using <a href="https://superuser.com/a/372919">OSX’s
+      Digital Color Meter</a>.
+    </div>
     <h4 id="repeat">Repeat</h4>
     <p>Formulas reference other cells by column (named with a
     letter A-Z), and by row (a number 1-2000). To copy formulas to
     other cells the user “drags”<sup>3</sup> that cell over the row
     or column. When copied like this the cell formula updates to
-    keep the same “relative” references.</p><small>(3) Power users
-    know to double click instead of drag. This will copy the
-    formula to the entire column as long as there’s data to the
-    left. This series forced me to learn.</small>
+    keep the same “relative” references.</p>
+    <div class="small">
+      (3) Power users know to double click instead of drag. This
+      will copy the formula to the entire column as long as there’s
+      data to the left. This series forced me to learn.
+    </div>
     <p>For example …</p>
     <ul>
       <li>If a formula uses the cell to its left <code>= A2 +
@@ -459,16 +467,20 @@
     </table>
     <h5 id="boolean-values">Boolean Values</h5>
     <p>Cells can have non-numeric data types<sup>4</sup>. My advent
-    of code solutions rely mostly on numbers and
-    booleans.</p><small>(4) <a href=
-    "https://www.theverge.com/2020/8/6/21355674/human-genes-rename-microsoft-excel-misreading-dates">
-    Types are finicky</a>.</small>
+    of code solutions rely mostly on numbers and booleans.</p>
+    <div class="small">
+      (4) <a href=
+      "https://www.theverge.com/2020/8/6/21355674/human-genes-rename-microsoft-excel-misreading-dates">
+      Types are finicky</a>.
+    </div>
     <p>Operators like <code>&gt;</code>, <code>&lt;</code>, and
     <code>=</code><sup>5</sup> produce booleans. In the
     <code>INCREASE</code> column I use <code>&gt;</code> to compare
-    the current number to the previous number.</p><small>(5) Only
-    one equal sign! It is not <code>==</code> like in a lot of
-    programming languages.</small>
+    the current number to the previous number.</p>
+    <div class="small">
+      (5) Only one equal sign! It is not <code>==</code> like in a
+      lot of programming languages.
+    </div>
     <h5 id="formulas-on-ranges">Formulas on Ranges</h5>
     <p>Cell ranges are continuous blocks of cells. To reference
     …</p>
@@ -477,7 +489,10 @@
       <code>A1:A4</code><sup>6</sup>.</li>
       <li>The range starting at cell <code>A4</code> and going
       until the end of the column, use <code>A4:A</code>.</li>
-    </ul><small>(6) Cell ranges are <em>inclusive</em>.</small>
+    </ul>
+    <div class="small">
+      (6) Cell ranges are <em>inclusive</em>.
+    </div>
     <p>Some spreadsheet functions can act on cell ranges.
     <code>COUNTIF</code> counts the number of items in a range
     matching a “criterion”. Some example string criteria are …</p>
@@ -497,9 +512,11 @@
     </ul>
     <h2 id="part-two">Part Two</h2>
     <p>Part two asks<sup>7</sup> to count the number of 3-wide
-    sliding windows with a sum greater than the previous
-    one.</p><small>(7) Part two isn’t readable from the website
-    until you do part one.</small>
+    sliding windows with a sum greater than the previous one.</p>
+    <div class="small">
+      (7) Part two isn’t readable from the website until you do
+      part one.
+    </div>
     <p>To understand 3-wide sliding windows think …</p>
     <ul>
       <li>Ruby Enumerable’s <a href=
@@ -556,9 +573,12 @@
           <td></td>
         </tr>
       </tbody>
-    </table><small>(8) You can simplify away the <code>3SUM</code>
-    column. Do the sum inline in the <code>INCREASE</code> column
-    <code>A3 + A4 + A5 &gt; A2 + A3 + A4</code>.</small>
+    </table>
+    <div class="small">
+      (8) You can simplify away the <code>3SUM</code> column. Do
+      the sum inline in the <code>INCREASE</code> column <code>A3 +
+      A4 + A5 &gt; A2 + A3 + A4</code>.
+    </div>
     <p>You may be interested in the <a href=
     "../aoc2021/2.html">next</a> day's solution.</p>
   </div>

@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -177,10 +179,12 @@
     <h2 id="formulating-the-game">Formulating the Game</h2>
     <h3 id="finding-an-item">Finding an Item</h3>
     <p>The original idea was to create a game about clicking as
-    fast as possible<sup>0</sup>.</p><small>(0) To pay homage to
-    <a href=
-    "https://animalcrossing.fandom.com/wiki/Gracie%27s_car">the car
-    washing minigame</a> from Animal Crossing.</small>
+    fast as possible<sup>0</sup>.</p>
+    <div class="small">
+      (0) To pay homage to <a href=
+      "https://animalcrossing.fandom.com/wiki/Gracie%27s_car">the
+      car washing minigame</a> from Animal Crossing.
+    </div>
     <p>Objects like …</p>
     <ul>
       <li>noteblocks</li>
@@ -191,25 +195,31 @@
     redstone signal or observer). One flaw of using these blocks
     though is that, like the backspace key, they repeat input on
     their own. This happens 5 times per second<sup>1</sup> with the
-    mouse button down.</p><small>(1) Measured in creative: in 60
-    seconds my avatar flipped a trapdoor 302 times.</small>
+    mouse button down.</p>
+    <div class="small">
+      (1) Measured in creative: in 60 seconds my avatar flipped a
+      trapdoor 302 times.
+    </div>
     <p>While it’s possible to click faster than this auto rate (I
     could do 7 times per second<sup>2</sup>) it is not by a fair
     margin. With too high a floor performance players might not
-    feel compelled to compete.</p><small>(2) Clicking on my
-    trackpad. Any old online click speed test can measure this rate
-    for you.</small>
+    feel compelled to compete.</p>
+    <div class="small">
+      (2) Clicking on my trackpad. Any old online click speed test
+      can measure this rate for you.
+    </div>
     <p>The project’s saving grace came in the form of a
     BlockEntity, or rather the item in that BlockEntity. The
     buttons to change page in written books take <strong>discrete
     clicks</strong>.</p>
     <p>Substituting lecterns in place of levers and trapdoors
     revealed a greater issue. <strong>Observers can only make so
-    many observations per
-    second</strong>.<sup>3</sup></p><small>(3) I built and
-    destroyed many redstone contraptions before discovering this
-    problem. I’ve omitted those failures, but know it took days if
-    not a week to find this “bug”.</small>
+    many observations per second</strong>.<sup>3</sup></p>
+    <div class="small">
+      (3) I built and destroyed many redstone contraptions before
+      discovering this problem. I’ve omitted those failures, but
+      know it took days if not a week to find this “bug”.
+    </div>
     <table>
       <thead>
         <tr>
@@ -263,20 +273,26 @@
           <td>49</td>
         </tr>
       </tbody>
-    </table><small>(4) Tested in game with a small lineup of blocks
-    <code>barrel &lt; dropper &lt; observer &lt; lectern</code>.
-    <a href="clickr/Clickr.java">This program</a> clicked an exact
-    number of times per second using the <a href=
-    "https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/Robot.html">
-    java.awt.Robot</a> class.</small>
+    </table>
+    <div class="small">
+      (4) Tested in game with a small lineup of blocks <code>barrel
+      &lt; dropper &lt; observer &lt; lectern</code>. <a href=
+      "clickr/Clickr.java">This program</a> clicked an exact number
+      of times per second using the <a href=
+      "https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/Robot.html">
+      java.awt.Robot</a> class.
+    </div>
     <p>One solution to this limitation is to think about the point
     of measuring clicks. Instead of counting each one it’s enough
     to track progress towards a clicking goal. A <a href=
     "https://minecraft.fandom.com/wiki/Lectern#Redstone_signal">lectern’s
     redstone signal</a> by comparator or surprisingly without
-    one<sup>5</sup> gives just that.</p><small>(5) This was another
-    surprising property that ruined prototypes. Lecterns emit a
-    signal lasting a single game-tick. That’s hard to spot!</small>
+    one<sup>5</sup> gives just that.</p>
+    <div class="small">
+      (5) This was another surprising property that ruined
+      prototypes. Lecterns emit a signal lasting a single
+      game-tick. That’s hard to spot!
+    </div>
     <h2 id="how-it-works">How It Works</h2>
     <h3 id="hoppers">Hoppers</h3>
     <p>Only two hoppers lie at the center of this machine.</p>
@@ -302,8 +318,11 @@
 |               |          |
 |               |          |
 |---------------|----------|
-</code></pre><small>(6) Let me know what you think about
-representing redstone only with unicode. Is it enough?</small>
+</code></pre>
+    <div class="small">
+      (6) Let me know what you think about representing redstone
+      only with unicode. Is it enough?
+    </div>
     <h3 id="states">States</h3>
     <p>The stopwatch has four desired states.</p>
     <ul>
@@ -341,17 +360,18 @@ representing redstone only with unicode. Is it enough?</small>
         </ul>
       </li>
     </ul>
-    <p><small>(7) The init state isn’t necessary. The state IS
-    useful for simple input protection. It was desired to
-    …</small></p>
-    <ul>
-      <li><small>stop the player from starting a game mid-clean-up
-      (score artificially high).</small></li>
-      <li><small>stop the player from starting a game from the
-      middle of the book in the lectern (score artificially low).
-      Checking both of these from the same state complicates the
-      redstone (logical AND gate).</small></li>
-    </ul>
+    <div class="small">
+      <p>(7) The init state isn’t necessary. The state IS useful
+      for simple input protection. It was desired to …</p>
+      <ul>
+        <li>stop the player from starting a game mid-clean-up
+        (score artificially high).</li>
+        <li>stop the player from starting a game from the middle of
+        the book in the lectern (score artificially low). Checking
+        both of these from the same state complicates the redstone
+        (logical AND gate).</li>
+      </ul>
+    </div>
     <p>Four different states requires at least two bits of memory.
     This is best achieved with <a href=
     "https://minecraft.fandom.com/wiki/Redstone_circuits/Memory#RS_latches">
@@ -424,13 +444,15 @@ representing redstone only with unicode. Is it enough?</small>
         </tr>
       </tbody>
     </table>
-    <p><small>(8) NOTE two things about this table …</small></p>
-    <ul>
-      <li><small>The freeze bit disables the display hopper. The
-      ready bit doesn’t matter.</small></li>
-      <li><small>The feed hopper is only enabled when both the
-      freeze bit and ready bit read true.</small></li>
-    </ul>
+    <div class="small">
+      <p>(8) NOTE two things about this table …</p>
+      <ul>
+        <li>The freeze bit disables the display hopper. The ready
+        bit doesn’t matter.</li>
+        <li>The feed hopper is only enabled when both the freeze
+        bit and ready bit read true.</li>
+      </ul>
+    </div>
     <p>This is possible in redstone by …</p>
     <ul>
       <li>running the positive end of the freeze bit into the
@@ -482,8 +504,11 @@ representing redstone only with unicode. Is it enough?</small>
           <li>After the display hopper is emptied out.</li>
         </ul>
       </li>
-    </ol><small>(9) Compare this with the state and bit table.
-    Every transition changes only one bit.</small>
+    </ol>
+    <div class="small">
+      (9) Compare this with the state and bit table. Every
+      transition changes only one bit.
+    </div>
     <p>This is possible in redstone by …</p>
     <ol>
       <li>A <a href=
@@ -520,14 +545,18 @@ representing redstone only with unicode. Is it enough?</small>
           items in the display hopper).</li>
         </ul>
       </li>
-    </ol><small>(10) This could be done without long redstone lines
-    by using comparators. I prefer long lines since they have no
-    delay.</small>
+    </ol>
+    <div class="small">
+      (10) This could be done without long redstone lines by using
+      comparators. I prefer long lines since they have no delay.
+    </div>
     <p>These redstone choices also mirror the transitions to the
     other side of the state table. In each case the effect is rare
-    if not impossible to trigger<sup>11</sup>.</p><small>(11) I
-    chose these 4 transitions precisely because they were safe on
-    the other side of the table.</small>
+    if not impossible to trigger<sup>11</sup>.</p>
+    <div class="small">
+      (11) I chose these 4 transitions precisely because they were
+      safe on the other side of the table.
+    </div>
     <p>For example, the transition from <strong>finished</strong>
     back to <strong>playing</strong> if the display hopper is empty
     is OK. Players are not expected to finish the game with zero
@@ -594,9 +623,11 @@ representing redstone only with unicode. Is it enough?</small>
 |---------------|----------|
 </code></pre>
     <p>In edge detectors using hoppers the item used is a
-    sword.<sup>12</sup></p><small>(12) With normal items, this
-    would limit signal strength to 1. Swords produce a signal of
-    strength 3.</small>
+    sword.<sup>12</sup></p>
+    <div class="small">
+      (12) With normal items, this would limit signal strength to
+      1. Swords produce a signal of strength 3.
+    </div>
     <h3 id="the-book-itself">The Book Itself</h3>
     <p>The current page (P) and total number of pages (M)
     determines the signal strength of a book in a lectern.</p>
@@ -608,19 +639,20 @@ representing redstone only with unicode. Is it enough?</small>
         100 pages in Java Edition</a>.
       </li>
     </ul>
-    <p><small>(13) I read this formula like this …</small></p>
-    <ul>
-      <li><small><code>M - 1</code> Number of clicks to get to
-      start to end (start on page 1).</small></li>
-      <li><small><code>P - 1</code> Number of clicks so
-      far.</small></li>
-      <li><small><code>(P - 1) / (M - 1)</code> Percentage progress
-      made.</small></li>
-      <li><small><code>FLOOR(14 (P - 1) / (M - 1))</code> Amount of
-      progress made so far, counted in fourteenths, and rounded
-      down.</small></li>
-      <li><small>I ignore that 1. 😂</small></li>
-    </ul>
+    <div class="small">
+      <p>(13) I read this formula like this …</p>
+      <ul>
+        <li><code>M - 1</code> Number of clicks to get to start to
+        end (start on page 1).</li>
+        <li><code>P - 1</code> Number of clicks so far.</li>
+        <li><code>(P - 1) / (M - 1)</code> Percentage progress
+        made.</li>
+        <li><code>FLOOR(14 (P - 1) / (M - 1))</code> Amount of
+        progress made so far, counted in fourteenths, and rounded
+        down.</li>
+        <li>I ignore that 1. 😂</li>
+      </ul>
+    </div>
     <p>This formula has some effects …</p>
     <ul>
       <li>The <strong>“first fourteenth”</strong> of progress
@@ -710,23 +742,20 @@ representing redstone only with unicode. Is it enough?</small>
         </tr>
       </tbody>
     </table>
-    <p><small>(14) This is how I derived the first power 2 page
-    from the total number of pages.</small></p>
-    <ul>
-      <li><small>Which <code>P</code> is the first to make
-      <code>FLOOR(1 + 14 (P - 1) / (M - 1) )</code> equal
-      2?</small></li>
-      <li><small>In other words, the smallest <code>P</code> where
-      <code>FLOOR(14 (P - 1) / (M - 1))</code> equals
-      1.</small></li>
-      <li><small>Smallest P such that <code>(P - 1) / (M -
-      1)</code> is greater than or equal to
-      <code>1/14</code>.</small></li>
-      <li><small><code>(P - 1) = CEILING((M - 1) /
-      14)</code></small></li>
-      <li><small><code>P = CEILING((M - 1) / 14) +
-      1</code></small></li>
-    </ul>
+    <div class="small">
+      <p>(14) This is how I derived the first power 2 page from the
+      total number of pages.</p>
+      <ul>
+        <li>Which <code>P</code> is the first to make <code>FLOOR(1
+        + 14 (P - 1) / (M - 1) )</code> equal 2?</li>
+        <li>In other words, the smallest <code>P</code> where
+        <code>FLOOR(14 (P - 1) / (M - 1))</code> equals 1.</li>
+        <li>Smallest P such that <code>(P - 1) / (M - 1)</code> is
+        greater than or equal to <code>1/14</code>.</li>
+        <li><code>(P - 1) = CEILING((M - 1) / 14)</code></li>
+        <li><code>P = CEILING((M - 1) / 14) + 1</code></li>
+      </ul>
+    </div>
     <p>The written book placed in the lectern should have exactly
     97 pages. The “starting line” then is page 7. The stopwatch
     starts when the player reaches page 8.</p>
@@ -790,11 +819,13 @@ representing redstone only with unicode. Is it enough?</small>
     characters can combine to make a cool progress
     bar<sup>15</sup>. The <a href=
     "https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/Robot.html">
-    java.awt.Robot</a> class can write them.</p><small>(15) I used
-    the medium shade and full <a href=
-    "https://en.wikipedia.org/wiki/Block_Elements">block
-    elements</a> because in the Minecraft font they rend with the
-    same width.</small>
+    java.awt.Robot</a> class can write them.</p>
+    <div class="small">
+      (15) I used the medium shade and full <a href=
+      "https://en.wikipedia.org/wiki/Block_Elements">block
+      elements</a> because in the Minecraft font they rend with the
+      same width.
+    </div>
     <p><a href="clickr/ClickrBookWriter.java">The attached
     program</a> also does a little extra on the first page. Random
     <a href=
@@ -894,10 +925,11 @@ representing redstone only with unicode. Is it enough?</small>
       "color: #5555FF">▙</span><span style=
       "color: #FFFF55">▟</span>
     </div><br>
-    <small>(16) Getting this art into HTML was tricky. I used
-    <a href="clickr/minecraft_color_code_converter.py">another
-    script</a> to convert the Minecraft text to
-    <code>&lt;span&gt;</code>’s.</small>
+    <div class="small">
+      (16) Getting this art into HTML was tricky. I used <a href=
+      "clickr/minecraft_color_code_converter.py">another script</a>
+      to convert the Minecraft text to <code>&lt;span&gt;</code>’s.
+    </div>
     <p>The progress bars look like this.</p>
     <pre tabindex="0"><code>   ████████████
    ████████████

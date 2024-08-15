@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -293,14 +295,16 @@
         </tr>
       </tbody>
     </table>
-    <p><small>(0) Each digit gets a cell via Python.</small></p>
-    <pre tabindex="0"><small><code>python3 -c '
+    <div class="small">
+      <p>(0) Each digit gets a cell via Python.</p>
+      <pre tabindex="0"><code>python3 -c '
 import sys
 print("\n"
     .join([ ",".join(ln.strip())
         for ln in sys.stdin ]))
 ' &lt; data.txt | pbcopy
-</code></small></pre>
+</code></pre>
+    </div>
     <p>The first sheet finds low cells.</p>
     <table>
       <tbody>
@@ -370,9 +374,12 @@ print("\n"
           <td></td>
         </tr>
       </tbody>
-    </table><small>(1) Nine formulas handle the regular and corner
-    cases. The input is large and requires dragging the side and
-    middle cells.</small>
+    </table>
+    <div class="small">
+      (1) Nine formulas handle the regular and corner cases. The
+      input is large and requires dragging the side and middle
+      cells.
+    </div>
     <p>This sheet adds one to each cell.</p>
     <table>
       <tbody>
@@ -427,9 +434,11 @@ print("\n"
     <h4 id="borders-of-9">Borders of 9</h4>
     <p>Handcrafting 8 corner-case formulas is good for content.
     Part two is more complex. Boxing in the input with
-    9’s<sup>2</sup> enables perfecting one inner
-    equation.</p><small>(2) I like to visualize this like the walls
-    of a sandbox. All the water is going to flow inwards.</small>
+    9’s<sup>2</sup> enables perfecting one inner equation.</p>
+    <div class="small">
+      (2) I like to visualize this like the walls of a sandbox. All
+      the water is going to flow inwards.
+    </div>
     <h4 id="formulas">Formulas</h4>
     <p>Here’s an example map with a border of 9’s.</p>
     <table>
@@ -528,11 +537,13 @@ print("\n"
           <td>← SPILL</td>
         </tr>
       </tbody>
-    </table><small>(3) <a href=
-    "https://support.google.com/docs/answer/10307761?hl=en">FLATTEN</a>
-    smushes 2D data into 1D. <a href=
-    "https://apidock.com/ruby/Array/flatten">Ruby has
-    it</a>.</small>
+    </table>
+    <div class="small">
+      (3) <a href=
+      "https://support.google.com/docs/answer/10307761?hl=en">FLATTEN</a>
+      smushes 2D data into 1D. <a href=
+      "https://apidock.com/ruby/Array/flatten">Ruby has it</a>.
+    </div>
     <p>These columns mark borders as one basin named “FALSE”.
     Throwing this out helps find the true three biggest basins.</p>
     <table>
@@ -586,10 +597,12 @@ print("\n"
     </table>
     <p>Finding the evaluation order of a chain of cells is
     hard<sup>4</sup>. The Google Sheets team has performed a
-    greater miracle: detecting circular references.</p><small>(4)
-    It may seem mundane. But Northeastern teaches <a href=
-    "https://course.ccs.neu.edu/cs3500f19/hw_05_assignment.html">OOD
-    students to fear it</a>.</small>
+    greater miracle: detecting circular references.</p>
+    <div class="small">
+      (4) It may seem mundane. But Northeastern teaches <a href=
+      "https://course.ccs.neu.edu/cs3500f19/hw_05_assignment.html">OOD
+      students to fear it</a>.
+    </div>
     <table>
       <tbody>
         <tr>

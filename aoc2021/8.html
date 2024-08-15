@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -357,16 +359,18 @@
         </tr>
       </tbody>
     </table>
-    <p><small>(0) C or F refers to the segments originally mapped
-    out in the problem text.</small></p>
-    <pre tabindex="0"><small><code> aaaa
+    <div class="small">
+      <p>(0) C or F refers to the segments originally mapped out in
+      the problem text.</p>
+      <pre tabindex="0"><code> aaaa
 b    c
 b    c
  dddd
 e    f
 e    f
  gggg
-</code></small></pre>
+</code></pre>
+    </div>
     <p>A is the one segment that distinguishes 7 from 1. A is
     recoverable with <a href=
     "https://stackoverflow.com/a/60139378">StackExchange’s marc
@@ -498,13 +502,15 @@ e    f
         </tr>
       </tbody>
     </table>
-    <p><small>(1) If either <code>AQ2</code> or <code>AR2</code>
-    are errors then their addition will be an error. This is more
-    concise than using an <code>OR</code> and two
-    <code>ISERROR</code>s.</small></p>
-    <p><small>(2) This is another new trick. Formulas <a href=
-    "https://support.google.com/docs/answer/6208276?hl=en">can
-    return arrays</a> that spillover.</small></p>
+    <div class="small">
+      <p>(1) If either <code>AQ2</code> or <code>AR2</code> are
+      errors then their addition will be an error. This is more
+      concise than using an <code>OR</code> and two
+      <code>ISERROR</code>s.</p>
+      <p>(2) This is another new trick. Formulas <a href=
+      "https://support.google.com/docs/answer/6208276?hl=en">can
+      return arrays</a> that spillover.</p>
+    </div>
     <p>The same kind of test works to figure out 0, this digit
     lacks D.</p>
     <table>

@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 

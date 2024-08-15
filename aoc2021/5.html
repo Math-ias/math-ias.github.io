@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -263,12 +265,14 @@
         </ul>
       </li>
     </ul>
-    <p><small>(0) My co-worker helped me identify this when I was
-    overthinking part one. <a href=
-    "https://alienryderflex.com/intersect/">Arbitrary line segment
-    intersection</a> is hard.</small></p>
-    <p><small>(1) My challenge input is contained to <code>(10,
-    10)</code> and <code>(989, 989)</code>.</small></p>
+    <div class="small">
+      <p>(0) My co-worker helped me identify this when I was
+      overthinking part one. <a href=
+      "https://alienryderflex.com/intersect/">Arbitrary line
+      segment intersection</a> is hard.</p>
+      <p>(1) My challenge input is contained to <code>(10,
+      10)</code> and <code>(989, 989)</code>.</p>
+    </div>
     <p>Part one asks to count unique intersections of horizontal
     and vertical lines only. Part two removes that filter.</p>
     <h3 id="solving-part-one-and-part-two">Solving Part One and
@@ -288,9 +292,12 @@
 ..........
 ..........
 222111....
-</code></pre><small>(2) This view made the goal very clear. Lines
-on-top of each other intersect at an infinite number of points.
-They intersect with integer x’s and y’s only a few times.</small>
+</code></pre>
+    <div class="small">
+      (2) This view made the goal very clear. Lines on-top of each
+      other intersect at an infinite number of points. They
+      intersect with integer x’s and y’s only a few times.
+    </div>
     <p>The line segments are parsed into the following columns.</p>
     <table>
       <tbody>
@@ -472,11 +479,13 @@ They intersect with integer x’s and y’s only a few times.</small>
     “batch” maps<sup>3</sup>. I chose to deal in 50 columns by 1000
     row slices. Each slice took about 20 seconds so I was through
     20 of them in no time<sup>4</sup>.</p>
-    <p><small>(3) Batches are not perfect. I miscopied the result
-    of one of them. It took hours (and writing a python solution)
-    to figure this out.</small></p>
-    <p><small>(4) “No time” compared to <a href=
-    "../aoc2021/4.html">day 4</a>.</small></p>
+    <div class="small">
+      <p>(3) Batches are not perfect. I miscopied the result of one
+      of them. It took hours (and writing a python solution) to
+      figure this out.</p>
+      <p>(4) “No time” compared to <a href="../aoc2021/4.html">day
+      4</a>.</p>
+    </div>
     <h4 id="unpacking-countifs">Unpacking COUNTIFS</h4>
     <p>There are four <code>COUNTIFS</code> in each cell of the
     map. Each of them …</p>
@@ -498,9 +507,12 @@ They intersect with integer x’s and y’s only a few times.</small>
       is within the line’s MAXX(column N).</li>
       <li><code>$O$2:$O,"="&amp;$AA2</code> checks the y of the
       cell is equal to the line’s y (column O is MINY).</li>
-    </ul><small>(5) In these formulas <a href=
-    "https://support.google.com/docs/answer/3093592?hl=en"><code>&</code>
-    is shorthand for string concatenation</a>.</small>
+    </ul>
+    <div class="small">
+      (5) In these formulas <a href=
+      "https://support.google.com/docs/answer/3093592?hl=en"><code>&</code>
+      is shorthand for string concatenation</a>.
+    </div>
     <p>The second formula is for diagonals with a slope of 1. It
     too uses four criteria.</p>
     <ul>

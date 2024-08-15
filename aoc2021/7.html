@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -251,11 +253,12 @@
     <p>In part one the goal is to find a number (X) that minimizes
     the sum of distances to elements in a set (A) <code>∑|A -
     X|</code>. The goal of part two is to minimize the square
-    distance<sup>0</sup> <code>∑((A - X)^2 + |A -
-    X|)/2</code>.</p><small>(0) This exact formula comes from
-    <a href=
-    "https://en.wikipedia.org/wiki/Arithmetic_progression#Derivation">
-    finite arithmetic series</a>.</small>
+    distance<sup>0</sup> <code>∑((A - X)^2 + |A - X|)/2</code>.</p>
+    <div class="small">
+      (0) This exact formula comes from <a href=
+      "https://en.wikipedia.org/wiki/Arithmetic_progression#Derivation">
+      finite arithmetic series</a>.
+    </div>
     <p>The final output is the minimized sum.</p>
     <h3 id="solving-part-one-and-two">Solving Part One and Two</h3>
     <p>The comma separated list of elements goes into A2.</p>
@@ -278,8 +281,10 @@
     </table>
     <p>Without guesses, write into the value of the
     <code>GUESS</code> column to binary search for the optimal
-    number<sup>1</sup>.</p><small>(1) I “prove” why later in this
-    web page.</small>
+    number<sup>1</sup>.</p>
+    <div class="small">
+      (1) I “prove” why later in this web page.
+    </div>
     <p>All of the elements are turned into rows like this.</p>
     <table>
       <tr class="blk C">
@@ -289,8 +294,10 @@
         <td>← spill</td>
         <td>etc</td>
       </tr>
-    </table><small>(2) <code>TRANSPOSE</code> makes the spill go
-    into rows.</small>
+    </table>
+    <div class="small">
+      (2) <code>TRANSPOSE</code> makes the spill go into rows.
+    </div>
     <p>Distances are then collected like this in part one.</p>
     <table>
       <tr class="cyn D">
@@ -341,17 +348,22 @@
     "https://en.wikipedia.org/wiki/Unimodality">unimodal
     graph</a><sup>3</sup>. This can be <a href=
     "https://en.wikipedia.org/wiki/Ternary_search">traversed
-    quickly</a> to find a maximum or minimum.</p><small>(3) Well to
-    be precise it’s unimodal when flipped upside-down.</small>
+    quickly</a> to find a maximum or minimum.</p>
+    <div class="small">
+      (3) Well to be precise it’s unimodal when flipped
+      upside-down.
+    </div>
     <p>Total cost versus choice of center has been graphed for the
     two parts below<sup>4</sup>. This constitutes a “visual
     proof”<sup>5</sup> of “unimodality”.</p>
-    <p><small>(4) I used <a href="7.py">a small python script</a>
-    and the <a href=
-    "https://leather.readthedocs.io/en/0.3.3/index.html">leather
-    library</a> to make these.</small></p>
-    <p><small>(5) I’m sure there’s a better proof. The graphs are
-    curvy suggesting a nice formula.</small></p>
+    <div class="small">
+      <p>(4) I used <a href="7.py">a small python script</a> and
+      the <a href=
+      "https://leather.readthedocs.io/en/0.3.3/index.html">leather
+      library</a> to make these.</p>
+      <p>(5) I’m sure there’s a better proof. The graphs are curvy
+      suggesting a nice formula.</p>
+    </div>
     <div>
       <svg width="600" height="350" version="1.1" xmlns=
       "http://www.w3.org/2000/svg">

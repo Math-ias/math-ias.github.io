@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -260,26 +262,29 @@
     Part Two</h3>
     <p>This solution goes only halfway<sup>0</sup>. The spreadsheet
     is a “bingo calculator”. It takes a list of numbers and a
-    <em>single</em> board and returns the winning
-    score.</p><small>(0) Sometimes it’s not worth overcomplicating
-    the solution and just doing some pen and paper.</small>
+    <em>single</em> board and returns the winning score.</p>
+    <div class="small">
+      (0) Sometimes it’s not worth overcomplicating the solution
+      and just doing some pen and paper.
+    </div>
     <p>I copy-pasted each board in and wrote the round number and
     score down<sup>1</sup>. I then <code>MATCH</code>ed for the
     lowest and highest number of moves. These could then be
     <code>INDEX</code>ed into scores.</p>
-    <p><small>(1) Very quickly how I automated that …</small></p>
-    <ul>
-      <li><small>The input was not “copied in”. It used dynamic
-      lookup.</small></li>
-      <li>
-        <small>A series of cells were set to equal to the
-        calculator results.</small>
-        <ul>
-          <li><small>To “freeze” a result, I copied and then pasted
-          “values only”.</small></li>
-        </ul>
-      </li>
-    </ul>
+    <div class="small">
+      <p>(1) Very quickly how I automated that …</p>
+      <ul>
+        <li>The input was not “copied in”. It used dynamic
+        lookup.</li>
+        <li>A series of cells were set to equal to the calculator
+        results.
+          <ul>
+            <li>To “freeze” a result, I copied and then pasted
+            “values only”.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <p>The bingo board has this representation. There will be many
     absolute references ($) to these cells.</p>
     <table>
@@ -336,9 +341,12 @@
     </table>
     <p>Each row starts with a number call-out. Columns for each
     bingo square represent if they are or ever were called
-    out<sup>2</sup>.</p><small>(2) This requires 25 columns to do.
-    Quickly the sheet is out of single letters for columns. After
-    column Z the next one is AA then AB.</small>
+    out<sup>2</sup>.</p>
+    <div class="small">
+      (2) This requires 25 columns to do. Quickly the sheet is out
+      of single letters for columns. After column Z the next one is
+      AA then AB.
+    </div>
     <table>
       <tbody>
         <tr class="blk J">
@@ -507,12 +515,14 @@
     of two lists, one list must spread out over rows, and the other
     must spread out over columns. This can be
     unwieldy<sup>4</sup>.</p>
-    <p><small>(3) With the exception of what can be squeezed in a
-    string criteria in a <code>SUMIF</code> or <code>COUNTIF</code>
-    call.</small></p>
-    <p><small>(4) It is a pain to <a href=
-    "https://webapps.stackexchange.com/a/109811">add a specific
-    number of columns</a>.</small></p>
+    <div class="small">
+      <p>(3) With the exception of what can be squeezed in a string
+      criteria in a <code>SUMIF</code> or <code>COUNTIF</code>
+      call.</p>
+      <p>(4) It is a pain to <a href=
+      "https://webapps.stackexchange.com/a/109811">add a specific
+      number of columns</a>.</p>
+    </div>
     <p>You may be interested in the <a href=
     "../aoc2021/3.html">previous</a> or <a href=
     "../aoc2021/5.html">next</a> day's solution.</p>

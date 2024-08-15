@@ -77,7 +77,7 @@
         align-items: start;
     }
     
-    .content > :not(small) {
+    .content > :not(.small) {
         box-sizing: border-box;
         width: 600px;
         margin-top: 0;
@@ -85,12 +85,14 @@
         grid-column-start: 1;
     }
     
-    .content > small {
+    .content > .small {
         box-sizing: border-box;
         width: 300px;
         grid-column-start: 2;
         margin-top: 0;
         margin-bottom: 0;
+
+        font-size: smaller;
     }
   }
 
@@ -289,9 +291,12 @@
     <code>epsilon</code>.</p>
     <h3 id="solving-part-one">Solving Part One</h3>
     <p>Input parsing is boring and repetitive.
-    Skip!<sup>0</sup></p><small>(0) For the curious. SPLIT uses
-    <strong>non-empty</strong> separators. Instead use <a href=
-    "https://support.google.com/docs/answer/3094129?hl=en"><code>MID</code></a>.</small>
+    Skip!<sup>0</sup></p>
+    <div class="small">
+      (0) For the curious. SPLIT uses <strong>non-empty</strong>
+      separators. Instead use <a href=
+      "https://support.google.com/docs/answer/3094129?hl=en"><code>MID</code></a>.
+    </div>
     <p>Data is ready as the following columns.</p>
     <table>
       <tbody>
@@ -382,9 +387,11 @@
           round to 0.</li>
         </ul>
       </li>
-    </ul><small>(1) Sometimes it’s worth proving a program.
-    Sometimes I roll with faulty assumptions and it works
-    out.</small>
+    </ul>
+    <div class="small">
+      (1) Sometimes it’s worth proving a program. Sometimes I roll
+      with faulty assumptions and it works out.
+    </div>
     <p>We ignore the particular case that <code>A = Z</code>. The
     author didn’t provide guidance on ties. And in fact no inputs
     need tie-breaking.</p>
@@ -395,9 +402,11 @@
       <li>It expects a <em>signed</em><sup>2</sup> binary
       string.</li>
       <li>The string can contain at most 10 digits.</li>
-    </ul><small>(2) The fact that it’s a signed number might
-    surprise you. It surprised me! I had no idea until I wrote this
-    article.</small>
+    </ul>
+    <div class="small">
+      (2) The fact that it’s a signed number might surprise you. It
+      surprised me! I had no idea until I wrote this article.
+    </div>
     <p>The second condition is a problem. The demo uses 3 bits, but
     the challenge input uses 12.</p>
     <p>The solution is to convert to decimal in pieces.</p>
@@ -447,8 +456,10 @@
     <p>In an extreme attempt to be concise, only the solution for
     <code>oxygen</code> will be shown. The solution for
     <code>carbon</code> requires only sign switches and replacing
-    some 1s with 0s.</p><small>(3) Has there ever been a more
-    frustrating expression?</small>
+    some 1s with 0s.</p>
+    <div class="small">
+      (3) Has there ever been a more frustrating expression?
+    </div>
     <p>For <code>oxygen</code> …</p>
     <ul>
       <li>Each pass selects lines of input using the most common
@@ -560,18 +571,23 @@
     <code>COUNT(B3:B)/2</code> is a slight re-working of <a href=
     "#AVERAGE">AVERAGE in part 1</a><sup>4</sup>. <code>SUM</code>
     becomes <code>SUMIF</code> on the second pass to prevent
-    summing across rows already filtered out.</p><small>(4) I use
-    <code>SUMIF</code> and <code>COUNTIF</code> to control
-    tie-breaking behavior (necessary for
-    <code>carbon</code>).</small>
+    summing across rows already filtered out.</p>
+    <div class="small">
+      (4) I use <code>SUMIF</code> and <code>COUNTIF</code> to
+      control tie-breaking behavior (necessary for
+      <code>carbon</code>).
+    </div>
     <h4 id="why-not-filter">Why not FILTER</h4>
     <p>The <a href=
     "https://support.google.com/docs/answer/3093197?hl=en"><code>FILTER</code>
     function</a><sup>5</sup> could power alternative solutions.
     This function takes a range and returns a range matching a
-    criteria.</p><small>(5) <code>FILTER</code> doesn’t work like
-    <code>COUNTIF</code>. There’s no string “criteria”. Instead it
-    takes in a range of boolean values.</small>
+    criteria.</p>
+    <div class="small">
+      (5) <code>FILTER</code> doesn’t work like
+      <code>COUNTIF</code>. There’s no string “criteria”. Instead
+      it takes in a range of boolean values.
+    </div>
     <p>Here’s a sample. The list starts at 3 values: 1, 5, and
     10.</p>
     <ul>
@@ -630,10 +646,12 @@
     </ul>
     <p>Combined they allow you to look up cells by a different
     column<sup>6</sup>. For programming folk if you were writing a
-    SQL statement to <code>SELECT</code> one row …</p><small>(6)
-    Excel users get this in one function: <a href=
-    "https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">
-    XLOOKUP</a>.</small>
+    SQL statement to <code>SELECT</code> one row …</p>
+    <div class="small">
+      (6) Excel users get this in one function: <a href=
+      "https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">
+      XLOOKUP</a>.
+    </div>
     <ul>
       <li><code>MATCH</code> gives you <code>WHERE</code>
       functionality on one column</li>
