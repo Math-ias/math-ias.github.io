@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <path fill="#f9f9f9" d="M0 0h800v600H0z"/>
+  <text fill="#333" font-family="Monaco" font-size="16" transform="translate(64 40)">Training Miles by Week</text>
+  <g class="axis bottom">
+    <g class="tick">
+      <path stroke="#eee" d="M86 60v482"/>
+      <text x="21.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W0</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M129 60v482"/>
+      <text x="65.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W1</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M173 60v482"/>
+      <text x="108.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W2</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M216 60v482"/>
+      <text x="152.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W3</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M260 60v482"/>
+      <text x="195.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W4</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M303 60v482"/>
+      <text x="239.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W5</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M347 60v482"/>
+      <text x="282.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W6</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M390 60v482"/>
+      <text x="326.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W7</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M434 60v482"/>
+      <text x="369.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W8</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M477 60v482"/>
+      <text x="413.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W9</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M521 60v482"/>
+      <text x="456.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W10</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M564 60v482"/>
+      <text x="500.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W11</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M608 60v482"/>
+      <text x="543.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W12</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M651 60v482"/>
+      <text x="587.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W13</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M695 60v482"/>
+      <text x="630.8" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W14</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M738 60v482"/>
+      <text x="674.3" y="486" dy="1em" fill="#9c9c9c" text-anchor="middle" font-family="Monaco" font-size="14" transform="translate(64 60)">W15</text>
+    </g>
+  </g>
+  <g class="axis left">
+    <g class="tick">
+      <path stroke="#eee" d="M60 419h700"/>
+      <text x="-8" y="358.5" dy=".3em" fill="#9c9c9c" text-anchor="end" font-family="Monaco" font-size="14" transform="translate(64 60)">5</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M60 299h700"/>
+      <text x="-8" y="239" dy=".3em" fill="#9c9c9c" text-anchor="end" font-family="Monaco" font-size="14" transform="translate(64 60)">10</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M60 180h700"/>
+      <text x="-8" y="119.5" dy=".3em" fill="#9c9c9c" text-anchor="end" font-family="Monaco" font-size="14" transform="translate(64 60)">15</text>
+    </g>
+    <g class="tick">
+      <path stroke="#eee" d="M60 60h700"/>
+      <text x="-8" dy=".3em" fill="#9c9c9c" text-anchor="end" font-family="Monaco" font-size="14" transform="translate(64 60)">20</text>
+    </g>
+    <g class="tick">
+      <path stroke="#a8a8a8" d="M60 538h700"/>
+      <text x="-8" y="478" dy=".3em" fill="#9c9c9c" text-anchor="end" font-family="Monaco" font-size="14" transform="translate(64 60)">0</text>
+    </g>
+  </g>
+  <path d="M66 299h39v239H66zm44-15h39v254h-39zm43-19h39v273h-39zm44-64h39v337h-39zm43-92h39v429h-39zm44 285h39v144h-39zm43-214h39v358h-39zm44 56h39v302h-39zm43-139h39v441h-39zm44 76h39v365h-39zm43 287h39v78h-39zm44-225h39v303h-39zm43 280h39v23h-39zm44-115h39v138h-39zm43 87h39v51h-39zm44-267h39v318h-39z" class="series columns" fill="#e41a1c"/>
+</svg>
