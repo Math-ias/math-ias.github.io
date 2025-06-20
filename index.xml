@@ -5,10 +5,71 @@
     <description>Recent content on Mathias Kools</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Jun 2025 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://math-ias.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Classfile Challenge</title>
+      <link>http://math-ias.github.io/tacobelljavap/hexchallenge.html</link>
+      <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://math-ias.github.io/tacobelljavap/hexchallenge.html</guid>
+      <description>Here&amp;rsquo;s a challenge. Find the ONE static invocation in this classfile.
+cafebabe0000003d00410a000200030700040c000500060100106a617661 2f6c616e672f4f626a6563740100063c696e69743e010003282956090008 000907000a0c000b000c010002423801001f70726f75646f66796f75666f 727265636f766572696e677661726e616d657301000143090008000e0c00 0f000c0100016109000800110c0012001301000162010001530900080015 0c00160013010001630500000b80b80b80b8090008001a0c001b001c0100 01640100014a05000000000000129909000800200c0021001c0100016508 0023010015c2b86865c2b86c6c6fc2b8776fc2b8726cc2b8642109000800 250c00260027010001660100124c6a6176612f6c616e672f537472696e67 3b08002901000b6469737472616374696f6e090008002b0c002c00270100 01670a002e002f0700300c003100320100146a6176612f6d6174682f4269 67496e746567657201000776616c75654f66010019284a294c6a6176612f 6d6174682f426967496e74656765723b09000800340c0035003601000168 0100164c6a6176612f6d6174682f426967496e74656765723b09002e0038 0c003900360100034f4e45090008003b0c003c003601000169010004436f 646501000f4c696e654e756d6265725461626c6501000a536f7572636546 696c6501000742382e6a6176610021000800020000000a0000000b000c00 000000000f000c0000000000120013000000000016001300000000001b00 1c000000000021001c000000000026002700000000002c00270000000000 35003600000000003c0036000000010001000500060001003d0000008900 030001000000492ab700012a1100b8b500072a1061b5000d2a110b80b500 102a1104d2b500142a140017b500192a14001db5001f2a1222b500242a12 28b5002a2a09b8002db500332ab20037b5003ab100000001003e0000002e 000b0000000300040004000b00050011000600180007001f000800260009 002d000a0033000b0039000c0041000d0001003f000000020040 </description>
+    </item>
+    
+    <item>
+      <title>Most Used Method</title>
+      <link>http://math-ias.github.io/tacobelljavap/mostusedmethod.html</link>
+      <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://math-ias.github.io/tacobelljavap/mostusedmethod.html</guid>
+      <description>Most Used Method Out There What java method is referenced by the most classes in the most popular JARs I can find in the maven repository? Here&amp;rsquo;s the program.
+package io.github.math_ias; import java.io.IOException; import java.nio.file.Files; import java.nio.file.Path; import java.nio.file.InvalidPathException; import java.lang.classfile.ClassFile; import java.lang.classfile.ClassModel; import java.lang.classfile.MethodModel; import java.lang.classfile.constantpool.PoolEntry; import java.lang.classfile.constantpool.ClassEntry; import java.lang.classfile.constantpool.MethodRefEntry; import java.lang.classfile.constantpool.InterfaceMethodRefEntry; import java.util.Iterator; import java.util.Map; import java.util.TreeSet; import java.util.Comparator; import java.util.SortedSet; import java.util.concurrent.ConcurrentHashMap; /** * Compile like ... * javac --enable-preview -source 23 src/io/github/math_ias/MyCounter.</description>
+    </item>
+    
+    <item>
+      <title>Taco Bell Javap</title>
+      <link>http://math-ias.github.io/tacobelljavap.html</link>
+      <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://math-ias.github.io/tacobelljavap.html</guid>
+      <description>Taco Bell Javap Recently, I wanted to better understand a java program’s execution. I wanted to know every usage of a particular class. For example, let’s look for calls to the static method BigInteger.valueOf. I have a funny constraint though, I don’t own the source code. My solution involves looking at java bytecode.
+All About That Bytecode We write java programs in syntax that&amp;rsquo;s supposed to be readable0. Here is Fibonacci1 with BigInteger&amp;rsquo;s.</description>
+    </item>
+    
+    <item>
+      <title>John Tyler</title>
+      <link>http://math-ias.github.io/readingthepresidents/10_john_tyler.html</link>
+      <pubDate>Sun, 01 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://math-ias.github.io/readingthepresidents/10_john_tyler.html</guid>
+      <description>John Tyler I read President without a Party: The Life of John Tyler by Christopher J. Leahy.
+The number of pages suggests this would be a slog similar to a McCullough biography. I was pleasantly surprised though how the author mixed excerpts from Tyler&amp;rsquo;s letters, narration of the events of the 1800s, and their own interpretations of his behavior. By the end I felt I now completely understood Tyler as a person.</description>
+    </item>
+    
+    <item>
+      <title>William Henry Harrison</title>
+      <link>http://math-ias.github.io/readingthepresidents/9_william_henry_harrison.html</link>
+      <pubDate>Thu, 09 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://math-ias.github.io/readingthepresidents/9_william_henry_harrison.html</guid>
+      <description>William Henry Harrison I read Robert M. Owen&amp;rsquo;s Mr. Jefferson&amp;rsquo;s Hammer: William Henry Harrison and the Origins of American Indian Policy.
+The first presidential biography book I read in one day. This was highly rated by other presidential biography readers. I can&amp;rsquo;t say I agree.
+The author Staes an intent to examine Harrison&amp;rsquo;s most impactful work not as President but as governor of Western territories leading up to and during the war of 1812.</description>
+    </item>
+    
+    <item>
+      <title>Martin Van Buren</title>
+      <link>http://math-ias.github.io/readingthepresidents/8_martin_van_buren.html</link>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://math-ias.github.io/readingthepresidents/8_martin_van_buren.html</guid>
+      <description>Martin Van Buren For Martin Van Buren I read book number 8 from The American Presidents Series published by MacMillan: Martin Van Buren by Ted Widmer.
+Widmer does his best with what he&amp;rsquo;s left. Martin Van Buren chose to destroy a large amount of his personal and political correspondence, leaving us with less letters than say a John Quincy Adams and a rambling autobiography he starts in an elder age. It&amp;rsquo;s a bit of a shame because I think Van Buren&amp;rsquo;s story is the most relatable of all the presidents I&amp;rsquo;ve read about so far.</description>
+    </item>
     
     <item>
       <title>Reading Every Presidential Biography</title>

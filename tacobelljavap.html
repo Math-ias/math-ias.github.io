@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="data:,">
+  <title>Taco Bell Javap</title>
+  <style type="text/css">
+  body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  /* General style. */
+  .content {
+    box-sizing: border-box;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+  }
+
+  code {
+    font-family: monospace, monospace;
+    white-space: pre-wrap;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+  }
+
+  .breadcrumb {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding-left: 0;
+  }
+
+  .breadcrumb li {
+    display: inline;
+    white-space: nowrap;
+  }
+
+  .breadcrumb li + li:before {
+    content: ">";
+    padding: 0.25rem;
+  }
+
+  /* Sidenote layout. */
+
+  @media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        max-width: unset;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
+    
+    .content > :not(.small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > .small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        font-size: smaller;
+    }
+  }
+
+  sup {
+    line-height: 0;
+  }
+  </style>
+  <style>
+  .float_left { width: 600px; float: none; }
+  .float_right { width: 600px; float: none; }
+  @media (min-width: 921px) {
+  .float_left { width: 300px; float: left; }
+  .float_right { width: 300px; float: right; }
+  }
+  .s43 { background-color: #9bd6b9; }
+  .s3 { background-color: #f5c7c3; }
+  .s2 { background-color: #e67c73; }
+  .s13 { background-color: #f4c1bd; }
+  .s15 { background-color: #fffdfd; }
+  .s36 { background-color: #82cca8; }
+  .s41 { background-color: #fbfdfc; }
+  .s7 { background-color: #ec9c95; }
+  .s17 { background-color: #f7fbf9; }
+  .s34 { background-color: #67c195; }
+  .s33 { background-color: #62bf92; }
+  .s16 { background-color: #fffefe; }
+  .s19 { background-color: #fffcfc; }
+  .s20 { background-color: #b9e3ce; }
+  .s5 { background-color: #fae3e1; }
+  .s12 { background-color: #fefaf9; }
+  .s30 { background-color: #bae3cf; }
+  .s4 { background-color: #f9dcda; }
+  .s28 { background-color: #62bf91; }
+  .s35 { background-color: #fbe6e5; }
+  .s44 { background-color: #98d5b7; }
+  .s10 { background-color: #fdf3f3; }
+  .s11 { background-color: #fef9f8; }
+  .s37 { background-color: #93d3b4; }
+  .s25 { background-color: #bfe5d2; }
+  .s0 { background-color: #ffffff; }
+  .s27 { background-color: #63c092; }
+  .s31 { background-color: #59bb8b; }
+  .s23 { background-color: #74c79e; }
+  .s9 { background-color: #fdf3f2; }
+  .s22 { background-color: #76c79f; }
+  .s26 { background-color: #57bb8a; }
+  .s8 { background-color: #f8d9d6; }
+  .s6 { background-color: #fae5e3; }
+  .s1 { background-color: #ffffff; }
+  .s45 { background-color: #a6dbc1; }
+  .s38 { background-color: #91d2b3; }
+  .s14 { background-color: #fcefee; }
+  .s42 { background-color: #87ceac; }
+  .s29 { background-color: #66c194; }
+  .s24 { background-color: #fdf2f1; }
+  .s39 { background-color: #b6e1cc; }
+  .s40 { background-color: #fbe7e5; }
+  .s18 { background-color: #fae2e0; }
+  .s21 { background-color: #65c094; }
+  .s32 { background-color: #5fbe8f; }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <ol class="breadcrumb">
+      <li>
+        <a href="./index.html">Mathias Kools</a>
+      </li>
+      <li class="active">
+        <a href="./tacobelljavap.html">Taco Bell Javap</a>
+      </li>
+    </ol>
+    <h1 id="taco-bell-javap">Taco Bell Javap</h1>
+    <p>Recently, I wanted to better understand a java program’s
+    execution. I wanted to know every usage of a particular class.
+    For example, let’s look for calls to the static method <a href=
+    "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html">
+    BigInteger.valueOf</a>. I have a funny constraint though, I
+    don’t own the source code. My solution involves looking at java
+    bytecode.</p>
+    <h2 id="all-about-that-bytecode">All About That Bytecode</h2>
+    <p>We write java programs in syntax that’s supposed to be
+    readable<sup>0</sup>. Here is Fibonacci<sup>1</sup> with
+    BigInteger’s.</p>
+    <div class="small">
+      <p>(0) Some developers find joy in taking that human readable
+      definition to its <a href=
+      "https://llogiq.github.io/2016/03/09/java-golf.html">lower
+      limit</a>.</p>
+      <p>(1) My implementation starts to make the word “next” look
+      a little funny. Supposedly this is called <a href=
+      "https://en.wikipedia.org/wiki/Semantic_satiation">“semantic
+      satiation”</a>.</p>
+    </div>
+    <pre tabindex="0"><code>import java.util.Iterator;
+import java.math.BigInteger;
+
+class MyFibIterator implements Iterator&lt;BigInteger&gt; {
+  private BigInteger next = BigInteger.ZERO;
+  private BigInteger nextNext = BigInteger.ONE;
+  @Override
+  public boolean hasNext() { return true; }
+  @Override
+  public BigInteger next() {
+    BigInteger toReturn = next;
+    BigInteger newNextNext = next.add(nextNext);
+    next = nextNext;
+    nextNext = newNextNext;
+    return toReturn;
+  }
+}
+</code></pre>
+    <p>My computer can’t run this text outright. Instead a program
+    that can run on my computer runs java programs. That program is
+    the JVM. Except … even the JVM doesn’t want to look at my silly
+    code. Instead it wants an intermediate form called java
+    bytecode. We transform java text into bytecode with the javac
+    “compiler”. Here’s the problem, that bytecode is opaque to
+    plaintext tools.</p>
+    <pre tabindex="0"><code>% cat MyFibIterator.class
+����C(
+
+java/lang/Object&lt;init&gt;()V
+
+
+
+
+java/math/BigIntegervalueOf(J)Ljava/math/BigInteger;
+MyFibIteratornextLjava/math/BigInteger;
+                                        nextNext
+
+add.(Ljava/math/BigInteger;)Ljava/math/BigInteger;
+()Ljava/math/BigInteger;java/util/IteratorCodeLineNumberTablehasNext()Z()Ljava/lang/Object;     Signature&gt;Ljava/lang/Object;Ljava/util/Iterator&lt;Ljava/math/BigInteger;&gt;;
+*ourceFileMyFibIterator.java 5*�*       ��
+���
+*,�+� �� *�
+
+A#*�� $%&amp;'%
+</code></pre>
+    <p>These bytes follow the structure of the class file format.
+    If I dump bytes to hexadecimal digits with <code>xxd -p</code>
+    I get this.</p>
+    <pre>
+<code>
+cafebabe0000004300280a000200030700040c000500060100106a617661
+2f6c616e672f4f626a6563740100063c696e69743e0100032829560a0008
+000907000a0c000b000c0100146a6176612f6d6174682f426967496e7465
+67657201000776616c75654f66010019284a294c6a6176612f6d6174682f
+426967496e74656765723b09000e000f0700100c0011001201000d4d7946
+69624974657261746f720100046e6578740100164c6a6176612f6d617468
+2f426967496e74656765723b09000e00140c001500120100086e6578744e
+6578740a000800170c0018001901000361646401002e284c6a6176612f6d
+6174682f426967496e74656765723b294c6a6176612f6d6174682f426967
+496e74656765723b0a000e001b0c0011001c01001828294c6a6176612f6d
+6174682f426967496e74656765723b07001e0100126a6176612f7574696c
+2f4974657261746f72010004436f646501000f4c696e654e756d62657254
+61626c650100076861734e65787401000328295a01001428294c6a617661
+2f6c616e672f4f626a6563743b0100095369676e617475726501003e4c6a
+6176612f6c616e672f4f626a6563743b4c6a6176612f7574696c2f497465
+7261746f723c4c6a6176612f6d6174682f426967496e74656765723b3e3b
+01000a536f7572636546696c650100124d794669624974657261746f722e
+6a6176610020000e00020001001d00020002001100120000000200150012
+000000040000000500060001001f0000003500030001000000152ab70001
+2a09<span style=
+"background-color: rgb(249, 183, 66);">b80007</span>b5000d2a0a<span style="background-color: rgb(249, 183, 66);">b80007</span>b50013b10000000100200000000e000300
+00000400040005000c00060001002100220001001f0000001a0001000100
+00000204ac0000000100200000000600010000000800010011001c000100
+1f0000004800020003000000202ab4000d4c2ab4000d2ab40013b600164d
+2a2ab40013b5000d2a2cb500132bb0000000010020000000160005000000
+0b0005000c0011000d0019000e001e000f1041001100230001001f000000
+1d00010001000000052ab6001ab000000001002000000006000100000004
+000200240000000200250026000000020027
+</code>
+</pre>
+    <p>Through magic methods I highlighted where we call the static
+    method BigInteger.valueOf<sup>2</sup>. Most of my readers won’t
+    have my magic ball though. We need a better way to read this
+    file.</p>
+    <div class="small">
+      (2) OK. I’ll reveal my trick. The <a href=
+      "https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-4.html#jvms-4.10.1.9.invokestatic">
+      invokestatic</a> instruction opcode is <code>b8</code>. We
+      call that static method twice. There are only two
+      <code>b8</code>’s in our hexdump! That made the
+      interpretation super easy. <a href=
+      "./tacobelljavap/hexchallenge.html">Bonus Challenge</a>
+    </div>
+    <h2 id="javap">Javap</h2>
+    <p><a href=
+    "https://docs.oracle.com/en/java/javase/21/docs/specs/man/javap.html">
+    Javap is a class disassembler</a>. This tool knows how to read
+    the class file format. With the right flags we can use it to
+    print the instructions we are sending to the JVM. I’ve cut out
+    some lines, and added my own comments in brackets.</p>
+    <pre tabindex=
+    "0"><code>[The class file is printed because we used the -sysinfo flag.]
+Classfile /Users/mathias.kools/Desktop/tacobelljavap/MyFibIterator.class
+  [...]  
+  Compiled from "MyFibIterator.java"
+class MyFibIterator implements java.util.Iterator&lt;java.math.BigInteger&gt; {
+  private java.math.BigInteger next;
+
+  private java.math.BigInteger nextNext;
+
+  MyFibIterator();
+    Code:
+       0: aload_0
+          [...]       
+          [Check it out our static method call!]
+       6: invokestatic  #7                  // Method java/math/BigInteger.valueOf:(J)Ljava/math/BigInteger;
+       9: putfield      #13                 // Field next:Ljava/math/BigInteger;
+          [...]
+      20: return
+
+  public boolean hasNext();
+    Code: [...]
+
+  public java.math.BigInteger next();
+    Code:
+          [...]
+      13: invokevirtual #22                 // Method java/math/BigInteger.add:(Ljava/math/BigInteger;)Ljava/math/BigInteger;
+          [...]
+      31: areturn
+
+  [We didn’t write this next method!]
+  [This is a bridge method^3!]
+  public java.lang.Object next();
+    Code: [...]
+}
+</code></pre>
+    <div class="small">
+      (3) Read <a href=
+      "https://docs.oracle.com/javase/tutorial/java/generics/bridgeMethods.html">
+      more about bridge methods here</a>.
+    </div>
+    <h2 id="living-mas">Living Mas</h2>
+    <p>I now have a way to search bytecode for static method usage.
+    Let’s apply it. In my situation, I wanted to search two hundred
+    thousand class files<sup>3</sup>. To recreate this kind of
+    scale, I’ll download thirty popular JARs.</p>
+    <div class="small">
+      (3) At <a href="https://www.chaossearch.io/">ChaosSearch</a>
+      we were researching class behavior in a <a href=
+      "https://docs.databricks.com/aws/en/release-notes/runtime/15.4lts">
+      Databricks runtime environment</a> which brings a whole bunch
+      of libraries in.
+    </div>
+    <pre tabindex=
+    "0"><code>% cd /Users/mathias.kools/Desktop/tacobelljavap/jars/
+% wget https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar
+[...]
+% wget https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar
+% for jar in *.jar; do
+  dir="${jar%.*}"
+  mkdir -p "$dir"
+  unzip -q "$jar" -d "$dir"
+done
+% cd ..; find jars -type f -name '*.class' | wc -l
+19080
+</code></pre>
+    <p>Shucks. I’m off by an order of magnitude. That’s okay, this
+    is enough files to illustrate the challenges I faced. To look
+    for this method, I want to resist the urge to go web scale.
+    Instead I want to try to combine simple command line tools.
+    This is <a href=
+    "http://widgetsandshit.com/teddziuba/2010/10/taco-bell-programming.html">
+    taco bell programming</a>.</p>
+    <p>I’m a terrible cook. There’s only a few <a href=
+    "https://man7.org/linux/man-pages/man1/find.1.html">“simple”<sup>4</sup></a>
+    ingredients here. But I’m still going to let an LLM ratatouille
+    me through the command line arguments. That means the final
+    result is going to be a bit of a <a href=
+    "https://www.youtube.com/watch?v=evUWersr7pc">taco bell sauce
+    tote bag</a>.</p>
+    <div class="small">
+      (4) Just like “tar” I can never remember how to use “find”.
+      I’m <a href="https://doc.cat-v.org/unix/find-history">not</a>
+      <a href="https://xkcd.com/1168/">alone</a>.
+    </div>
+    <h2 id="attempt-one-just-xargs">Attempt One, Just Xargs</h2>
+    <p>We’ll run javap on every file. <a href=
+    "https://www.youtube.com/watch?v=BXlYuaycRbU">How bad could
+    this possibly be?</a></p>
+    <pre tabindex=
+    "0"><code>% find jars -type f -name '*.class' | xargs -n1 javap -c -sysinfo
+</code></pre>
+    <p>Pretty bad. Using later data, I estimate it would finish in
+    <a href=
+    "https://static.wikia.nocookie.net/spongebob/images/3/3c/Kooky_Cooks_189.png/revision/latest?cb=20210429202934">
+    one</a> hour <a href=
+    "https://static.wikia.nocookie.net/spongebob/images/4/4d/Spatula_of_the_Heavens_119.png/revision/latest?cb=20230723071946">
+    and</a> 42 <a href=
+    "https://static.wikia.nocookie.net/spongebob/images/2/27/Pinned_052.png/revision/latest?cb=20241220220120">
+    minutes</a>. If I wanted to be efficient with work hours I’d
+    shut up and <a href=
+    "https://youtu.be/OUUCUPq4kb0?si=HrnyUqxwmFS6ELpY">eat my
+    garbage</a>. Instead, in after hours I’ve nibbled at this for
+    something like 3 months<sup>5</sup>.</p>
+    <div class="small">
+      (5) And I hope that doesn’t make me seem like a bad software
+      engineer! Writing about it took up almost all that time. I’m
+      a bad <em>writer</em>.
+    </div>
+    <h2 id="attempt-two-a-little-gusteau">Attempt Two, A Little
+    Gusteau</h2>
+    <p>To measure rate of improvement, I’m going to test on a
+    simple random sample.</p>
+    <p>One wrinkle to any measurement we’re doing is that there are
+    some HUGE class files (histogram in kilobytes).</p>
+    <pre tabindex=
+    "0"><code>% find jars -type f -name '*.class' | xargs -n1 -I % du -k % | awk 'BEGIN { binwidth=25; max=0 } { if ($1 &lt; min) min = $1; if ($1 &gt; max) max = $1; bins[int(($1)/binwidth)]++; } END { for (i=0; i&lt;=int(max/binwidth); i++) { start = i * binwidth; end = start + binwidth; if (bins[i] &gt; 0) { printf "%d-%d: %d\n", start, end, bins[i] } } }'
+0-25: 18828
+25-50: 185
+50-75: 36
+75-100: 17
+100-125: 2
+125-150: 5
+150-175: 2
+300-325: 1
+325-350: 3
+650-675: 1
+</code></pre>
+    <p>The biggest offender is
+    <code>jars/kotlin-stdlib-2.1.10/kotlin/collections/ArraysKt___ArraysKt.class</code>
+    with something like 1223 members (comes from <a href=
+    "https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/common/src/generated/_Arrays.kt">
+    this monster generated source file</a>).</p>
+    <p>First we’ll try parallelism. <a href=
+    "https://youtu.be/uBlhgAkJBos?si=4athM40EYwL4CPyM">That’s a
+    good trick</a>.</p>
+    <pre tabindex="0"><code>P_VALUES=(1 2 4 6 8 12 24)
+for P in "${P_VALUES[@]}"; do
+  START_TIME=$(gdate +%s%3N)
+  cat sample.txt | xargs -n1 -P"$P" javap -c -sysinfo &gt; /dev/null
+  : gdate is GNU's latest date,
+  : OSX's is out of date.
+  END_TIME=$(gdate +%s%3N)
+  DURATION=$((END_TIME - START_TIME))
+  echo "$P,$DURATION"
+done
+</code></pre>
+    <table>
+      <tbody>
+        <tr>
+          <th>P</th>
+          <td>1</td>
+          <td>2</td>
+          <td>4</td>
+          <td>6</td>
+          <td>8</td>
+          <td>12</td>
+          <td>24</td>
+        </tr>
+        <tr>
+          <th>dur_ms</th>
+          <td>270159</td>
+          <td>162260</td>
+          <td>113331</td>
+          <td>94999</td>
+          <td>77162</td>
+          <td>79271</td>
+          <td>84400</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Looks like it is effective until around 8 processes. My
+    Macbook Pro has 6 CPUs and 12 virtual cores. I could sip on my
+    pipe in my study and ponder this. Or I could show you a better
+    speedup!</p>
+    <h2 id="attempt-three-zuzhing-xargs-further">Attempt Three,
+    Zuzhing Xargs Further</h2>
+    <p>Next we’ll try larger and larger batch sizes. That is we’ll
+    pass longer and longer LISTS of files to a single invocation of
+    javap.</p>
+    <pre tabindex="0"><code>N_VALUES=(4 64 256 1024)
+P_VALUES=(1 2 4 8 12)
+for P in "${P_VALUES[@]}"; do
+  for N in "${N_VALUES[@]}"; do
+    START_TIME=$(gdate +%s%3N)
+    cat sample.txt | xargs -n"$N" -P"$P" javap -c -sysinfo &gt; /dev/null
+    END_TIME=$(gdate +%s%3N)
+    DURATION=$((END_TIME - START_TIME))
+    echo "$P,$DURATION"
+  done
+done
+</code></pre>
+    <table>
+      <thead>
+        <tr>
+          <th>N</th>
+          <th>dur_ms</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>270159</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>77407</td>
+        </tr>
+        <tr>
+          <td>64</td>
+          <td>9594</td>
+        </tr>
+        <tr>
+          <td>256</td>
+          <td>4491</td>
+        </tr>
+        <tr>
+          <td>1024</td>
+          <td>2403</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Javap gets faster every second it is running. Here I have a
+    cool experiment to measure the rate of
+    improvement<sup>6</sup>.</p>
+    <div class="small">
+      (6) If you’re familiar with java at scale you won’t <a href=
+      "http://www.beyondjava.net/blog/a-close-look-at-javas-jit-dont-waste-your-time-on-local-optimizations">
+      be surprised by the result</a>. I’ll be recreating these
+      graphs.
+    </div>
+    <pre tabindex="0"><code>S_VALUES=($(seq 1 10 2000))
+for S in "${S_VALUES[@]}"; do
+  START_TIME=$(gdate +%s%3N)
+  find jars -type f -name '*.class' | head -n "$S" | xargs -n"$S" javap -J-XX:+UnlockDiagnosticVMOptions -J-XX:+LogCompilation -J-XX:LogFile=/tmp/compiler.log &gt; /dev/null
+  END_TIME=$(gdate +%s%3N)
+  DURATION=$((END_TIME - START_TIME))
+  COMPILER_LINES=$(cat /tmp/compiler.log | wc -l)
+  echo "$S,$DURATION,$COMPILER_LINES" &gt;&gt; times.csv
+done
+</code></pre>
+    <p>What’s going on? We are witnessing the power of Java’s JIT:
+    it has <a href=
+    "https://www.baeldung.com/jvm-tiered-compilation">tiered
+    compilation</a><sup>7</sup>.</p>
+    <div class="small">
+      (7) How do I know? If we disable JIT with
+      <code>-J-Djava.compiler=NONE</code> increasing batch size
+      produces no speed improvements.
+    </div>
+    <p>We can measure compiler activity by the number of log lines
+    it produces<sup>8</sup>. And we can measure the speed of javap
+    by dividing the count of class files decompiled by the total
+    time. We’ll graph the two together. We start with a lot of
+    compiler activity. We taper off as we approach 2000 class
+    files. Mirroring this shape is our javap speed. How neat is
+    that relationship?</p>
+    <div class="small">
+      <p>(8) This just so happened to produce nice graphs. I got a
+      little lucky.</p>
+      <p>(9) R^2 of 0.898 when we graph log lines and speed
+      together. High school me would write <a href=
+      "https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Interpretation_of_the_size_of_a_correlation">
+      highly correlated</a> on the stats test.</p>
+    </div>
+    <div>
+      <img class="float_left" alt=
+      "Number of compiler lines and speed graphed together against number of classes processed"
+      src=
+      "data:image/webp;base64,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">
+      <img class="float_right" alt=
+      "Number of compiler lines vs speed" src=
+      "data:image/webp;base64,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">
+      <div style="clear: both;"></div>
+    </div>
+    <div class="small">
+      Sorry I’ve really squeezed as many pixels as I could out of
+      these graphs. I’m trying to keep the byte count low so I can
+      load it later on my dinky phone plan. I’ve linked the source
+      data <a href="tacobelljavap/linesversusspeed.csv">here</a>.
+    </div>
+    <h2 id="attempt-four-mixing-xargs-args">Attempt Four, Mixing
+    Xargs Args</h2>
+    <pre tabindex=
+    "0"><code>N_VALUES=(1024 2000 4000 8000 16000 20000 30000 40000)
+P_VALUES=(1 2 4 6 8 12)
+for N in "${N_VALUES[@]}"; do
+  for P in "${P_VALUES[@]}"; do
+    START_TIME=$(gdate +%s%3N)
+    find jars jars jars -type f -name '*.class' | xargs -n"$N" -P"$P" javap &gt; /dev/null
+    END_TIME=$(gdate +%s%3N)
+    DURATION=$((END_TIME - START_TIME))
+    echo "$N,$P,$DURATION"
+  done
+done
+</code></pre>
+    <table>
+      <tbody>
+        <tr>
+          <th>N/P</th>
+          <th>1</th>
+          <th>2</th>
+          <th>4</th>
+          <th>6</th>
+          <th>8</th>
+          <th>12</th>
+        </tr>
+        <tr>
+          <th>1024</th>
+          <td class="s1">116408</td>
+          <td class="s3">65166</td>
+          <td class="s4">50234</td>
+          <td class="s5">45763</td>
+          <td class="s6">44337</td>
+          <td class="s6">44127</td>
+        </tr>
+        <tr>
+          <th>2000</th>
+          <td class="s7">94860</td>
+          <td class="s8">52757</td>
+          <td class="s9">34322</td>
+          <td class="s10">34150</td>
+          <td class="s11">30540</td>
+          <td class="s12">29927</td>
+        </tr>
+        <tr>
+          <th>4000</th>
+          <td class="s13">69023</td>
+          <td class="s14">37320</td>
+          <td class="s15">27250</td>
+          <td class="s16">26806</td>
+          <td class="s17">25318</td>
+          <td class="s0">26006</td>
+        </tr>
+        <tr>
+          <th>8000</th>
+          <td class="s18">46223</td>
+          <td class="s19">27934</td>
+          <td class="s20">21434</td>
+          <td class="s21">16113</td>
+          <td class="s22">17168</td>
+          <td class="s23">17074</td>
+        </tr>
+        <tr>
+          <th>16000</th>
+          <td class="s24">35381</td>
+          <td class="s25">21787</td>
+          <td class="s26">15185</td>
+          <td class="s27">15966</td>
+          <td class="s28">15903</td>
+          <td class="s29">16175</td>
+        </tr>
+        <tr>
+          <th>20000</th>
+          <td class="s24">35059</td>
+          <td class="s30">21458</td>
+          <td class="s31">15338</td>
+          <td class="s32">15694</td>
+          <td class="s33">15942</td>
+          <td class="s34">16214</td>
+        </tr>
+        <tr>
+          <th>30000</th>
+          <td class="s35">43258</td>
+          <td class="s15">27232</td>
+          <td class="s36">17966</td>
+          <td class="s37">19023</td>
+          <td class="s38">18910</td>
+          <td class="s39">21210</td>
+        </tr>
+        <tr>
+          <th>40000<sup>10</sup></th>
+          <td class="s40">43058</td>
+          <td class="s41">25605</td>
+          <td class="s42">18278</td>
+          <td class="s43">19514</td>
+          <td class="s44">19334</td>
+          <td class="s45">20203</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="small">
+      <p>(10) Out of curiosity because it appears in the table in
+      xargs what happens when <code>BATCH SIZE * P &gt;
+      N</code>.</p>
+      <pre tabindex=
+      "0"><code>seq 1 60000 | xargs -n40000 -P12 python3 -c "import uuid
+import sys
+print(f\"{uuid.uuid4()} {len(sys.argv) - 1}\")
+"
+8172f612-a49c-42e6-bd6a-189c7e3ab80c 20000
+a150ac10-0c7d-4ab0-a7e0-66659818cab6 40000
+</code></pre>
+      <p>It will totally fill processes before moving onto giving
+      arguments to the next invocation. Some processes won’t be
+      started at all.</p>
+    </div>
+    <p>Looks like batch size 16000, and parallelism 4 is the ideal
+    crunchwrap supreme<sup>10</sup> combination.</p>
+    <div class="small">
+      (11) I’m using crunchwrap supreme as the pinnacle taco bell
+      meal. I actually think their best item is the <a href=
+      "https://www.tacobell.com/food/cravings-value-menu/spicy-potato-soft-taco">
+      soft potato taco</a>.
+    </div>
+    <h2 id="attempt-five-swapping-taco-bell-for-baja-fresh">Attempt
+    Five, Swapping Taco Bell for Baja Fresh</h2>
+    <p>I saw all this and assumed packing 20000 files into a list
+    of arguments would be slow. So slow, that with a single process
+    I figured if I read the files in as a stream I could outspeed
+    xargs. I will just call into the methods that javap is
+    implemented with<sup>11</sup>. This isn’t taco bell programming
+    anymore.</p>
+    <pre tabindex="0"><code>package io.github.math_ias;
+
+import com.sun.tools.javap.Main;
+
+import java.io.PrintWriter;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+import java.util.Arrays;
+
+/**
+ * Program that takes javap flags first,
+ * followed by one file path at a time through standard input.
+ */
+public class MyMain {
+  public static void main(String[] flags) {
+    int flagsLength = flags.length;
+    String[] args = Arrays.copyOf(flags, flagsLength + 1);
+    PrintWriter writer = new PrintWriter(System.out);
+    try (
+      BufferedReader reader =
+        new BufferedReader(new InputStreamReader(System.in))
+    ) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        args[flagsLength] = line;
+        Main.run(args, writer);
+      }
+    } catch (IOException e) {
+    e.printStackTrace();
+    }
+    System.exit(0);
+  }
+}
+
+</code></pre>
+    <div class="small">
+      <p>(12) This isn’t trivial by the way. I did it like this
+      with an unammed module (drop <code>--add-modules</code> if
+      you already have a module graph defined in a
+      <code>module-info.java</code>).</p>
+      <pre tabindex=
+      "0"><code>javac --add-modules jdk.jdeps --add-exports jdk.jdeps/com.sun.tools.javap=ALL-UNNAMED io/github/math_ias/MyMain.java
+</code></pre>
+      <p>You still add these exports when running with java.</p>
+      <pre tabindex=
+      "0"><code>java --add-exports jdk.jdeps/com.sun.tools.javap=ALL-UNNAMED io.github.math_ias.MyMain
+</code></pre>
+    </div>
+    <p>Check out this comparison of the best value pair of batch
+    size and parallelism and my program.</p>
+    <pre tabindex="0"><code>for _ in {1..5}; do
+START_TIME=$(gdate +%s%3N)
+find jars jars jars -type f -name '*.class' | xargs -n 40000 -P 4 javap &gt; /dev/null
+: OR find ../../jars ../../jars ../../jars -type f -name '*.class' | java --add-exports jdk.jdeps/com.sun.tools.javap=ALL-UNNAMED io.github.math_ias.MyMain &gt; /dev/null
+END_TIME=$(gdate +%s%3N)
+DURATION=$((END_TIME - START_TIME))
+echo "$DURATION"
+done
+</code></pre>
+    <table>
+      <thead>
+        <tr>
+          <th>Sample</th>
+          <th>Xargs Time</th>
+          <th>My Program Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0</td>
+          <td>15857</td>
+          <td>14504</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>14964</td>
+          <td>14323</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>15506</td>
+          <td>15331</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>17200</td>
+          <td>15789</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>15913</td>
+          <td>14894</td>
+        </tr>
+        <tr>
+          <th>Average<sup>13</sup></th>
+          <td>15888</td>
+          <td>14968.2</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="small">
+      (13) <code>pbpaste | awk '{sum+=$1} END {print
+      sum/NR}'</code>
+    </div>
+    <p>It’s a small improvement. But not worth the time I spent
+    writing the code. We will come back to the idea of calling into
+    the libraries that power javap later.</p>
+    <h2 id="attempt-six-je-ne-sais-quoisup14sup">Attempt Six, Je Ne
+    Sais Quoi<sup>14</sup></h2>
+    <div class="small">
+      (14) Or when it comes to me as a developer. Maybe it would
+      better read as Je Ne Sais Pas
+    </div>
+    <p>I googled “<a href=
+    "https://developers.redhat.com/articles/2024/01/23/speed-java-application-startup-time-appcds#application_class_data_sharing__appcds_">how
+    to make my java programs start faster</a>”. I found this funky
+    feature called <a href=
+    "https://docs.oracle.com/en/java/javase/17/vm/class-data-sharing.html">
+    AppCDS</a>. It saves “class metadata” into a “JSA” file. The
+    JVM loads classes from the JSA format faster than through class
+    files or a JAR. The only blood sacrifice we have to make is
+    giving up <a href=
+    "https://www.morling.dev/blog/building-class-data-sharing-archives-with-apache-maven/#_using_the_cds_archive">
+    cross-platform-ness</a> and file size.</p>
+    <p>First, I make the JSA file.</p>
+    <pre tabindex=
+    "0"><code>javap -J-XX:ArchiveClassesAtExit=my.jsa -c -p MyFibIterator.class
+</code></pre>
+    <p>Then I use it.</p>
+    <pre tabindex=
+    "0"><code>N_VALUES=(1 4 16 64 256 1024 4096 16384 20000)
+for n in "${N_VALUES[@]}"; do
+  START_TIME=$(gdate +%s%3N)
+  find jars -type f -name '*.class' | head -n "$n" | xargs -P1 -n"$n" javap -J-XX:SharedArchiveFile=my.jsa &gt; /dev/null
+  END_TIME=$(gdate +%s%3N)
+  DURATION=$((END_TIME - START_TIME))
+  echo "$n,$DURATION"
+done
+</code></pre>
+    <p>It’s alright. Looks like I save a constant amount of time.
+    Maybe two seconds?</p>
+    <table>
+      <thead>
+        <tr>
+          <td></td>
+          <th>NO CDS</th>
+          <th>AppCDS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>-n1</th>
+          <td>272</td>
+          <td>225</td>
+        </tr>
+        <tr>
+          <th>-n4</th>
+          <td>285</td>
+          <td>238</td>
+        </tr>
+        <tr>
+          <th>-n16</th>
+          <td>351</td>
+          <td>302</td>
+        </tr>
+        <tr>
+          <th>-n64</th>
+          <td>539</td>
+          <td>493</td>
+        </tr>
+        <tr>
+          <th>-n256</th>
+          <td>956</td>
+          <td>886</td>
+        </tr>
+        <tr>
+          <th>-n1024</th>
+          <td>2363</td>
+          <td>2272</td>
+        </tr>
+        <tr>
+          <th>-n4096</th>
+          <td>6694</td>
+          <td>6382</td>
+        </tr>
+        <tr>
+          <th>-n4096</th>
+          <td>6694</td>
+          <td>6382</td>
+        </tr>
+        <tr>
+          <th>-n16384</th>
+          <td>23996</td>
+          <td>23366</td>
+        </tr>
+        <tr>
+          <th>-n20000</th>
+          <td>27250</td>
+          <td>25314</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>It reminds me of basil. It smells amazing, but when I cook
+    with it the flavor disappears. Maybe I’m doing it wrong.</p>
+    <h2 id="attempt-seven-native-image">Attempt Seven, Native
+    Image</h2>
+    <p>What if we didn’t have to wait for tiered compilation? What
+    if we compiled everything to machine code ahead of time? This
+    is the idea behind <a href=
+    "https://www.graalvm.org/latest/reference-manual/native-image/">
+    GraalVM’s native image</a> tool. The output looks nice.</p>
+    <pre tabindex="0"><code>% native-image com.sun.tools.javap.Main
+========================================
+GraalVM Native Image: Generating 'com.sun.tools.javap.main' (executable)...
+========================================
+[1/8] Initializing...
+                                                                                (13.8s @ 0.09GB)
+ Java version: 23.0.1+11, vendor version: GraalVM CE 23.0.1+11.1
+ Graal compiler: optimization level: 2, target machine: x86-64-v3
+ C compiler: cc (apple, x86_64, 16.0.0)
+ Garbage collector: Serial GC (max heap size: 80% of RAM)
+ 1 user-specific feature(s):
+ - com.oracle.svm.thirdparty.gson.GsonFeature
+----------------------------------------------
+Build resources:
+ - 12.09GB of memory (75.6% of 16.00GB system memory, determined at start)
+ - 12 thread(s) (100.0% of 12 available processor(s), determined at start)
+[2/8] Performing analysis...  [*****]                                                                 (17.0s @ 0.56GB)
+  5,302 reachable types   (75.0% of 7,071 total)
+  6,253 reachable fields  (44.9% of   13,936 total)
+   23,246 reachable methods (48.8% of   47,615 total)
+  1,746 types,  15 fields, and   324 methods registered for reflection
+    58 types, 57 fields, and  52 methods registered for JNI access
+      4 native libraries: -framework Foundation, dl, pthread, z
+[3/8] Building universe...                                                                            (2.1s @ 0.63GB)
+[4/8] Parsing methods...    [*]                                                                     (1.8s @ 0.39GB)
+[5/8] Inlining methods...   [***]                                                                   (1.4s @ 0.47GB)
+[6/8] Compiling methods...  [****]                                                                  (16.7s @ 0.84GB)
+[7/8] Laying out methods...   [**]                                                                    (3.3s @ 0.97GB)
+[8/8] Creating image...     [**]                                                                    (3.2s @ 0.49GB)
+   9.18MB (44.69%) for code area: 13,846 compilation units
+  11.13MB (54.14%) for image heap:  140,509 objects and 60 resources
+ 245.58kB ( 1.17%) for other data
+  20.55MB in total
+----------------------------------------------
+Top 10 origins of code area:                              Top 10 object types in image heap:
+   6.51MB java.base                                         2.38MB byte[] for code metadata
+   1.07MB svm.jar (Native Image)                            1.84MB byte[] for java.lang.String
+ 489.63kB jdk.compiler                                      1.32MB java.lang.String
+ 451.91kB jdk.jdeps                                         1.23MB java.lang.Class
+ 237.65kB jdk.zipfs                                       527.32kB heap alignment
+ 114.32kB java.logging                                    455.64kB com.oracle.svm.core.hub.DynamicHubCompanion
+  69.53kB org.graalvm.nativeimage.base                    295.38kB byte[] for general heap data
+  49.71kB jdk.proxy2                                      279.84kB java.util.HashMap$Node
+  39.69kB jdk.proxy1                                      269.21kB java.lang.String[]
+  26.75kB jdk.internal.vm.ci                              237.15kB java.lang.Object[]
+  61.46kB for 8 more packages                               2.33MB for 1344 more object types
+----------------------------------------------
+Recommendations:
+ HEAP: Set max heap for improved and more predictable memory usage.
+ CPU:  Enable more CPU features with '-march=native' for improved performance.
+----------------------------------------------
+                      3.2s (5.2% of total time) in 877 GCs | Peak RSS: 1.44GB | CPU load: 6.81
+----------------------------------------------
+Build artifacts:
+ [...]/com.sun.tools.javap.main (executable)
+==============================================
+Finished generating 'com.sun.tools.javap.main' in 1m 0s.
+</code></pre>
+    <p>Unfortunately, it looks like I’ve made a bit of a <a href=
+    "https://tacobell.fandom.com/wiki/Bell_Beefer">“Taco Bell
+    Beefer Burger”</a> here. A recipe not in my comfort zone.</p>
+    <pre tabindex="0"><code>% ./com.sun.tools.javap.main
+Exception in thread "main" java.lang.ExceptionInInitializerError
+  at jdk.compiler@23.0.1/com.sun.tools.javac.file.BaseFileManager.createLocations(BaseFileManager.java:126)
+  at jdk.compiler@23.0.1/com.sun.tools.javac.file.BaseFileManager.&lt;init&gt;(BaseFileManager.java:84)
+  at jdk.compiler@23.0.1/com.sun.tools.javac.file.JavacFileManager.&lt;init&gt;(JavacFileManager.java:162)
+  at jdk.jdeps@23.0.1/com.sun.tools.javap.JavapFileManager.&lt;init&gt;(JavapFileManager.java:46)
+  at jdk.jdeps@23.0.1/com.sun.tools.javap.JavapFileManager.create(JavapFileManager.java:57)
+  [...]
+</code></pre>
+    <h2 id="attempt-8-maybe-i-do-know-quoi">Attempt 8, Maybe I Do
+    Know Quoi</h2>
+    <p>I brainstormed ways to go faster.</p>
+    <ul>
+      <li>What if we didn’t read files from standard input?</li>
+      <li>What if the list of files never had to come from outside
+      the java process?</li>
+      <li>What if we pared down what we’re getting from javap? What
+      if we just answered the question we have: what file uses this
+      <code>BigInteger</code> method?</li>
+    </ul>
+    <p>Here’s what I came up with. Straight off my ape brain.</p>
+    <pre tabindex="0"><code>package io.github.math_ias;
+
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.InvalidPathException;
+
+import java.lang.classfile.ClassFile;
+import java.lang.classfile.ClassModel;
+import java.lang.classfile.MethodModel;
+
+import java.lang.classfile.attribute.CodeAttribute;
+
+import java.lang.classfile.constantpool.PoolEntry;
+import java.lang.classfile.constantpool.ClassEntry;
+import java.lang.classfile.constantpool.MethodRefEntry;
+import java.lang.classfile.constantpool.InterfaceMethodRefEntry;
+
+import java.lang.constant.MethodTypeDesc;
+
+import java.util.Iterator;
+
+// Compile like ...
+// javac --enable-preview -source 23 src/io/github/math_ias/MyMain.java -d target
+// Run like ...
+// java --enable-preview -cp target io.github.math_ias.MyMain 'java/math/BigInteger' 'valueOf' '(J)Ljava/math/BigInteger;'
+
+/**
+ * Program that does a whole lot of things.
+ */
+public class MyMain {
+  public static void main(String[] args) {
+    if (args.length != 4) {
+      System.err.println("Expected exactly 4 arguments, the root directory, the class name (/'s), the method name, and the method type descriptor.");
+      System.exit(-1);
+    }
+    Path rootPath = null;
+    try {
+      rootPath = Path.of(args[0]);
+    } catch (InvalidPathException ipe) {
+      System.err.println("Expected first arg to be a valid root path (does not parse).");
+      ipe.printStackTrace(System.err);
+      System.exit(-1);
+    }
+    if (!Files.exists(rootPath)) {
+      System.err.println("Expected first arg to be a valid root path (does not exist).");
+      System.exit(-1);
+    }
+    String classToMatch = args[1];
+    String methodToMatch = args[2];
+    MethodTypeDesc methodTypeDescToMatch = null;
+    try {
+      methodTypeDescToMatch =
+        MethodTypeDesc.ofDescriptor(args[3]);
+    } catch (IllegalArgumentException e) {
+      System.err.println("Expected fourth arg to be a valid method type descriptor.");
+      e.printStackTrace(System.err);
+      System.exit(-1);
+    }
+    // To quiet javac on the lambda. :]
+    MethodTypeDesc effectivelyFinalValue =
+      methodTypeDescToMatch;
+
+    try {
+      Files.walk(rootPath)
+      .parallel()
+      // This lambda is likely repeating work Files.walk already does,
+      // plus this file extension business is nasty,
+      // but I'm betting that I can beat xargs without optimizing it.
+      .filter((Path path) -&gt;
+        !Files.isDirectory(path) &amp;&
+        path.getFileName().toString().endsWith(".class")
+      )
+      .forEach((Path path) -&gt; printOnPathMatch(
+        path
+      , classToMatch
+      , methodToMatch
+      , effectivelyFinalValue
+      ));
+    } catch (IOException ioe) {
+      System.err.println("Unexpected error occurred while traversing file tree.");
+      ioe.printStackTrace();
+      System.exit(-1);
+    }
+
+    System.exit(0);
+  }
+
+  public static void printOnPathMatch(
+    Path path
+  , String classToMatch
+  , String methodToMatch
+  , MethodTypeDesc methodTypeDescToMatch
+  ) {
+    try {
+      ClassModel classModel =
+        ClassFile.of()
+          .parse(path);
+      if (classModelMatches(
+        classModel, classToMatch, methodToMatch, methodTypeDescToMatch
+      )) {
+        System.out.println(path.toString());
+      }
+    } catch (IOException io) {
+      System.err.println(String.format("Failed to read path %s, skipping.", path.toString()));
+      io.printStackTrace(System.err);
+    }
+  }
+
+  public static boolean classModelMatches(
+    ClassModel classModel
+  , String classToMatch
+  , String methodToMatch
+  , MethodTypeDesc methodTypeDescToMatch
+  ) {
+    Iterator&lt;PoolEntry&gt; iterator = classModel.constantPool().iterator();
+    while (iterator.hasNext()) {
+      PoolEntry poolEntry = iterator.next();
+      if (poolEntry instanceof MethodRefEntry) {
+        MethodRefEntry methodRefEntry = (MethodRefEntry) poolEntry;
+        if (
+          methodRefEntry.name().equalsString(methodToMatch) &amp;&
+          methodRefEntry.typeSymbol().equals(methodTypeDescToMatch) &amp;&
+          methodRefEntry.owner().name().equalsString(classToMatch)
+        ) {
+          return true;
+        }
+      } else if (poolEntry instanceof InterfaceMethodRefEntry) {
+        InterfaceMethodRefEntry interfaceMethodRefEntry =
+          (InterfaceMethodRefEntry) poolEntry;
+        if (
+          interfaceMethodRefEntry.name().equalsString(methodToMatch) &amp;&
+          interfaceMethodRefEntry.typeSymbol().equals(methodTypeDescToMatch) &amp;&
+          interfaceMethodRefEntry.owner().name().equalsString(classToMatch)
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+}
+</code></pre>
+    <p>Let’s measure it!<sup>15</sup></p>
+    <pre tabindex="0"><code>for _ in {1..5}; do
+START_TIME=$(gdate +%s%3N)
+: My program only takes one root dir.
+: So for fairness I run it 3 times.
+: This will eliminate some warmup effects.
+: But as you’ll see in the results,
+: it’s so fast it doesn’t matter.
+java --enable-preview io.github.math_ias.MyMain ../../jars 'java/math/BigInteger' 'valueOf' '(J)Ljava/math/BigInteger;' &gt; /dev/null
+java --enable-preview io.github.math_ias.MyMain ../../jars 'java/math/BigInteger' 'valueOf' '(J)Ljava/math/BigInteger;' &gt; /dev/null
+java --enable-preview io.github.math_ias.MyMain ../../jars 'java/math/BigInteger' 'valueOf' '(J)Ljava/math/BigInteger;' &gt; /dev/null
+END_TIME=$(gdate +%s%3N)
+DURATION=$((END_TIME - START_TIME))
+echo "$DURATION"
+done
+</code></pre>
+    <div class="small">
+      <p>(15) We can also measure fairness. For each file in the
+      parallel stream let’s just print the file name.</p>
+      <pre tabindex=
+      "0"><code>java --enable-preview io.github.math_ias.MyMain ../../jars | wc -l
+19080
+</code></pre>
+      <p>We’re not skipping files by accident. What about
+      accuracy?</p>
+      <pre tabindex=
+      "0"><code>find . -type f -name '*.class' | xargs -n 50000 -P 4 javap -sysinfo -c | rg "java/lang/Object\.equals:\(Ljava/lang/Object;\)Z|^Classfile" | python3 -c "
+import sys, itertools
+a, b = itertools.tee(sys.stdin)
+next(b, None)
+for x, y in zip(a, b):
+if 'Classfile' in x and 'invokevirtual' in y.lower():
+print(x, end='')
+" | wc -l
+571
+</code></pre>
+      <p>That gives a similar count to my program: 587. I suspect
+      the classfile spec allows you to add methods to the constant
+      pool and not use it.</p>
+      <p>It does beg the question, what IS the most used method in
+      all these jars? Let’s go find out in <a href=
+      "./tacobelljavap/mostusedmethod.html">another page</a>.</p>
+    </div>
+    <p>It’s FAST. It is about 10 times faster than the fastest
+    method we’ve come up with so far (14968 versus 1533
+    milliseconds).</p>
+    <table>
+      <thead>
+        <tr>
+          <th>SAMPLE</th>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>5</td>
+          <th>AVG</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>TIME</th>
+          <td>1528</td>
+          <td>1548</td>
+          <td>1491</td>
+          <td>1536</td>
+          <td>1560</td>
+          <td>1532.6</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>And it only took me a couple of months to do it and then
+    write about it!</p>
+    <h2 id="further-reading">Further Reading</h2>
+    <p>There are two JVM implementations that have their own
+    solutions to slow java startup times. I didn’t try them and
+    perhaps they are another way to crack this problem.</p>
+    <ul>
+      <li>Azul Zulu has <a href=
+      "https://docs.azul.com/core/crac/crac-introduction">Coordinated
+      Restore at Checkpoint</a>.
+      </li>
+      <li>Azul Zing has <a href=
+      "https://docs.azul.com/prime/Use-ReadyNow">ReadyNow</a>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

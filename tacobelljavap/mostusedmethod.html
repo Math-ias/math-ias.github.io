@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="data:,">
+  <title>Most Used Method</title>
+  <style type="text/css">
+  body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  /* General style. */
+  .content {
+    box-sizing: border-box;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    font-family: monospace, monospace;
+  }
+
+  code {
+    font-family: monospace, monospace;
+    white-space: pre-wrap;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  td, th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #999;
+  }
+
+  .breadcrumb {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding-left: 0;
+  }
+
+  .breadcrumb li {
+    display: inline;
+    white-space: nowrap;
+  }
+
+  .breadcrumb li + li:before {
+    content: ">";
+    padding: 0.25rem;
+  }
+
+  /* Sidenote layout. */
+
+  @media (min-width: 921px) {
+    .content {
+        box-sizing: border-box;
+        max-width: unset;
+        width: 920px;
+        display: grid;
+        grid-template-columns: 600px 300px;
+        column-gap: 20px;
+        row-gap: 20px;
+        justify-items: stretch;
+        align-items: start;
+    }
+    
+    .content > :not(.small) {
+        box-sizing: border-box;
+        width: 600px;
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-column-start: 1;
+    }
+    
+    .content > .small {
+        box-sizing: border-box;
+        width: 300px;
+        grid-column-start: 2;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        font-size: smaller;
+    }
+  }
+
+  sup {
+    line-height: 0;
+  }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <ol class="breadcrumb">
+      <li>
+        <a href="../index.html">Mathias Kools</a>
+      </li>
+      <li>
+        <a href="../tacobelljavap.html">Taco Bell Javap</a>
+      </li>
+      <li class="active">
+        <a href="../tacobelljavap/mostusedmethod.html">Most Used
+        Method</a>
+      </li>
+    </ol>
+    <h1 id="most-used-method-out-there">Most Used Method Out
+    There</h1>
+    <p>What java method is referenced by the most classes in the
+    most popular JARs I can find in the maven repository? Here’s
+    the program.</p>
+    <pre tabindex="0"><code>package io.github.math_ias;
+
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.InvalidPathException;
+
+import java.lang.classfile.ClassFile;
+import java.lang.classfile.ClassModel;
+import java.lang.classfile.MethodModel;
+
+import java.lang.classfile.constantpool.PoolEntry;
+import java.lang.classfile.constantpool.ClassEntry;
+import java.lang.classfile.constantpool.MethodRefEntry;
+import java.lang.classfile.constantpool.InterfaceMethodRefEntry;
+
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeSet;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * Compile like ...
+ * javac --enable-preview -source 23 src/io/github/math_ias/MyCounter.java -d target
+ */
+public class MyCounter {
+  static record ClassMethod(String clazz, String method) {}
+  static record ClassMethodCount(String clazz, String method, Integer count) {}
+
+  static Comparator&lt;ClassMethodCount&gt; CLASS_METHOD_COUNT_COMPARATOR =
+    Comparator.comparingInt(ClassMethodCount::count);
+
+  static void pushNewCount(ClassMethodCount classMethodCount, TreeSet&lt;ClassMethodCount&gt; set) {
+    set.add(classMethodCount);
+    if (set.size() &gt; 5) {
+      set.pollFirst();
+    }
+  }
+
+  public static void main(String[] args) {
+    if (args.length != 1) {
+      System.err.println("Expected exactly 1 argument, the root directory.");
+      System.exit(-1);
+    }
+    Path rootPath = null;
+    try {
+      rootPath = Path.of(args[0]);
+    } catch (InvalidPathException ipe) {
+      System.err.println("Expected first arg to be a valid root path (does not parse).");
+      ipe.printStackTrace(System.err);
+      System.exit(-1);
+    }
+    if (!Files.exists(rootPath)) {
+      System.err.println("Expected first arg to be a valid root path (does not exist).");
+      System.exit(-1);
+    }
+
+    ConcurrentHashMap&lt;ClassMethod, Integer&gt; map = new ConcurrentHashMap();
+
+    try {
+      Files.walk(rootPath)
+      .parallel()
+      // This lambda is likely repeating work Files.walk already does,
+      // plus this file extension business is nasty,
+      // but I'm betting that I can beat xargs without optimizing it.
+      .filter((Path path) -&gt;
+        !Files.isDirectory(path) &amp;&
+        path.getFileName().toString().endsWith(".class")
+      )
+      .forEach((Path path) -&gt; addMethodsToMap(
+        path
+      , map
+      ));
+    } catch (IOException ioe) {
+      System.err.println("Unexpected error occurred while traversing file tree.");
+      ioe.printStackTrace();
+      System.exit(-1);
+    }
+
+    TreeSet&lt;ClassMethodCount&gt; sortedSet =
+      new TreeSet&lt;ClassMethodCount&gt;(CLASS_METHOD_COUNT_COMPARATOR);
+    map.entrySet().forEach((Map.Entry&lt;ClassMethod, Integer&gt; mapEntry) -&gt;
+      pushNewCount(
+        new ClassMethodCount(
+          mapEntry.getKey().clazz()
+        , mapEntry.getKey().method()
+        , mapEntry.getValue()
+        )
+      , sortedSet
+      )
+    );
+
+    sortedSet.forEach((ClassMethodCount classMethodCount) -&gt;
+      System.out.println(
+        String.format(
+          "%d %s.%s"
+        , classMethodCount.count()
+        , classMethodCount.clazz()
+        , classMethodCount.method()
+        )
+      )
+    );
+
+    System.exit(0);
+  }
+
+  static Integer mergeInts(Integer left, Integer right) { return left + right; }
+
+  public static void addMethodsToMap(
+    Path path
+  , ConcurrentHashMap&lt;ClassMethod, Integer&gt; map
+  ) {
+    try {
+      ClassModel classModel =
+        ClassFile.of()
+          .parse(path);
+      Iterator&lt;PoolEntry&gt; iterator = classModel.constantPool().iterator();
+      while (iterator.hasNext()) {
+        PoolEntry poolEntry = iterator.next();
+        switch (poolEntry) {
+          case MethodRefEntry methodRefEntry:
+            map.merge(
+              new ClassMethod(
+                methodRefEntry.owner().name().stringValue()
+              , methodRefEntry.name().stringValue()
+              )
+            , 1
+            , MyCounter::mergeInts
+            );
+            break;
+          case InterfaceMethodRefEntry interfaceMethodRefEntry:
+            map.merge(
+              new ClassMethod(
+                interfaceMethodRefEntry.owner().name().stringValue()
+              , interfaceMethodRefEntry.name().stringValue()
+              )
+            , 1
+            , MyCounter::mergeInts
+            );
+            break;
+          default: // Do nothing.
+        }
+      }
+    } catch (IOException io) {
+      System.err.println(String.format("Failed to read path %s, skipping.", path.toString()));
+      io.printStackTrace(System.err);
+    }
+  }
+}
+</code></pre>
+    <pre tabindex=
+    "0"><code>% java --enable-preview io.github.math_ias.MyCounter ../../jars
+1377 clojure/lang/IFn.invoke
+1384 java/lang/StringBuilder.&lt;init&gt;
+2312 clojure/lang/AFunction.&lt;init&gt;
+2721 java/lang/StringBuilder.append
+5916 java/lang/Object.&lt;init&gt;
+</code></pre>
+    <p>Nice. The init method. And that total count matches what the
+    other tool shows.</p>
+    <pre tabindex=
+    "0"><code>% java --enable-preview io.github.math_ias.MyMain jars java/lang/Object "&lt;init&gt;" "()V" | wc -l
+  5916
+</code></pre>
+  </div>
+</body>
+</html>
