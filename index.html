@@ -111,13 +111,12 @@
     <h1 style=
     "font-size: 100px; text-align: center; margin-bottom: 16px;">
     Mathias Kools</h1>
-    <h2 id=
-    "programmer-mini-mathematician-cookie-clicker-speedrunner">
-    Programmer, mini-mathematician, cookie-clicker-speedrunner</h2>
+    <h2 id="software-engineer">Software Engineer</h2>
     <p>Hi, my name is Mathias Kools. I am a Belgian-American 🇧🇪🇺🇸
     from the Boston area.</p>
     <h2 id="resume">Resume</h2>
-    <p>This is basically a different take on my resume.</p>
+    <p>If I didn’t have to squish my resume onto a single page,
+    this is what it’d look like.</p>
     <h3 id="education">Education</h3>
     <ul>
       <li>I graduated from <a href=
@@ -146,7 +145,7 @@
       (0) I’m also proud to be an alum of <a href=
       "https://www.firstinspires.org/robotics/frc">First Robotics
       Competition team 4761</a>. My most significant roles were
-      business president and programmer.
+      programmer and business president (fundraising).
     </div>
     <h3 id="technologies">Technologies</h3>
     <p>I’ve been programming for about a decade.</p>
@@ -204,13 +203,32 @@
       <li>
         <p>In 2021 I worked at <a href=
         "https://www.smartleaf.com">SmartLeaf</a> and gained new
-        experiences in <strong>(Oracle) SQL, and
-        Redux</strong>.</p>
+        experiences in <strong>(Oracle) SQL, and Redux</strong>. I
+        could re-use my Ruby on Rails experience as well.</p>
       </li>
       <li>
         <p>In 2022 I started work at <a href=
-        "https://chaossearch.io">ChaosSearch</a>. This will expose
-        me to tools like <strong>Scala, and Akka</strong>.</p>
+        "https://chaossearch.io">ChaosSearch</a>. This gave me
+        experience with <strong><a href=
+        "https://www.scala-lang.org/">Scala</a></strong>. We used
+        <strong><a href=
+        "https://pekko.apache.org/docs/pekko/current/typed/actors.html">
+        Akka Actors</a>, <a href=
+        "https://pekko.apache.org/docs/pekko/current/typed/guide/modules.html#streams">
+        Akka Streams</a>, and <a href=
+        "https://aws.amazon.com/s3/">AWS S3</a></strong> to make
+        <strong>distributed systems</strong>. We debugged our JVM
+        app with tools like <strong><a href=
+        "https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/about.htm#JFRUH170">
+        JFR</a>, <a href=
+        "https://htmlpreview.github.io/?https://raw.githubusercontent.com/visualvm/visualvm.java.net.backup/master/www/heapdump.html">
+        VisualVM</a>, and <a href=
+        "https://docs.oracle.com/en/java/javase/21/docs/api/index.html">
+        Java Agents</a></strong>. We created <strong><a href=
+        "https://developer.hashicorp.com/terraform">terraform</a></strong>
+        providers. And we made custom <strong><a href=
+        "https://spark.apache.org/">spark</a></strong> data
+        formats.</p>
       </li>
     </ul>
     <div class="small">
@@ -301,7 +319,82 @@
           perfect).</li>
         </ul>
       </li>
+    </ul><br>
+    <ul>
+      <li>In 2022 I graduated college and after taking a brief
+      vacation got to work at ChaosSearch in June. Here I was a
+      “core” engineer working on the backend of a
+      <strong>distributed search and analytics database</strong>.
+        <ul>
+          <li>I joined a churning “windowed monitoring” project.
+          Here, <strong>I helped get implementation<sup>5</sup> and
+          a complete internal rollout over the line</strong>. By
+          connecting ingestion directly to our query engine
+          (skipping index traversal), we could monitor on just the
+          latest data, and provide huge compute
+          savings<sup>6</sup>.</li>
+          <li>I headed an effort to modernize our deployment and
+          application APIs with best <a href=
+          "https://en.wikipedia.org/wiki/REST">RESTful</a>
+          practices. This was my part in a larger effort to develop
+          OEM opportunities.
+          </li>
+          <li>I <strong>headed a significant effort to <a href=
+          "https://github.com/apache/spark/blob/dd2ee2400e85dc25ce1de12851b27704ed735417/sql/core/src/main/scala/org/apache/spark/sql/sources/interfaces.scala#L54-L63">
+            connect spark</a> to SAAS ingested data to open
+            opportunities in <a href=
+            "https://docs.databricks.com/">Databricks</a> and
+            <a href="https://aws.amazon.com/emr/">Amazon
+            EMR</a></strong>.
+            <ul>
+              <li>I implemented a crazy and brilliant idea from one
+              of my colleagues. To break into a rather locked down
+              databricks runtime, we used a java instrumentation
+              agent to modify bytecode as it was loading. We
+              modified databricks libraries to allow us to call
+              into our own library code. <a href=
+              "./tacobelljavap.html">I’ve written more about
+              bytecode here</a>.
+              </li>
+            </ul>
+          </li>
+          <li>I was also happy to <strong>contribute to open source
+          projects</strong> during this time.
+            <ul>
+              <li>Either to <a href=
+              "https://github.com/apache/pekko-http/pull/146">help
+              library dependencies stable release milestones</a>.
+              </li>
+              <li>Or to further <a href=
+              "https://github.com/scala/scala/pull/10881">my own
+              understanding of the tools we used</a>.
+              </li>
+            </ul>
+          </li>
+          <li>I started a running tradition that’s outlasted even
+          my own interest in distance races. <a href=
+          "./running/mayflower.html">You can read about the first
+          event we did here</a>.
+          </li>
+        </ul>
+      </li>
     </ul>
+    <div class="small">
+      <p>(5) Implementation touched all sorts of interesting
+      technology that ChaosSearch had developed.</p>
+      <ul>
+        <li>A distributed query engine that spread work across
+        hundreds of nodes.</li>
+        <li>A sophisticated query optimizer to rewrite and
+          <a href="https://www.dremio.com/wiki/predicate-pushdown/">
+          pushdown</a> parts of a query.
+        </li>
+      </ul>
+      <p>(6) These savings were so significant that we could turn
+      on old alerts. We wrote new alerts for faults in ingestion.
+      We could even ring phones 15x faster (running every quarter
+      of an hour to every minute!)</p>
+    </div>
     <h3 id="contact">Contact</h3>
     <p>I communicate from mathiaskools at gmail dot com.</p>
     <h2 id="external-pages">External Pages</h2>
