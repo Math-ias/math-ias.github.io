@@ -660,7 +660,7 @@ done
           <td class="s39">21210</td>
         </tr>
         <tr>
-          <th>40000<sup>10</sup></th>
+          <th>40000<sup>9</sup></th>
           <td class="s40">43058</td>
           <td class="s41">25605</td>
           <td class="s42">18278</td>
@@ -671,7 +671,7 @@ done
       </tbody>
     </table>
     <div class="small">
-      <p>(10) Out of curiosity because it appears in the table in
+      <p>(9) Out of curiosity because it appears in the table in
       xargs what happens when <code>BATCH SIZE * P &gt;
       N</code>.</p>
       <pre tabindex=
@@ -689,7 +689,7 @@ a150ac10-0c7d-4ab0-a7e0-66659818cab6 40000
     <p>Looks like batch size 16000, and parallelism 4 is the ideal
     crunchwrap supreme<sup>10</sup> combination.</p>
     <div class="small">
-      (11) I’m using crunchwrap supreme as the pinnacle taco bell
+      (10) I’m using crunchwrap supreme as the pinnacle taco bell
       meal. I actually think their best item is the <a href=
       "https://www.tacobell.com/food/cravings-value-menu/spicy-potato-soft-taco">
       soft potato taco</a>.
@@ -740,7 +740,7 @@ public class MyMain {
 
 </code></pre>
     <div class="small">
-      <p>(12) This isn’t trivial by the way. I did it like this
+      <p>(11) This isn’t trivial by the way. I did it like this
       with an unammed module (drop <code>--add-modules</code> if
       you already have a module graph defined in a
       <code>module-info.java</code>).</p>
@@ -798,23 +798,23 @@ done
           <td>14894</td>
         </tr>
         <tr>
-          <th>Average<sup>13</sup></th>
+          <th>Average<sup>12</sup></th>
           <td>15888</td>
           <td>14968.2</td>
         </tr>
       </tbody>
     </table>
     <div class="small">
-      (13) <code>pbpaste | awk '{sum+=$1} END {print
+      (12) <code>pbpaste | awk '{sum+=$1} END {print
       sum/NR}'</code>
     </div>
     <p>It’s a small improvement. But not worth the time I spent
     writing the code. We will come back to the idea of calling into
     the libraries that power javap later.</p>
-    <h2 id="attempt-six-je-ne-sais-quoisup14sup">Attempt Six, Je Ne
-    Sais Quoi<sup>14</sup></h2>
+    <h2 id="attempt-six-je-ne-sais-quoisup13sup">Attempt Six, Je Ne
+    Sais Quoi<sup>13</sup></h2>
     <div class="small">
-      (14) Or when it comes to me as a developer. Maybe it would
+      (13) Or when it comes to me as a developer. Maybe it would
       better read as Je Ne Sais Pas
     </div>
     <p>I googled “<a href=
@@ -1141,7 +1141,7 @@ public class MyMain {
   }
 }
 </code></pre>
-    <p>Let’s measure it!<sup>15</sup></p>
+    <p>Let’s measure it!<sup>14</sup></p>
     <pre tabindex="0"><code>for _ in {1..5}; do
 START_TIME=$(gdate +%s%3N)
 : My program only takes one root dir.
@@ -1158,7 +1158,7 @@ echo "$DURATION"
 done
 </code></pre>
     <div class="small">
-      <p>(15) We can also measure fairness. For each file in the
+      <p>(14) We can also measure fairness. For each file in the
       parallel stream let’s just print the file name.</p>
       <pre tabindex=
       "0"><code>java --enable-preview io.github.math_ias.MyMain ../../jars | wc -l

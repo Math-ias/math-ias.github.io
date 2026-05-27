@@ -571,22 +571,22 @@
     <h4 id="sum--count2">SUM &gt;= COUNT/2</h4>
     <p>Comparing <code>SUM(B4:B)</code> to
     <code>COUNT(B3:B)/2</code> is a slight re-working of <a href=
-    "#AVERAGE">AVERAGE in part 1</a><sup>4</sup>. <code>SUM</code>
+    "#AVERAGE">AVERAGE in part 1</a><sup>3</sup>. <code>SUM</code>
     becomes <code>SUMIF</code> on the second pass to prevent
     summing across rows already filtered out.</p>
     <div class="small">
-      (4) I use <code>SUMIF</code> and <code>COUNTIF</code> to
+      (3) I use <code>SUMIF</code> and <code>COUNTIF</code> to
       control tie-breaking behavior (necessary for
       <code>carbon</code>).
     </div>
     <h4 id="why-not-filter">Why not FILTER</h4>
     <p>The <a href=
     "https://support.google.com/docs/answer/3093197?hl=en"><code>FILTER</code>
-    function</a><sup>5</sup> could power alternative solutions.
+    function</a><sup>4</sup> could power alternative solutions.
     This function takes a range and returns a range matching a
     criteria.</p>
     <div class="small">
-      (5) <code>FILTER</code> doesn’t work like
+      (4) <code>FILTER</code> doesn’t work like
       <code>COUNTIF</code>. There’s no string “criteria”. Instead
       it takes in a range of boolean values.
     </div>
@@ -647,10 +647,10 @@
       row.</li>
     </ul>
     <p>Combined they allow you to look up cells by a different
-    column<sup>6</sup>. For programming folk if you were writing a
+    column<sup>5</sup>. For programming folk if you were writing a
     SQL statement to <code>SELECT</code> one row …</p>
     <div class="small">
-      (6) Excel users get this in one function: <a href=
+      (5) Excel users get this in one function: <a href=
       "https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">
       XLOOKUP</a>.
     </div>
