@@ -254,7 +254,7 @@ In summary, this problem requires a process to unscramble segments and numbers. 
       
       <guid>http://math-ias.github.io/clickr.html</guid>
       <description>Clickr Clickr is a minigame redstone contraption. A lectern faces the player showing a written book containing one hundred pages. The player&amp;rsquo;s goal is to flip through that book as fast as possible. After reaching the last page the player&amp;rsquo;s score is readable from the number of items in the hopper.
- Formulating the Game  Finding an Item   How It Works  Hoppers States Transitions The Book Itself   Bugs Extra Modifications and Extensions  Competition Simplification Book Art   Gameplay  Reception Tips and Tricks     Formulating the Game Finding an Item The original idea was to create a game about clicking as fast as possible0.</description>
+ Formulating the Game  Finding an Item   How It Works  Hoppers States Transitions The Book Itself   Bugs Extra Modifications and Extensions  Competition Simplification Book Art   Gameplay  Tips and Tricks     Formulating the Game Finding an Item The original idea was to create a game about clicking as fast as possible0.</description>
     </item>
     
     <item>
